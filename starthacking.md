@@ -28,15 +28,15 @@ The list is ordered in no particular manner.
 - CTF Katsudon: https://ctf.katsudon.org/ctf4u/ 
  G0Blin writeups: https://g0blin.co.uk/ 
 
-## Compilation of websites
-There are also other compilations that, just like this one, offer you a huge variety of hacking training sites.  
-- http://captf.com/practice-ctf/  List of CTF sites classified as recommended, others, meta, webapp, forensics, recruiting and paid. They also provide donloadable offline games and virtual machines you can download to train with. You can visit their main directory - http://captf.com to explore annual collections since 2004. 
-- https://github.com/ctfs Compilation of challenges and write-ups classified by year. 
-- http://www.amanhardikar.com/mindmaps/Practice.html Penetration testing practice lab - vulnerable apps / systems. This one is huge as you will notice. 
-- https://www.vulnhub.com/ 
-- Recopilación de muchas páginas de temas muy diversos: https://tiwim.github.io/pages/linklist.html 
+## Other webiste compilations
+There are also other websites that, just like this one, gather the best sites in order to offer us a huge variety of hacking training platforms/frameworks.  
+- [http://captf.com/practice-ctf/](http://captf.com/practice-ctf/)  List of CTF sites classified as recommended, others, meta, webapp, forensics, recruiting and paid. They also provide donloadable offline games and virtual machines you can download to train with. You can visit their main directory - http://captf.com to explore annual collections since 2004. 
+- [https://github.com/ctfs](https://github.com/ctfs) Compilation of challenges and write-ups classified by year. 
+- [http://www.amanhardikar.com/mindmaps/Practice.html](http://www.amanhardikar.com/mindmaps/Practice.html) Penetration testing practice lab - vulnerable apps / systems. This one is huge as you will notice. 
+- [https://www.vulnhub.com/](https://www.vulnhub.com/) 
+- Recopilación de muchas páginas de temas muy diversos: [https://tiwim.github.io/pages/linklist.html](https://tiwim.github.io/pages/linklist.html)
 - Online article (in spanish) “14 webs para poner a pruebas tus habilidades como hacker”. (14 webs to test your skills as a hacker)
-https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/ 
+[https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/](https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/)
 
 
 This compilation is in constant growth. If you miss a page and consider it is worth posting, please contact the [author](https://twitter.com/Razvieu). 
