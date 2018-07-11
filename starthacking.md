@@ -41,5 +41,5 @@ There are also other websites that, just like this one, in turn gather the best 
 - <span style="color:yellow">Online article (in spanish) “14 webs para poner a pruebas tus habilidades como hacker”.</span> (14 webs to test your skills as a hacker)
 [https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/](https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/)
 
-This compilation is in constant growth and change as it's being actively maintained. If you miss a page and consider it is worth posting, have suggestions or find errors, please contact the [author](https://twitter.com/Razvieu). 
+This compilation is in constant growth and change as it's being actively maintained. If you miss a page and consider it is worth posting, have suggestions or find errors, please contact the [author (@Razvieu)](https://twitter.com/Razvieu). 
 
