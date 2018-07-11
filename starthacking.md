@@ -27,6 +27,7 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 - Readings de reversing: https://github.com/onethawt/reverseengineering-reading-list 
 - CTF Katsudon: https://ctf.katsudon.org/ctf4u/ 
  G0Blin writeups: https://g0blin.co.uk/ 
+ - Begin.re [https://www.begin.re/](https://www.begin.re/)
 
 ## Other webiste compilations
 There are also other websites that, just like this one, in turn gather the best in order to bring us a huge variety of hacking training platforms/frameworks.  
