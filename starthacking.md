@@ -6,8 +6,13 @@ Please note that this is a mere compilation, all credits go to their respective 
 The list is ordered in no particular manner.
 <div style="text-align: justify">
 - <span style="color:yellow">Pwnable</span>  [http://pwnable.kr/](http://pwnable.kr/) Pwnable is a classic, one of all-time favorites. pwnable.kr is a non-commercial wargame site which provides various pwn challenges regarding system exploitation. The main purpose of pwnable.kr is 'fun'. While playing pwnable.kr, you could learn/improve system hacking skills but that shouldn't be your only purpose. The only thing you must do is click "play" on the upper left zone, choose a game and Pwn it. They provide a scoring system, the harder the challenge is, the more score you win.
+</div>
+<div style="text-align: justify">
 - <span style="color:yellow">Begin.re</span> [https://www.begin.re/](https://www.begin.re/) If you have been searching for a place to get started with Reverse Engineering and get your hands dirty, Begin.re is the right place. The correct place for x86 newcomers. 
+</div>
+<div style="text-align: justify">
 - <span style="color:yellow">CTFTIME</span> [https://ctftime.org/](https://ctftime.org/) One of the biggest Capture The Flag (CTF) archives. They classify the challenges by year and profide useful information and statistics. For example, each competition participating teams, the winning team, their members, their write-ups, etc... 
+</div>
 - <span style="color:yellow">Over The Wire</span> [http://overthewire.org/wargames/](http://overthewire.org/wargames/) Again one of all-time favorites. 
 The wargames offered by the OverTheWire community can help you to learn and practice security concepts in the form of fun-filled games. To find out more about a certain wargame, just visit its page linked from the menu on the left. They have a suggested order to play the games in in their "About". 
 - <span style="color:yellow">W3 Challenges</span> [https://w3challs.com/](https://w3challs.com/) W3Challs is a penetration testing training platform, which offers various computer challenges, in categories related to security: Hacking, Cracking, Wargame, Forensic, Cryptography and Programming. The purpose of this site is to offer realistic challenges, without simulation, and without guessing!
@@ -42,4 +47,4 @@ There are also other websites that, just like this one, in turn gather the best 
 [https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/](https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/)
 
 This compilation is in constant growth and change as it's being actively maintained. If you miss a page and consider it is worth posting, have suggestions or find errors, please contact the [author](https://twitter.com/Razvieu). 
-</div>
+
