@@ -39,7 +39,7 @@ There are also other websites that, just like this one, in turn gather the best 
 [https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/](https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/)
 
 
-This compilation is in constant growth. If you miss a page and consider it is worth posting, please contact the [author](https://twitter.com/Razvieu). 
+This compilation is in constant growth and change as it's being actively maintained. If you miss a page and consider it is worth posting, have suggestions or find errors, please contact the [author](https://twitter.com/Razvieu). 
 
 
 
