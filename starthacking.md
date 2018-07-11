@@ -5,13 +5,13 @@ Please note that this is a mere compilation, all credits go to their respective 
 
 The list is ordered in no particular manner.
 
-
-- CTFTIME - https://ctftime.org/ 
-- Builds Hack Me - http://ctf.slothparadise.com/ 
-- Over The Wire - http://overthewire.org/wargames/bandit/bandit0.html 
+- Pwnable [http://pwnable.kr/](http://pwnable.kr/) Pwnable is a classic, one of all-time favorites. pwnable.kr is a non-commercial wargame site which provides various pwn challenges regarding system exploitation. The main purpose of pwnable.kr is 'fun'. While playing pwnable.kr, you could learn/improve system hacking skills but that shouldn't be your only purpose. The only thing you must do is click "play" on the upper left zone, choose a game and Pwn it. They provide a scoring system, the harder the challenge is, the more score you win.
+- CTFTIME [https://ctftime.org/](https://ctftime.org/) One of the biggest Capture The Flag (CTF) archives. They classify the challenges by year and profide useful information and statistics. For example, each competition participating teams, the winning team, their members, their write-ups, etc... 
+- Over The Wire [http://overthewire.org/wargames/](http://overthewire.org/wargames/) Again one of all-time favorites. 
+The wargames offered by the OverTheWire community can help you to learn and practice security concepts in the form of fun-filled games. To find out more about a certain wargame, just visit its page linked from the menu on the left. They have a suggested order to play the games in in their "About". 
 - W3 Challenges - https://w3challs.com/ 
-- Pwnable (♥) - http://pwnable.kr/ 
-- Pwnable (♥) - https://pwnable.tw/challenge/ 
+- Pwnable.tw [https://pwnable.tw/](https://pwnable.tw/) Pwnable.tw is a wargame site for hackers to test and expand their binary exploiting skills. Just as the .kr version (I actually don't know if they're related) the only thing you must do is click "challenges" con the upper left webpage tabs. They provide a scoring system, the harder the challenge is, the more score you earn. They also provide write-ups.
+- Builds Hack Me [http://ctf.slothparadise.com/](http://ctf.slothparadise.com/) As soon as you enter the site, you will see no play button. This one is a real simulation, you must inspect source code and start digging to gather info and Pwn it :D
 - CTF: https://picoctf.com/ El código lo suben aquí: https://github.com/picoCTF 
 - CTF365 - https://ctf365.com/ 
 - Hack The Box - https://www.hackthebox.eu/ 
