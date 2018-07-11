@@ -6,28 +6,30 @@ Please note that this is a mere compilation, all credits go to their respective 
 The list is ordered in no particular manner.
 
 - Pwnable [http://pwnable.kr/](http://pwnable.kr/) Pwnable is a classic, one of all-time favorites. pwnable.kr is a non-commercial wargame site which provides various pwn challenges regarding system exploitation. The main purpose of pwnable.kr is 'fun'. While playing pwnable.kr, you could learn/improve system hacking skills but that shouldn't be your only purpose. The only thing you must do is click "play" on the upper left zone, choose a game and Pwn it. They provide a scoring system, the harder the challenge is, the more score you win.
+- Begin.re [https://www.begin.re/](https://www.begin.re/) If you have been searching for a place to get started with Reverse Engineering and get your hands dirty, Begin.re is the right place. The correct place for x86 newcomers. 
 - CTFTIME [https://ctftime.org/](https://ctftime.org/) One of the biggest Capture The Flag (CTF) archives. They classify the challenges by year and profide useful information and statistics. For example, each competition participating teams, the winning team, their members, their write-ups, etc... 
 - Over The Wire [http://overthewire.org/wargames/](http://overthewire.org/wargames/) Again one of all-time favorites. 
 The wargames offered by the OverTheWire community can help you to learn and practice security concepts in the form of fun-filled games. To find out more about a certain wargame, just visit its page linked from the menu on the left. They have a suggested order to play the games in in their "About". 
-- W3 Challenges - https://w3challs.com/ 
+- W3 Challenges - [https://w3challs.com/](https://w3challs.com/) W3Challs is a penetration testing training platform, which offers various computer challenges, in categories related to security: Hacking, Cracking, Wargame, Forensic, Cryptography and Programming. The purpose of this site is to offer realistic challenges, without simulation, and without guessing!
 - Pwnable.tw [https://pwnable.tw/](https://pwnable.tw/) Pwnable.tw is a wargame site for hackers to test and expand their binary exploiting skills. Just as the .kr version (I actually don't know if they're related) the only thing you must do is click "challenges" con the upper left webpage tabs. They provide a scoring system, the harder the challenge is, the more score you earn. They also provide write-ups.
 - Builds Hack Me [http://ctf.slothparadise.com/](http://ctf.slothparadise.com/) As soon as you enter the site, you will see no play button. This one is a real simulation, you must inspect source code and start digging to gather info and Pwn it :D
-- CTF: https://picoctf.com/ El código lo suben aquí: https://github.com/picoCTF 
-- CTF365 - https://ctf365.com/ 
-- Hack The Box - https://www.hackthebox.eu/ 
-- Root Me - https://www.root-me.org/en/Challenges/ 
-- Hack This - https://www.hackthis.co.uk/ 
-- Hack This Site - https://www.hackthissite.org/ 
-- Try2Hack - http://www.try2hack.nl/rules/ 
-- Hacking Lab: https://www.hacking-lab.com/index.html 
-- IO: http://io.netgarage.org/  
-- Smash The Stack - Wargaming Networking: http://smashthestack.org/wargames.html 
-- ATENEA del CCN-CERT: https://atenea.ccn-cert.cni.es/home (Retos interdisciplinarios)
-- Protostar: https://exploit-exercises.com/protostar/ 
-- Readings de reversing: https://github.com/onethawt/reverseengineering-reading-list 
-- CTF Katsudon: https://ctf.katsudon.org/ctf4u/ 
- G0Blin writeups: https://g0blin.co.uk/ 
- - Begin.re [https://www.begin.re/](https://www.begin.re/)
+- picoCTF [https://picoctf.com/](https://picoctf.com/) picoCTF is a computer security game targeted at middle and high school students. The game consists of a series of challenges centered around a unique storyline where participants must reverse engineer, break, hack, decrypt, or do whatever it takes to solve the challenge. The challenges are all set up with the intent of being hacked, making it an excellent, legal way to get hands-on experience. Their code is accessible via [picoCTF Git repo](https://github.com/picoCTF)
+- CTF365 [https://ctf365.com/](https://ctf365.com/) CTF365 is a real life cyber range where users build their own servers and defend them while attacking other servers. It's what would happen in real life when your server or computer networks are under attack by hackers.
+- Hack The Box [https://www.hackthebox.eu/](https://www.hackthebox.eu/) Hack The Box is an online platform allowing you to test your penetration testing skills and exchange ideas and methodologies with other members of similar interests. It contains several challenges that are constantly updated. Some of them simulating real world scenarios and some of them leaning more towards a CTF style of challenge.
+- Root Me [https://www.root-me.org/en/Challenges/](https://www.root-me.org/en/Challenges) The fast, easy, and affordable way to train your hacking skills. Root-me has a wide variety of challenges. CTFs, scripts, system, cracking, cryptanalysis, forensic, network, programming, realist, steganography, web-client, web-server. 
+- Exploit-exercises [https://exploit-exercises.com/](https://exploit-exercises.com/) Exploit-exercises.com provides a variety of virtual machines, documentation and challenges that can be used to learn about a variety of computer security issues such as privilege escalation, vulnerability analysis, exploit development, debugging, reverse engineering, and general cyber security issues.
+- Hack This [https://www.hackthis.co.uk/](https://www.hackthis.co.uk/) Want to learn about hacking and network security? Discover how hacks, dumps and defacements are performed and secure your website against hackers with HackThis. 
+- Hack This Site [https://www.hackthissite.org/](https://www.hackthissite.org/) Hack This Site is a free, safe and legal training ground for hackers to test and expand their hacking skills. More than just another hacker wargames site, we are a living, breathing community with many active projects in development, with a vast selection of hacking articles and a huge forum where users can discuss hacking, network security, and just about everything. Tune in to the hacker underground and get involved with the project.
+- Try2Hack [http://www.try2hack.nl/](http://www.try2hack.nl/) This site provides several security-oriented challenges for your entertainment. It is actually one of the oldest challenge sites still around. The challenges are diverse and get progressively harder.
+- Hacking Lab [https://www.hacking-lab.com/index.html](https://www.hacking-lab.com/index.html) Hacking-Lab is an online ethical hacking, computer network and security challenge platform, dedicated to finding and educating cyber security talents. Hacking-Labs’ goal is to raise awareness towards increased education and ethics in information security through a series of cyber competitions that encompass forensics, cryptography, reverse-engineering, ethical hacking and defense. One key initiative for Hacking-Lab is to foster an environment that creates cyber protection through education.
+- IO wargame [http://io.netgarage.org/](http://io.netgarage.org/)
+- Smash The Stack - Wargaming Networking [http://smashthestack.org/wargames.html](http://smashthestack.org/wargames.html) The Smash the Stack Wargaming Network hosts several Wargames. 
+- CTF Katsudon [https://ctf.katsudon.org/ctf4u/](https://ctf.katsudon.org/ctf4u/) Incredibly complete CTF collection and validation site. Baby, easy, medium easy, mediuam mediuam, mediuam hard and hard challenges awaits! 
+- ATENEA del CCN-CERT (Spanish only) [https://atenea.ccn-cert.cni.es/home](https://atenea.ccn-cert.cni.es/home) Collection of interdisciplinary challenges issuing criptography, steganography, exploiting, forensics, networking and reversing. 
+
+### Readings
+- Reverse engineering reading list:  [https://github.com/onethawt/reverseengineering-reading-list](https://github.com/onethawt/reverseengineering-reading-list )
+- G0Blin writeups [https://g0blin.co.uk/](https://g0blin.co.uk/) 
 
 ## Other webiste compilations
 There are also other websites that, just like this one, in turn gather the best in order to bring us a huge variety of hacking training platforms/frameworks.  
@@ -39,9 +41,4 @@ There are also other websites that, just like this one, in turn gather the best 
 - Online article (in spanish) “14 webs para poner a pruebas tus habilidades como hacker”. (14 webs to test your skills as a hacker)
 [https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/](https://www.r3cybersecurity.com/webs-para-poner-a-prueba-habilidades-hacking/)
 
-
 This compilation is in constant growth and change as it's being actively maintained. If you miss a page and consider it is worth posting, have suggestions or find errors, please contact the [author](https://twitter.com/Razvieu). 
-
-
-
-
