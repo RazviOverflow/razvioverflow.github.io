@@ -3,7 +3,7 @@ Have you ever wondered where to start hacking, acquire more hacking knowledge an
 
 Please note that this is a mere compilation, all credits go to their respective authors. Creating such challenges requires and involves a lot of time, knowledge and creativity. Respect their work. 
 
-The list is ordered in no particular manner.
+The list is ordered in no particular way.
 
 - <span style="color:yellow">Pwnable</span>  [http://pwnable.kr/](http://pwnable.kr/) Pwnable is a classic, one of all-time favorites. pwnable.kr is a non-commercial wargame site which provides various pwn challenges regarding system exploitation. The main purpose of pwnable.kr is 'fun'. While playing pwnable.kr, you could learn/improve system hacking skills but that shouldn't be your only purpose. The only thing you must do is click "play" on the upper left zone, choose a game and Pwn it. They provide a scoring system, the harder the challenge is, the more score you win.
 - <span style="color:yellow">Begin.re</span> [https://www.begin.re/](https://www.begin.re/) If you have been searching for a place to get started with Reverse Engineering and get your hands dirty, Begin.re is the right place. The correct place for x86 newcomers. 
