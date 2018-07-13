@@ -28,6 +28,7 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 - <span style="color:yellow">CCN-CERT's ATENEA (Spanish only)</span> [https://atenea.ccn-cert.cni.es/home](https://atenea.ccn-cert.cni.es/home) Collection of interdisciplinary challenges issuing criptography, steganography, exploiting, forensics, networking and reversing. 
 - <span style="color:yellow">Linux privilege escalation</span> [https://in.security/lin-security-practise-your-linux-privilege-escalation-foo/](https://in.security/lin-security-practise-your-linux-privilege-escalation-foo/) A Linux virtual machine that is based, at the time of writing, on an up-to-date Ubuntu distro (18.04 LTS), but suffers from a number of vulnerabilities that allow a user to escalate to root on the box. This has been designed to help understand how certain built-in applications and services if misconfigured, may be abused by an attacker.
 - <span style="color:yellow">MicroCTF compilation</span> [https://github.com/gabemarshall/microctfs](https://github.com/gabemarshall/microctfs) Small CTF challenges running on Docker
+- <span style="color:yellow">Reversing.kr</span> [http://reversing.kr/](http://reversing.kr/) This site tests your ability to Cracking & Reverse Code Engineering. Now Challenge a problem for each environment. (Windows, Linux, .Net, Flash, Java, Python, Mobile..)
 
 ## Readings
 - Reverse engineering reading list:  [https://github.com/onethawt/reverseengineering-reading-list](https://github.com/onethawt/reverseengineering-reading-list )
