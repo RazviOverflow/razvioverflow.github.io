@@ -30,7 +30,7 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 - <span style="color:yellow">MicroCTF compilation</span> [https://github.com/gabemarshall/microctfs](https://github.com/gabemarshall/microctfs) Small CTF challenges running on Docker
 - <span style="color:yellow">Reversing.kr</span> [http://reversing.kr/](http://reversing.kr/) This site tests your ability to Cracking & Reverse Code Engineering. Now Challenge a problem for each environment. (Windows, Linux, .Net, Flash, Java, Python, Mobile..)
 - <span style="color:yellow">Microcorruption</span> [https://microcorruption.com/login](https://microcorruption.com/login)  Web-based CTF focused in teaching assembly language and low-level debugging. 
-- Pwnctf.io [http://pwnctf.io/challenges](http://pwnctf.io/challenges) You must register as a team in order to see the challenges. Afterward you can see the challenges are divided into steganography, crypography, forensics, web, reverse engineering, miscellaneous, recon, trivia and encoding.
+- <span style="color:yellow">Pwnctf.io</span>  [http://pwnctf.io/challenges](http://pwnctf.io/challenges) You must register as a team in order to see the challenges. Afterward you can see the challenges are divided into steganography, crypography, forensics, web, reverse engineering, miscellaneous, recon, trivia and encoding.
 
 ## Readings
 - Reverse engineering reading list:  [https://github.com/onethawt/reverseengineering-reading-list](https://github.com/onethawt/reverseengineering-reading-list )
