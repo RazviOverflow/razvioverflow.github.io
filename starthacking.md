@@ -31,6 +31,8 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 - <span style="color:yellow">Reversing.kr</span> [http://reversing.kr/](http://reversing.kr/) This site tests your ability to Cracking & Reverse Code Engineering. Now Challenge a problem for each environment. (Windows, Linux, .Net, Flash, Java, Python, Mobile..)
 - <span style="color:yellow">Microcorruption</span> [https://microcorruption.com/login](https://microcorruption.com/login)  Web-based CTF focused in teaching assembly language and low-level debugging. 
 - <span style="color:yellow">Pwnctf.io</span>  [http://pwnctf.io/challenges](http://pwnctf.io/challenges) You must register as a team in order to see the challenges. Afterward you can see the challenges are divided into steganography, crypography, forensics, web, reverse engineering, miscellaneous, recon, trivia and encoding.
+- Modern Binary Exploitation course [http://security.cs.rpi.edu/courses/binexp-spring2015/](http://security.cs.rpi.edu/courses/binexp-spring2015/) 
+- Tuoni labs [https://tuonilabs.wordpress.com/](https://tuonilabs.wordpress.com/) Cyber security write-ups, exploits and intro about verious topics like ROP (Return Oriented Programming), web exploitation, binary exploitation, reverse engineering, OSCP...
 
 ## Readings
 - Reverse engineering reading list:  [https://github.com/onethawt/reverseengineering-reading-list](https://github.com/onethawt/reverseengineering-reading-list )
