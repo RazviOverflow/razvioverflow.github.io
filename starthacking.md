@@ -34,6 +34,7 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 - <span style="color:yellow">Pwnctf.io</span>  [http://pwnctf.io/challenges](http://pwnctf.io/challenges) You must register as a team in order to see the challenges. Afterward you can see the challenges are divided into steganography, crypography, forensics, web, reverse engineering, miscellaneous, recon, trivia and encoding.
 - <span style="color:yellow">Modern Binary Exploitation course</span> [http://security.cs.rpi.edu/courses/binexp-spring2015/](http://security.cs.rpi.edu/courses/binexp-spring2015/) 
 - <span style="color:yellow">Tuoni labs</span> [https://tuonilabs.wordpress.com/](https://tuonilabs.wordpress.com/) Cyber security write-ups, exploits and intro about verious topics like ROP (Return Oriented Programming), web exploitation, binary exploitation, reverse engineering, OSCP...
+- <span style="color:yellow">Hackers.gg</span> [https://hackers.gg/](https://hackers.gg/) Here you will find resources for learning, practicing, and exploring exploitation and infosec. We have also integrated
 
 ## Readings
 - Reverse engineering reading list:  [https://github.com/onethawt/reverseengineering-reading-list](https://github.com/onethawt/reverseengineering-reading-list )
