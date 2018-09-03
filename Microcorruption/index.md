@@ -5,4 +5,4 @@ tags: well some tag
 
 #sup
 
-- [First entry](razvioverflow.github.io/microcorruption/microcorruption-new-orleans-explained.md)
+- [First entry](/Microcorruption/microcorruption-new-orleans-explained.md)
