@@ -34,12 +34,12 @@
         each individual page properties. I do it that way so I can easily paste tags underneath it.
         If the page is the main one, tags are not requiered.
       {% uncomment %}
-      <section id="title">
+      <section id="titles">
         <h1 style="font-size: 30;">{{ page.title }}</h1>
       </section>
 
       {% if page.mainPage %}
-      <section id="tags">
+      <section id="tagss">
           <span>
                 {% for tag in page.tags %}
                   {% capture tag_name %}{{ tag }}{% endcapture %}
