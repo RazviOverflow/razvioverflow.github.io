@@ -6,5 +6,5 @@ tags: [microcorruption, new orleans, assembly, ctf, tutorial, walkthrough, debug
 ---
 # this file is microcorruption-new-orleans-explained.md
 
-That's actually an image ![New Orleans intro](/images/microcorrupion-new-orleans.png) 
+That's actually an image ![New Orleans intro](/images/microcorruption-new-orleans.png) 
 
