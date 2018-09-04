@@ -5,4 +5,4 @@ tags: well some tag
 
 #sup
 
-- [First entry](/Microcorruption/microcorruption-new-orleans-explained.md)
+- [First entry](/microcorruption/new-orleans-explained.md)

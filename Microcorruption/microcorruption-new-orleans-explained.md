@@ -1,1 +1,0 @@
-# this file is microcorruption-new-orleans-explained.md

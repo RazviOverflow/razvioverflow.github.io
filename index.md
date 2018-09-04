@@ -10,5 +10,5 @@ Here you can find a list, compilation, directory... of the best hacking sites. Y
 # Tutorials && Writeups
 Knowledge that I consider is worth sharing. Tutorials,  walkthroughs, challenges, ctf, writeups, papers, articles... thoroughly detailed. The purpose is to understand the underlying idea and the inner workings of it. 
 
-- [Microcorruption](/Microcorruption)
+- [Microcorruption](/microcorruption)
 
