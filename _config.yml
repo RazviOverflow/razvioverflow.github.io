@@ -1,3 +1,5 @@
 theme: jekyll-theme-hacker
 title: RazviOverflow 
 description: The more you're able to hear, the more you'll learn. 
+plugins:
+  - jekyll-seo-tag
