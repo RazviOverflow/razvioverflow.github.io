@@ -28,7 +28,10 @@
     </header>
 
     <div class="container">
-      <section>
+      <section id="title">
+        <h1>{{ page.title }}</h1>
+      </section>
+      <section id="tags">
           <span>[
                 {% for tag in page.tags %}
                   {% capture tag_name %}{{ tag }}{% endcapture %}
