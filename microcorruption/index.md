@@ -1,7 +1,7 @@
 ---
 title: "Microcorruption"
 date: 2018-09-04
-categories: [microcorrupion, reverse engineering]
+categories: [microcorruption, reverse engineering]
 tags: [microcorruption, assembly, ctf, tutorial, walkthrough, debug]
 ---
 # Microcorruption 

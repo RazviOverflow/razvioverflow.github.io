@@ -1,8 +1,8 @@
 ---
 title: "Microcorruption - New Orleans"
 date: 2018-09-04
-categories: [microcorrupion, reverse engineering]
-tags: [new orleans, assembly, ctf, tutorial, walkthrough, debug, buffer overflow]
+categories: [microcorruption, reverse engineering]
+tags: [microcorruption, new orleans, assembly, ctf, tutorial, walkthrough, debug, buffer overflow]
 ---
 # this file is microcorruption-new-orleans-explained.md
 
