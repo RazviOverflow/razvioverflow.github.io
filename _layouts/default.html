@@ -33,9 +33,9 @@
         <h1 style="font-size: 30px">{{ page.title }}</h1>
       </section>
 
-    
 
-      {% if page.mainPage == blank %}
+
+      {% if page.mainPage == false %}
       <section id="tags">
           <span>
                 {% for tag in page.tags %}
@@ -44,7 +44,7 @@
                 {% endfor %}
           </span>
       </section>
-       {% endif %}
+      {% endif %}
 
       <section id="main_content">
         {{ content }}
