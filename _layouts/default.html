@@ -23,17 +23,19 @@
           {% endif %}
           <a href="https://twitter.com/razvieu?lang=en" class="btn btn-twitter"><span class="icon"></span>Twitter</a>
           <a href="{{ site.github.repository_url }}" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-          <span>[
-            {% for tag in page.tags %}
-              {% capture tag_name %}{{ tag }}{% endcapture %}
-              <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-            {% endfor %}
-          ]</span>
         </section>
       </div>
     </header>
 
     <div class="container">
+      <section>
+          <span>[
+                {% for tag in page.tags %}
+                  {% capture tag_name %}{{ tag }}{% endcapture %}
+                  <a href="/tag/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+                {% endfor %}
+          ]</span>
+      </section>
       <section id="main_content">
         {{ content }}
       </section>
