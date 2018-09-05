@@ -31,9 +31,12 @@ for filename in filenames:
     crawl = False
     for line in f:
         if crawl:
-            current_tags = line.strip().split()
-            if current_tags[0] == 'tags:':
-                total_tags.extend(current_tags[1:])
+            #current_tags = line.strip().split()
+            if line.startswith("tags:"):
+                auxTags = line.replace("tags:", "")
+                auxTagsBrackets = auxTags.replace("[", "").replace("]", "")
+                myTags = auxTagsBrackets.strip().split(", ")
+                total_tags.extend(myTags[:])
                 crawl = False
                 break
         if line.strip() == '---':

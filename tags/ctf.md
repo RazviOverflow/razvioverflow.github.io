@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: debug,"
-tag: debug,
+title: "Tag: ctf"
+tag: ctf
 robots: noindex
 ---

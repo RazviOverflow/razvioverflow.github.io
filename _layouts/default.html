@@ -43,6 +43,7 @@
       </section>
 
       
+
       {% if page.mainPage != "true" %}
       <section id="tags">
           <span>
@@ -52,9 +53,14 @@
                 {% endfor %}
           </span>
       </section>
+      {% include collecttags.html %}
+      {% else %}
+        {% if site.tags != "" %}
+        {% include collecttags.html %}
+        {% endif %}
       {% endif %}
       
-
+      aaaaaaaaaaaa {{ site.tags }}   aAAAAAAAAAAAAAS
       <section id="main_content">
         {{ content }}
       </section>

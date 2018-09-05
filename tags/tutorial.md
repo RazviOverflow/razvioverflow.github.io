@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: ctf,"
-tag: ctf,
+title: "Tag: tutorial"
+tag: tutorial
 robots: noindex
 ---
