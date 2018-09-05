@@ -1,11 +1,9 @@
 {% assign rawtags = "" %}
 
 {% for collection in site.collections %}
-EEEEEEEEEEEEEEEEEEEEE {{collection}} eeeeeeee {{collection.label}}
 
-Vale, así va .__-> {{collection.tags}}
   {% for post in collection.label %}
-  KKKKKKKKKKKKK {{post}}
+
     {% assign ttags = post.tags | join:'|' | append:'|' %}
     {% assign rawtags = rawtags | append:ttags %}
   {% endfor %}
