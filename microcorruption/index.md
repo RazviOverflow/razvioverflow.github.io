@@ -13,4 +13,6 @@ All the levels below listed are explained in great detail for all of us to under
 * [New Orleans](/microcorruption/new-orleans)
 * [Sydney]()
 * [Hanoi]()
+* [Cusco]()
+* [Reykjavik]()
 
