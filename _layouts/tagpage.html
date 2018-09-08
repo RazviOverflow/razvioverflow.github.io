@@ -3,23 +3,15 @@ layout: default
 ---
 
 <div class="post">
-	<h1>Tag: {{ page.tag }}</h1>
 	<ul>
-
-		{% for collection in site.collections %}
+	{% for collection in site.collections %}
 		{% for item in site[collection.label] %}
-		{% if item.tags contains page.tag %}
-		<li><a href="{{ item.url }}">{{ item.title }}</a> ({{item.date | date_to_string}} )<br>
-			{{ item.description }}
-		</li>
-		{% endif %}
+			{% if item.tags contains page.tag %}
+			<li><a href="{{ item.url }}">{{ item.title }}</a> ({{item.date | date_to_string}} )<br>
+			</li>
+			{% endif %}
 		{% endfor %}
-		{% endfor %}
-
-
-
-
-
+	{% endfor %}
 	</ul>
 </div>
 <hr>
