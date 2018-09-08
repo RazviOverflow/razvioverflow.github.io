@@ -11,9 +11,10 @@ Welcome to Microcorruption walkthrough. Microcorruption is an online, embedded d
 
 All the levels below listed are explained in great detail for all of us to understand the underlying idea. These are not mere tutorials showing how to unlock the door but rather writeups explaining why the door is being unlocked.
 
+* [Tutorial](/microcorruption/tutorial)
 * [New Orleans](/microcorruption/new-orleans)
-* [Sydney]()
-* [Hanoi]()
-* [Cusco]()
-* [Reykjavik]()
+* [Sydney](/microcorruption/sydney)
+* [Hanoi](/microcorruption/hanoi)
+* [Cusco](/microcorruption/cusco)
+* [Reykjavik](/microcorruption/reykjavik)
 
