@@ -3,15 +3,27 @@ layout: default
 ---
 
 <div class="post">
-	<ul>
+	{% assign taggedPosts = "" | split: "" %}	
 	{% for collection in site.collections %}
 		{% for item in site[collection.label] %}
 			{% if item.tags contains page.tag %}
-			<li><a href="{{ item.url }}">{{ item.title }}</a> ({{item.date | date_to_string}} )<br>
-			</li>
+				{% assign taggedPosts = taggedPosts | push: item %}
 			{% endif %}
 		{% endfor %}
 	{% endfor %}
+
+	{% assign taggedPosts = taggedPosts | sort: 'date' %}
+	{% assign taggedPosts = taggedPosts | reverse %}
+
+	<ul>
+	{% for item in taggedPosts %}
+	
+		<li>
+			<a href="{{ item.url }}">{{ item.title }}</a> ({{item.date | date_to_string}})<br>
+		</li>
+	
+	{% endfor %}
 	</ul>
+	
 </div>
 <hr>
