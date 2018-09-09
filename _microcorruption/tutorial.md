@@ -47,7 +47,9 @@ Starting with the level itself, you will notice from now on that reading and und
 
 When you start reading the instructions, the code that will be executed, you may fight yourself somehow lost if you are not used to assembly language. Do not worry, I will guide you throughout all these posts. 
 
-As always, there is a main function that marks our starting point. *Well, in fact there are other functions executed before main as __init_stack, __low_level_init and __do_copy_data but that's none of our concern as of right now.* 
+The first concept to elucidate is the MSP430 instruction set structure. They follow the pattern **<red>operation</red> <yellow>source</yellow>, <purple>destination</purple>**. For example, `mov #0x5, r15` is moving the hexadecimal number 0x5 into register r15.
+
+As always, there is a <blue>main</blue> function that marks our starting point. *Well, in fact there are other functions executed before main as __init_stack, __low_level_init and __do_copy_data but that's none of our concern as of right now.* 
 
 Our main looks like this:
 ```
@@ -74,7 +76,28 @@ As you can see, instruction at address `0x4446` calls `get_password` and instruc
 
 Right at the instruction at `0x4450`, there is `tst r15`. `tst` stands for *test* and it is used to widely used to check some value against 0 and as a more efficient alternative to `cmp #0, argument`. It operates bitwise AND with the argument(s) and set the registers, also called flags, accordingly without saving the result. In the case of MSP430 microcontroller, `tst r15` is basically **r15 AND r15**. Read more about `tst` [here](https://stackoverflow.com/a/44749414).
 
-The following instruction is `jnz #0x445e <main+0x26>` at `0x4520`. `jnz` stands for *jump if not zero*. In this context, not zero refers to the result of the last computed operation. In order to check if it is zero or not, the instruction inspects the flag that was previously modified by `tst`, the Zero Flag (ZF). In human language, the instruction means ***if Zero Flag is 0, jump to address `0x445e`, otherwise continue***. Please note that ZF is set to 1 only when the result is 0. Read more about conditional jumps and zero flag [here](https://stackoverflow.com/a/14267642).
+The following instruction is `jnz #0x445e <main+0x26>` at `0x4520`. `jnz` stands for *jump if not zero*. In this context, not zero refers to the result of the last computed operation. In order to check if it is zero or not, the instruction inspects the flag that was previously modified by `tst`, the Zero Flag (ZF). In human language the instruction means ***if Zero Flag is 0, jump to address `0x445e`, otherwise continue***. Please note that ZF is set to 1 only when the result is 0. Read more about conditional jumps and zero flag [here](https://stackoverflow.com/a/14267642).
+
+At address `0x445e`, previous jump's destination, we find that the string "Access Granted!" is being moved into register `r15`, a call to `puts` is being made in order to print it and, finally, a call to `unlock_door` that, obviously, unlocks the door and completes the level. 
+
+So, the conclusion so far is that in order to solve this level `r15` must be different to zero after `check_password` call. Let's inspect `check_password`.
+
+```
+4484 <check_password>
+4484:  6e4f           mov.b	@r15, r14
+4486:  1f53           inc	r15
+4488:  1c53           inc	r12
+448a:  0e93           tst	r14
+448c:  fb23           jnz	#0x4484 <check_password+0x0>
+448e:  3c90 0900      cmp	#0x9, r12
+4492:  0224           jeq	#0x4498 <check_password+0x14>
+4494:  0f43           clr	r15
+4496:  3041           ret
+4498:  1f43           mov	#0x1, r15
+449a:  3041           ret
+```
+
+At address `0x4484` we have `mov.b	@r15, r14`. Let's split it and see what's happening. First of all, it is moving one byte. Please notice the instruction suffix `mov`**<red>.b</red>**. Read more about MSP430 instruction suffixes [here](https://www.ti.com/sc/docs/products/micro/msp430/userguid/as_5.pdf). The <yellow>source</yellow> is `r15` but since there is an <blue>at sign '@'</blue> in front of the register, it doesn't mean *the content of* `r15`. It actually means to take `r15`'s content, treat it as a memory address and retrieve what is at that specific address. The <purple>destination</purple> is `r14`. So, in human language it means ***take the byte at address stored in `r15` and save it in `r14`***. 
 
 
 
