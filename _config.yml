@@ -3,15 +3,19 @@ title: RazviOverflow
 description: The more you're able to hear, the more you'll learn. 
 plugins:
   - jekyll-seo-tag
-author:
-  twitter: Razvi
+  - jekyll-last-modified-at
+  - jekyll-sitemap
 repository: RazviOverflow/razvioverflow.github.io
 collections:
   microcorruption:
     output: true
+  hackingwebsitelist:
+    output: true
+    permalink: /starthacking
 
 defaults:
   - scope:
       path: ""
     values:
       layout: default
+ 
