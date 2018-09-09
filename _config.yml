@@ -3,7 +3,6 @@ title: RazviOverflow
 description: The more you're able to hear, the more you'll learn. 
 plugins:
   - jekyll-seo-tag
-  - jekyll-last-modified-at
   - jekyll-sitemap
 repository: RazviOverflow/razvioverflow.github.io
 collections:

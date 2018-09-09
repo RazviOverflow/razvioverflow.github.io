@@ -20,11 +20,11 @@ layout: default
 	
 		<li>
 			<a href="{{ item.url }}">{{ item.title }}</a> <date style="font-size: 13px; color: #666;">({{item.date | date_to_string}})
-			{% assign creationDate = item.date | date_to_string %}
+			<!-- {% assign creationDate = item.date | date_to_string %}
 			{% assign updateDate = item.last_modified_at | date: '%d %b %Y' %}
 			{% if creationDate != updateDate %}
 				Updated: {{updateDate}}
-			{% endif %}</date><br>
+			{% endif %} --></date><br>
 		</li>
 	{% endfor %}
 	</ul>
