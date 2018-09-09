@@ -19,11 +19,14 @@ layout: default
 	{% for item in taggedPosts %}
 	
 		<li>
-			<a href="{{ item.url }}">{{ item.title }}</a> ({{item.date | date_to_string}}. Updated: {{ page.last_modified_at | date: '%d %b %Y' }})<br>
+			<a href="{{ item.url }}">{{ item.title }}</a> ({{item.date | date_to_string}})
+			{% assign creationDate = item.date | date_to_string %}
+			{% assign updateDate = item.last_modified_at | date: '%d %b %Y' %}
+			{% if creationDate != updateDate %}
+				Updated: {{updateDate}}
+			{% endif %}<br>
 		</li>
-	
 	{% endfor %}
 	</ul>
-	
 </div>
 <hr>

@@ -52,7 +52,13 @@
       <section id="title" style="margin-bottom: 0px;">
         <h1 style="font-size: 30px; margin-bottom: 0px;">{{ page.title }}</h1>
         {% if page.date %}
-          <date style="font-size: 13px; color: gray;">Posted on {{page.date | date_to_string}}</date>
+          <date style="font-size: 13px; color: gray;">Posted on {{page.date | date_to_string}}. 
+              {% assign creationDate = page.date | date_to_string %}
+              {% assign updateDate = page.last_modified_at | date: '%d %b %Y' %}
+              {% if creationDate != updateDate %}
+                Last modified on {{ creationDate }}.
+              {% endif %}
+          </date>
         {% endif %}
       </section>
 
