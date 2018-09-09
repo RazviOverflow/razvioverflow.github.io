@@ -1,6 +1,5 @@
 ---
 title: "RazviOverflow"
-date: 2018-07-10
 mainPage: "true"
 categories: [hacking, learn]
 tags: [hacking, learn, practice, exploit]

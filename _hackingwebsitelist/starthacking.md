@@ -1,7 +1,7 @@
 ---
 title: "List of hacking websites"
-date: 2018-07-10
 categories: [hacking, learn]
+date: 2018-07-10
 tags: [hacking, learn, practice, exploit]
 description: Here you can find a list, compilation, directory... of the best hacking sites. You can start from scratch, learn, improve, test your skills.
 ---
