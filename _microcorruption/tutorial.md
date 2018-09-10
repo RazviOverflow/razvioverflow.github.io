@@ -5,6 +5,7 @@ categories: [microcorruption, reverse engineering]
 tags: [microcorruption, tutorial, assembly, ctf, tutorial, walkthrough, debug]
 description: Microcorruption tutorial level explained in detail.
 hasComments: true
+image: /images/microcorruption-base-image.png
 ---
 ## Introduction
 ![microcorruption](/images/microcorruption-tutorial.png)
