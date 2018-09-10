@@ -10,7 +10,7 @@ image: /images/microcorruption-base-image.png
 ## Introduction
 ![microcorruption](/images/microcorruption-tutorial.png)
 
-Since [microcorruption](https://microcorruption.com) is an embedded debugger, the tutorial level is probably one of the most important since it introduces all the commands that will later be needed as well as the general structure of the debugger itself. You can always input `help` in order to see debugger usage. Here is what `help` prints out:
+Since [microcorruption](https://microcorruption.com) is an embedded debugger, the tutorial level is probably one of the most important because it introduces all the commands that will later be needed as well as the general structure of the debugger itself. You can always input `help` in order to see debugger usage. Here is what `help` prints out:
 ```
 Valid commands:
   Help - show this message
@@ -106,7 +106,7 @@ At address `0x4484` we have `mov.b	@r15, r14`. Let's split it and see what's hap
 
 At addresses `0x4486`and `0x4488` some increments are taking place. `inc` takes one single argument and increments it by one saving the result in that very same argument. That is, `inc r15` equals to `r15 += 1`. 
 
-Instruction `0x448a` is checking if `r14` is zero. *Remember `r14` is the byte at addres stored in `r15`*. If it is not zero, it jumps back to `0x4484`. At address `0x448e` we find a comparison between hexadecimal 9 and content of `r12`. What `cmp` instruction essentially does is <purple>destination</purple> - <yellow>source</yellow>. In this particlar case it means `r12 - 0x9`. The result is not stored and operands are not affected, only flags are set accordingly. Read how `cmp` works internally [here](http://www.ti.com/lit/ug/slau144j/slau144j.pdf) *(Page 71)*. 
+Instruction `0x448a` is checking if `r14` is zero. *Remember `r14` is the byte at addres stored in `r15`*. If it is not zero, it jumps back to `0x4484`. This is called a loop. `r15` keeps incrementing by one and reading char by char our input until it finds a null byte (a byte whose value is zeo). At address `0x448e` we find a comparison between hexadecimal 9 and content of `r12`. What `cmp` instruction essentially does is <purple>destination</purple> - <yellow>source</yellow>. In this particlar case it means `r12 - 0x9`. The result is not stored and operands are not affected, only flags are set accordingly. Read how `cmp` works internally [here](http://www.ti.com/lit/ug/slau144j/slau144j.pdf) *(Page 71)*. 
 
 Afterwards, at address `0x4492` we see a *jump if equal* `jeq` instruction. `jeq` checks the ZF (Zero Flag) and if it is set, that is, if it is 1, it jumps to `0x4498`. Remember last `cmp` instruction because it is the one who sets ZF. At `0x4498`, jump's destination, we have `mov #0x1, r15`, which is moving hexadecimal 1 into `r15`, and afterwards `ret`. If `r12` is not equal to 0x9, it clears r15. `clr r15` is equivalent to `mov #0x0, r15`. 
 
