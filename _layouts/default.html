@@ -74,6 +74,10 @@
       {% endif %}
       <section align="justify" id="main_content">
         {{ content }}
+
+        {% if page.hasComments %}
+          {% include disqus.html %}
+        {% endif %}
       </section>
     </div>
   </body>

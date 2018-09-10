@@ -4,6 +4,7 @@ date: 2018-09-09
 categories: [microcorruption, reverse engineering]
 tags: [microcorruption, tutorial, assembly, ctf, tutorial, walkthrough, debug]
 description: Microcorruption tutorial level explained in detail.
+hasComments: true
 ---
 ## Introduction
 ![microcorruption](/images/microcorruption-tutorial.png)
