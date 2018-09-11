@@ -5,7 +5,7 @@ categories: [microcorruption, reverse engineering]
 tags: [microcorruption, new orleans, assembly, ctf, tutorial, walkthrough, debug]
 description: Microcorruption New Orleans level explained in detail.
 hasComments: true
-image: /images/microcorruption-base-image2.png
+image: /images/microcorruption-levels-image.png
 ---
 After completing the tutorial tutorial level, explained in detail [here](/microcorruption/tutorial), we are tossed into the wild. New Orleans is the first level that no longer guides the process of debugging and reversing nor holds our hand or gives us fancy hints. We are now facing the assembly code all by ourselves. Let's break it! 
 
