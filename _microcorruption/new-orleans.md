@@ -36,7 +36,7 @@ New Orleans' main has the following code:
 
 The structure is almost identical to previous level main. A string gets printed, user inserts his/her password, the password is checked and depending on that check result, which is stored in `r15`, it either unlocks the door or jumps over it and executes until `__stop_progExec__` is reached and program ends with no success.
 
-Nevertheless, there is a little but very important difference. At address `0x4440` there is a call to `create_password` function. Let's find out what `create_password` is up to.
+Nevertheless, there is a little but very important difference. At address `0x4450` there is a call to `create_password` function. Let's find out what `create_password` is up to.
 
 ```
 447e <create_password>
@@ -66,7 +66,7 @@ We do also have a very useful [excerpt from MSP430's manual](https://www.ti.com/
 
 So, what `create_password` does is placing a sequence of 8 bytes starting from `0x2400` all the way to `0x2407`. ***(Plase note that the bytes placed at these addresses may differ. I guess they are randomly generated based on every single user's name.)***
 
-In order to check that we can place a breakpoint at `0x44b0`, right before `create_password` finishes, execute te program and inspect memory contents at that very moment. 
+In order to check that, we can place a breakpoint at `0x44b0`, right before `create_password` finishes, execute te program and inspect memory contents at that very moment. 
 
 <p align="center">
 <img src="/images/microcorruption-new-orleans-bp0.png">
