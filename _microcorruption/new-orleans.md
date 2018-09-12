@@ -9,7 +9,7 @@ image: /images/microcorruption-levels-image.png
 ---
 After completing the tutorial tutorial level, explained in detail [here](/microcorruption/tutorial), we are tossed into the wild. New Orleans is the first level that no longer guides the process of debugging and reversing nor holds our hand or gives us fancy hints. We are now facing the assembly code all by ourselves. Let's break it! 
 
-As we will always do, the first thing to inspect is our `main` function because that's where our program starts, for now. 
+As we will always do, the first thing to inspect is our `main` function because that's where our program starts. *(This may change in the future)* 
 
 New Orleans' main has the following code:
 ``` 
@@ -97,6 +97,44 @@ If we look back at `main` for a moment, we can see `unlock_door` gets called at 
 44d2:  0f43           clr	r15
 44d4:  3041           ret
 ```
+
+The first thing we see is some registers work. It clears out `r14` *(that is, it performs `r14 = 0`)*, it moves content of `r15` into `r13` and adds `r14` to `r13` into `r13` *(`r13 += r14`)*. In order to know what `r15` value is at this point, we can either set a breakpoint at instruction `0x44be` for example, or simply look at the code itself. The `main` function, before calling `check_password`, operates `mov sp, r15` at `0x444e`. This means that `r15` points at the address where our input is living in memory *(stack)*.
+
+At address `0x44c2` we see there is a byte comparison. `cmp.b @r13, 0x2400(r14)` is simply performing, in human language, ***(compare the byte stored at address saved in r13 with contents of the address stored at r14 with 0x2400 offset)***. Remember the `cmp` instruction what really does inside is `0x2400(r14) - @r13` and sets the flags accordingly without saving the result. 
+
+If result of the comparison is other than zero, that is, the bytes are not equal, `jne` at `0x44c6` will get executed jumping all the way down to `0x44d2` finishing the function. If the result is zero, if the bytes are equal, `r14` will be incremented by one.
+
+At instruction `0x44ca` there is `cmp #0x8, r14` which compares the value of r14 with hexadecimal number 0x8. If the two values are not equal, it jumps back to `0x44be` starting a new iteration of the loop. IF they indeed are equal, hexadecimal 0x1 is placed into `r15` and exits the function. *(Remember that `r15` must be different from zero after `check_password` so main can call `unlock_door`)*
+
+### Solution
+
+In other words, `check_password` is checking byte per byte the user input against the password created by `create_password` that was previously stored at address `0x2400`. Please note how `r14` gets incremented by one with every character from user's input that matches the bytes at '0x2400'. That's the way the function iterates over the stored bytes, with relative addressing. Think it that way:
+
+> Suppose r15 is 0x4000. <br>
+Repeat until r14 ix 0x8<br>
+**Iteration 1.**  <br>
+r14 = 0x0. r13 = r15 + r14 (0x4000 + 0x0). Byte at 0x4000 equals to byte at 0x2400(0)? If so, r14 += 0x1 and go to Iteration 2.<br>
+**Iteration 2.** <br>
+r14 = 0x1. r13 = 0x4000 + 0x1. Byte ate 0x4001 equals to byte at 0x2400(1)? If so, r14 += 0x1 and go to Iteration 3. <br>
+...
+
+Notice how `0x2400(1)` is exactly the same as `1(0x2400)`. That's what relative addressing is. 
+
+So, the <gold>solution </gold> is pretty straight forward. We must provide as input the exact 7 bytes *(because the null trailing byte in implicit to gets function)* `create_password` is placing into memory.
+
+Input can be either inserted as text or hexadecimal encoded.
+
+<p align="center">
+<img src="/images/microcorruption-new-orleans-solution0.png">
+</p>
+
+<p align="center">
+<img src="/images/microcorruption-new-orleans-solution1.png">
+</p>
+
+<p align="center">
+<img src="/images/microcorruption-new-orleans-solved.png">
+</p>
 
 
 ## More levels
