@@ -138,7 +138,7 @@ Input can be either inserted as text or hexadecimal encoded.
 
 ### Recap
 
-In this level we've seen the how important is to read the code seeking for hardcoded values, what ASCII is and what .b suffix means in the context of MSP430 assembly language.
+In this level we've seen how important is to read the code seeking for hardcoded values, what ASCII is and what .b suffix means in the context of MSP430 assembly language.
 
 ## More levels
 * Click [here](/microcorruption/sydney) to see next level (Sydney).

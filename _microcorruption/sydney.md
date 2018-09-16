@@ -115,7 +115,7 @@ There are tons of articles, papers, videos, etc.. addressing endianness. To summ
 - In **<yellow><u>big-endian</u></yellow>** the most significant byte, the byte containing the most significant bit *(the leftmost byte)*, is stored first, at the lowest address. The least significant byte, then, has the higher address.
 - In **<yellow><u>little-endian</u></yellow>** the least significant byte, *(the rightmost byte)* is stored first, at the lowest address. The most significant byte, then, has the higher address. 
 
-As an example, let's use the word "RAZVI OVERFLOW". Suppose each char is 1 byte and we are starting at address 0x00. Here is how a little-endian and big-endian architecture would store the data in memory.
+As an example, let's use the char sequence "RAZVI OVERFLOW". Suppose each char is 1 byte and we are starting at address 0x00. Here is how a little-endian and big-endian architecture would store the data in memory.
 
 <p align="center">
 <img src="/images/endianness.png">

@@ -122,7 +122,7 @@ The <yellow>solution</yellow> of the level consists of providing as input whatev
 
 ### Recap
 
-In this level we've learnt some of the basics commands of Microcorruption's embedded debugger, some peculiarities about MSP430's instruction set and the null terminated byte string. 
+In this level we've learnt some of the basic commands of Microcorruption's embedded debugger, some peculiarities about MSP430's instruction set and the null terminated byte string. 
 
 ## More levels
 * Click [here](/microcorruption/new-orleans) to see next level (New Orleans).
