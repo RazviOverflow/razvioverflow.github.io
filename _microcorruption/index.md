@@ -4,7 +4,7 @@ date: 2018-09-04
 categories: [microcorruption, reverse engineering]
 image: /images/microcorruption-base-image.png
 tags: [microcorruption, assembly, ctf, tutorial, walkthrough, debug, reverse engineering]
-description: Microcorruption solutions in terms of tutorial and walkthrough. All the levels below listed are explained in great detail for all of us to understand the underlying idea. These are not mere tutorials showing how to unlock the door but rather writeups explaining why the door is being unlocked.
+description: Microcorruption solutions in terms of tutorial and walkthrough. All the levels are explained in great detail for all of us to understand the underlying idea. These are not mere tutorials showing how to unlock the door but rather writeups explaining why the door is being unlocked.
 ---
 ![microcorruption](/images/microcorruption-index.png)
 

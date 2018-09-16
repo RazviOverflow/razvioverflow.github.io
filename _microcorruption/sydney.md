@@ -2,7 +2,7 @@
 title: "Microcorruption - Sydney"
 date: 2018-09-13
 categories: [microcorruption, reverse engineering]
-tags: [microcorruption, tutorial, assembly, ctf, sydney, walkthrough, debug, buffer overflow, endianness, nuxi problem]
+tags: [microcorruption, tutorial, assembly, ctf, sydney, walkthrough, debug, endianness, nuxi problem]
 description: Microcorruption Sydney level explained in detail. We will see how to solve the level and understand the underlying concepts. 
 hasComments: true
 image: /images/microcorruption-levels-image.png
