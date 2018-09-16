@@ -3,7 +3,7 @@ title: "Microcorruption - New Orleans"
 date: 2018-09-11
 categories: [microcorruption, reverse engineering]
 tags: [microcorruption, new orleans, assembly, ctf, tutorial, walkthrough, debug]
-description: Microcorruption New Orleans level explained in detail.
+description: Microcorruption New Orleans level explained in detail. We will see how to solve the level and understand the underlying concepts. 
 hasComments: true
 image: /images/microcorruption-levels-image.png
 ---

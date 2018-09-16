@@ -3,7 +3,7 @@ title: "Microcorruption - Sydney"
 date: 2018-09-13
 categories: [microcorruption, reverse engineering]
 tags: [microcorruption, tutorial, assembly, ctf, sydney, walkthrough, debug, buffer overflow, endianness, nuxi problem]
-description: Microcorruption Sydney level explained in detail.
+description: Microcorruption Sydney level explained in detail. We will see how to solve the level and understand the underlying concepts. 
 hasComments: true
 image: /images/microcorruption-levels-image.png
 ---
@@ -112,14 +112,14 @@ Everything looks allright. What could be happening? Lets debug it step by step u
 Here we must take into account <yellow>another main topic in computer architecture</yellow>. We're talking about how data is represented into memory, also known as **<red>endianness</red>**.
 
 There are tons of articles, papers, videos, etc.. addressing endianness. To summarize it, I will quote [wikipedia's article](https://en.wikipedia.org/wiki/Endianness) about endianness. There are several ways in which bytes can be arranged into memory. There is little-endian, big-endian *(also known as netowrk-endian)*, middle-endian, etc... with the first 2 being the most common. 
-- In **big-endian** the most significant byte, the byte containing the most significant bit *(the leftmost byte)*, is stored first, at the lowest address. The least significant byte, then, has the higher address.
-- In **little-endian** the least significant byte, *(the rightmost byte)* is stored first, at the lowest address. The most significant byte, then, has the higher address. 
+- In **<yellow><u>big-endian</u></yellow>** the most significant byte, the byte containing the most significant bit *(the leftmost byte)*, is stored first, at the lowest address. The least significant byte, then, has the higher address.
+- In **<yellow><u>little-endian</u></yellow>** the least significant byte, *(the rightmost byte)* is stored first, at the lowest address. The most significant byte, then, has the higher address. 
 
-As an example, let's use the word "OVERFLOW". Suppose each char is 1 byte and we are starting at address 0x00. Here is how a little-endian and big-endian architecture would store the data in memory. *(Please notice higher addresses are grows upwards)*
+As an example, let's use the word "RAZVI OVERFLOW". Suppose each char is 1 byte and we are starting at address 0x00. Here is how a little-endian and big-endian architecture would store the data in memory.
 
-
-
-
+<p align="center">
+<img src="/images/endianness.png">
+</p>
 
 Different endianness representations problems are sometimes rrefered to as *the nuxi problem*. [Here](https://betterexplained.com/articles/understanding-big-and-little-endian-byte-order/) is a very good read about endianness and the nuxi problem. 
 
@@ -127,7 +127,7 @@ Different endianness representations problems are sometimes rrefered to as *the 
 
 Since MSP430 is **little endian**, as stated [here](https://en.wikipedia.org/wiki/TI_MSP430#MSP430_CPU), and it has 16-bit addressing, we must convert to little-endian each pair of byte. If it'd have been a 32-bit processor, we'd have to convert each 4 bytes and so on...
 
-So, instead of inserting `2e78 673d 333d 5e63` we must input `782e 3d67 3d33 635e` *(withou spaces)* in order for the little-endian machine to read and interpet the data as we expect to.
+So, instead of inserting `2e78 673d 333d 5e63` we must input `782e 3d67 3d33 635e` *(without spaces)* in order for the little-endian machine to read and interpet the data as we expect to.
 
 <p align="center">
 <img src="/images/microcorruption-sydney-second-try.png">
@@ -138,8 +138,6 @@ And we're successfull :)
 <p align="center">
 <img src="/images/microcorruption-sydney-solved.png">
 </p>
-
-### Recap
 
 ## More levels
 * Click [here](/microcorruption/hanoi) to see next level (Hanoi).
