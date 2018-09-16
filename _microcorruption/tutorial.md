@@ -120,6 +120,10 @@ The <yellow>solution</yellow> of the level consists of providing as input whatev
 <img src="/images/microcorruption-tutorial-solved.png">
 </p>
 
+### Recap
+
+In this level we've learnt some of the basics commands of Microcorruption's embedded debugger, some peculiarities about MSP430's instruction set and the null terminated byte string. 
+
 ## More levels
 * Click [here](/microcorruption/new-orleans) to see next level (New Orleans).
 * Click [here](/microcorruption) to see levels index. 

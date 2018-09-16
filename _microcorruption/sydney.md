@@ -139,6 +139,10 @@ And we're successfull :)
 <img src="/images/microcorruption-sydney-solved.png">
 </p>
 
+### Recap
+
+In this level we've seen the use of <blue>$</blue> in expressions to specify relative addresses as argument to `jmp` instruction, we've seen several data representations such as bit, nibble, byte, word... and the very important concept called endianness.
+
 ## More levels
 * Click [here](/microcorruption/hanoi) to see next level (Hanoi).
 * Click [here](/microcorruption/new-orleans) to see previous level (New Orleans).
