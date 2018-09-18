@@ -109,7 +109,7 @@ If you want to easily find where `r15` is pointing, you can write `track r15` an
 
 Everything looks allright. What could be happening? Lets debug it step by step using `s` command. Type `s` to jump to next instruction, inside `check_password` function. Inspecting memory with `read` or `r` commands also shows that apparently everything is right. Well, not everything is right.
 
-Here we must take into account <yellow>another main topic in computer architecture</yellow>. We're talking about how data is represented into memory, also known as **<red>endianness</red>**.
+We must take into account <yellow>another main topic in computer architecture</yellow>. We're talking about how data is represented into memory, also known as **<red>endianness</red>**.
 
 There are tons of articles, papers, videos, etc.. addressing endianness. To summarize it, I will quote [wikipedia's article](https://en.wikipedia.org/wiki/Endianness) about endianness. There are several ways in which bytes can be arranged into memory. There is little-endian, big-endian *(also known as netowrk-endian)*, middle-endian, etc... with the first 2 being the most common. 
 - In **<yellow><u>big-endian</u></yellow>** the most significant byte, the byte containing the most significant bit *(the leftmost byte)*, is stored first, at the lowest address. The least significant byte, then, has the higher address.
