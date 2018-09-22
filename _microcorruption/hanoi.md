@@ -8,7 +8,7 @@ hasComments: true
 image: /images/microcorruption-levels-image.png
 ---
 
-In this new level some things have changed. If you read the manual that pops up at the beginning of the level, you can notice that, toward the end, it states:
+In this new level some things have changed over the previous ones. If you read the manual that pops up at the beginning, you can notice that, towards the end, it states:
 
 > There  is no  default  password  on the  LockIT  Pro HSM-1.   Upon
     receiving the  LockIT Pro,  a new  password must  be set  by first
@@ -18,7 +18,7 @@ In this new level some things have changed. If you read the manual that pops up 
 
 That's essentially telling us the password is checked by other device we have no access to. 
 
-If you were to execute the program, you will notice there is a message rembembering the password must be between 8 and 16 characters.
+If you were to execute the program, you will notice there is a message remembering the password must be between 8 and 16 characters.
 
 <p align="center">
 <img src="/images/microcorruption-hanoi0.png">
