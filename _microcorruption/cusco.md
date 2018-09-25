@@ -106,7 +106,7 @@ We'll notice the `sp` register is pointing at some memory whose content is what 
 
 Instructions starting at address `0x4400` have been overwritten. If we look again at Live Memory Dump we can indeed see how that memory address is now fullfilled with our input.
 
-Well, what happened? **<green>We have just overwritten</green>** `pc` *(Program Counter)* also known as `ip` *<yellow>(Instruction Pointer)</yellow>*. That's happening because the buffer where our input lives is too close to where other instructions live in memory and we can overwrite them. That means we can write more character than the intended buffer size. That's commonly known as **<yellow>Buffer Overflow</yellow>**. We will know see why and how Buffer Overflow actually happens and how to exploit it. 
+Well, what happened? **<purple>We have just overwritten</purple>** `pc` *(Program Counter)* also known as `ip` *<yellow>(Instruction Pointer)</yellow>*. That's happening because the buffer where our input lives is too close to where other instructions live in memory and we can overwrite them. That means we can write more character than the intended buffer size. That's commonly known as **<yellow>Buffer Overflow</yellow>**. We will know see why and how Buffer Overflow actually happens and how to exploit it. 
 
 I will first briefly explain it and then reference some good reads for you to go deeply into this matter.
 
