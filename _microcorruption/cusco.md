@@ -16,8 +16,6 @@ When you enter the level, the manual that pops up states the following:
     lock by  removing a conditional  flag that could  accidentally get
     set by passwords that were too long.
 
-Apparently they fired up some engineers and introduced military-grade encrpytion. That sounds so wow. Let's see what they're up to.
-
 As always, we start inspecting the code from the `main` function. Just like the previous level, [Hanoi](/microcorruption/hanoi), it simply calls `login`.
 
 
