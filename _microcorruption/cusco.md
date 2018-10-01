@@ -10,14 +10,11 @@ image: /images/microcorruption-levels-image.png
 In this level we'll discover and apply one of the most common, famous and basic memory corruption techniques. Keep reading to find it out :)
 
 When you enter the level, the manual that pops up states the following:
->   Lockitall developers  have implemented  military-grade on-device
-    encryption to keep the password secure.
+>   We have fixed issues with passwords which may be too long.
 
->   This is Software Revision 02. This release contains military-grade
-    encryption so users can be confident that the passwords they enter
-    can not be read from memory.   We apologize for making it too easy
-    for the password to be recovered on prior versions.  The engineers
-    responsible have been sacked.
+>   This is Software Revision 02. We have improved the security of the
+    lock by  removing a conditional  flag that could  accidentally get
+    set by passwords that were too long.
 
 Apparently they fired up some engineers and introduced military-grade encrpytion. That sounds so wow. Let's see what they're up to.
 
