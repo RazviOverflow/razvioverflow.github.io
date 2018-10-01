@@ -73,7 +73,7 @@ As soon as we execute it, we can see there are some instructions printed out:
 <img src="/images/microcorruption-cusco0.png">
 </p>
 
-**Wait a second**, how come password must be between 8 adn 16 characters when we've inspected the code and already stated that they can be up to 48 chars? Well, once again, the moral is to **<red>never trust what printed instructions say but the code</red>**.
+**Wait a second**, how come password must be between 8 and 16 characters when we've inspected the code and already stated that they can be up to 48 chars? Well, once again, the moral is to **<red>never trust what printed instructions say but the code</red>**.
 
 Let's then stress the program, let's see what happens if we input more than 16 chars. I will input exactly 48 x A.
 
