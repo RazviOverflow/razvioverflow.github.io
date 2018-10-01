@@ -128,7 +128,7 @@ Now that we know what a buffer overflow is and how to exploit it, we will overwr
 
 The return address we want to overwrite is the return address of `login`. In order to do that, we will set a breakpoint right at instruction address `0x453e` in order to see where the *<gold>Stack Pointer</gold>* `sp` is at that very moment. 
 
-Why is `login` the function whose retaddr must be overwritten? Simple. Remember memory writes are made towards higher addresses of memory and the stack grows towards lower addresses. WE cannot overwrite a function that has been declared after the declaration of our buffer. `main` is the function that calls `loing` and at some point the *<blue>Instruction Pointer</blue>* must return to `main`. Inside `login` our buffer is declared and, after that declaration, the rest of the calls. Since writing into the buffer will grow toward higher memory addresses, the only retaddr we can overwritte is the `login` one.
+Why is `login` the function whose retaddr must be overwritten? Simple. Remember memory writes are made towards higher addresses of memory and the stack grows towards lower addresses. WE cannot overwrite a function that has been declared after the declaration of our buffer. `main` is the function that calls `login` and at some point the *<blue>Instruction Pointer</blue>* must return to `main`. Inside `login` our buffer is declared and, after that declaration, the rest of the calls. Since writing into the buffer will grow toward higher memory addresses, the only retaddr we can overwritte is the `login` one.
 
 <p align="center">
 <img src="/images/microcorruption-cusco-solving0.png">
