@@ -18,7 +18,7 @@ As any previous level, when you open it, there is a pop up manual. If you were t
     for the password to be recovered on prior versions.  The engineers
     responsible have been sacked.
 
-Apparently they fired up some engineers and introduced military-grade encrpytion. That sounds so wow. Let's see what they're up to.
+Apparently they fired some engineers and introduced military-grade encryption. That sounds so wow. Let's see what they're up to.
 
 As always, we start looking at `main` function.
 
@@ -33,14 +33,14 @@ As always, we start looking at `main` function.
 444e:  0f43           clr	r15
 ```
 
-We can see it is placing `0xf8` into `r14` and `0x2400` into `r15`. Then it is calling `enc` function and, *<purple>that's strange</purple>*, `0x2400`. As you can see, that second call has no lable. That's indeed strange because if you take a closer look at all the programs code, you will notice there are no instructions starting at address `0x2400` (the memory is full of zeros).
+We can see it is placing `0xf8` into `r14` and `0x2400` into `r15`. Then it is calling `enc` function and, *<purple>that's strange</purple>*, `0x2400`. As you can see, that second call has no label. That's indeed strange because if you take a closer look at the code, you will notice there are no instructions starting at address `0x2400` (the memory is full of zeros).
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik0.png">
 <img src="/images/microcorruption-reykjavik1.png">
 </p>
 
-This can only mean that *at some point during the programs execution* before the actual call, at address `0x444a`, somehow instructions will be placed at `0x2400` in order for the call to make sense. Before inspecting `enc` function, let's place a breakpoint at the beginning of `main` and see what happens. 
+This can only mean that *at some point during the program's execution* before the actual call, at address `0x444a`, somehow instructions will be placed at `0x2400` in order for the call to make sense. Before inspecting `enc` function, let's place a breakpoint at the beginning of `main` and see what happens. 
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik2.png">
@@ -94,7 +94,7 @@ From `0x4486` to `0x449a`, the function is placing from address `0x247c` to addr
 44d4:  e723           jne	#0x44a4 <enc+0x1e>
 44d6:  0b43           clr	r11
 ```
-Here we have some bytes arithmetic. It is taking bytes from `0x247c` and so on, *where bytes from 0x00 to 0xff haven been previously placed*. We can see it is also taking some bytes from  address `0x4472`. At that address lives the ASCII string *This is secure right?*. From `0x44a4` to `0x44d4` there is a loop that gets executed 256 times. All this code will be easier to understand at debugging time. It appreas, at a first glance, to be enrypting or obfuscating the previosuly inserted 256 bytes.
+Here we have some bytes arithmetic. It is taking bytes from `0x247c` and so on, *where bytes from 0x00 to 0xff haven been previously placed*. We can see it is also taking some bytes from  address `0x4472` at instruction `0x44b0`. At address `0x4472` lives the ASCII string *<gold>This is secure right?</gold>*. From `0x44a4` to `0x44d4` there is a loop that gets executed 256 times. All this code will be easier to understand at debugging time. It appears, at a first glance, to be enrypting or obfuscating the previosuly inserted 256 bytes.
 ```
 44d8:  0c4b           mov	r11, r12
 44da:  183c           jmp	#0x450c <enc+0x86>
@@ -123,32 +123,32 @@ Here we have some bytes arithmetic. It is taking bytes from `0x247c` and so on, 
 4516:  3b41           pop	r11
 4518:  3041           ret
 ```
-There is an inconditional jump to `0x450c` where we have a `r14` checking. Remember `r14` is set in `main` at instruction `0x443e`. The loop from `0x44dc` to `0x450e` gets executed `0xf8` (248) times because it hets decremented by one at `0x450a`. Also notice that `r15` is being used as an offset at `0x4502`. Since `r15` was set in `main` at instruction address `0x4442`. This appears to be XORING the previously obfuscated 256 bytes with the data wrote at `0x2400`.
+There is an inconditional jump to `0x450c` where we have a `r14` checking. Remember `r14` is set in `main` at instruction `0x443e`. The loop from `0x44dc` to `0x450e` gets executed `0xf8` (248) times because it is being decremented by one at `0x450a`. Also notice that `r15` is being used as an offset at instruction `0x4502`. `r15` was set in `main` at instruction address `0x4442`. This appears to be XORING the previously obfuscated 256 bytes with the data wrote at `0x2400`.
 
-As you can see, there is some intense work going on. But <red>on thing remains clear</red>, at address `0x444a` code placed into address `0x2400` must be already translated into MSP430's assembly language (opcodes) so the processor can execute it. Let us debug!
+As you can see, there is some intense work going on. But <red>one thing remains clear</red>, at address `0x444a` code placed into address `0x2400` must be already translated into MSP430's assembly language (opcodes) so the processor can execute it. Let us debug!
 
-Let's place a breakpoint at address `0x444a`, righ where `call #0x2400` is made. We execute it and insert a bunch of easy recognizable chars.
+Let's place a breakpoint at address `0x444a`, right where `call #0x2400` is made. We execute it and insert a bunch of easy recognizable chars.
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik5.png">
 <img src="/images/microcorruption-reykjavik6.png">
 </p>
 
-When the <yellow>Program Counter</yellow> reaches our breakpoint, we can see in the <orange>Live Memory Dump</orange> windows the bytes into memory. 
+When the <yellow>Program Counter</yellow> reaches our breakpoint, we can see in the <orange>Live Memory Dump</orange> window the bytes into memory. 
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik7.png">
 </p>
 
-Now, how could we understand what that code is actually doing? We can either learn all MSP430's ISA and read opcode by opcode or we can use a disassembler. And the latter is what we're exactly going to do.
+Now, how could we understand what that code is actually doing? We can either learn all MSP430's ISA and read opcode by opcode or we can use a disassembler. The latter is exactly what we're going to do.
 
-Microcorruption alreade provides us with a assembler/disassembler [here](https://microcorruption.com/assembler). You can use that one or whatever disassemlber you like. There are also online tools like [this one](https://onlinedisassembler.com/static/home/index.html).
+Microcorruption alreade provides us with a assembler/disassembler [here](https://microcorruption.com/assembler). You can use this one or whatever disassemlber you like. There are also online tools like [online disassembler](https://onlinedisassembler.com/static/home/index.html).
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik8.png">
 </p>
 
-We can paste our instructions and click *disassemble*. Notice we are disassembling because we ant to translate the opcodes into human readable assembly language. 
+We must paste our bytes and click *disassemble*. Notice we are disassembling because we want to translate the opcodes into human readable assembly language. 
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik9.png">
@@ -166,11 +166,11 @@ That's way better than reading pure bytes. Please notice you'd get the same resu
 <img src="/images/microcorruption-reykjavik11.png">
 </p>
 
-Now, looking at our code it appear to be extremely large. **<blue>Please note</blue>** we are not interested in all of it, just until the second `ret` as you will see.
+Now, looking at the code it appears to be extremely large. **<blue>Please note</blue>** we are not interested in all of it, just until the second `ret` as you will see.
 
 ### Solution
 
-After disassembling the bytes we've previously inspected into memory, we get the following routine:
+After disassembling the bytes we've previously inspected, we get the following routine:
 
 ```
 2400:    0b12           push	r11
@@ -221,11 +221,11 @@ After disassembling the bytes we've previously inspected into memory, we get the
 ```
 After a first overview we can clearly see what is of our interest in order to solve the level at addresses `0x2450` and `0x2454`. Notice how the code starting at address `0x2464` is just an implementation of `INT` (interruption) function. *Remember that calling INT with 0x7f parameter instantly unlocks the level*.
 
-In order to trigger the call, we must not take the conditional jump `jnz %+0xc` at `0x244e`. In order to not take it, the bytes `0xf0a3` must be place at offset `-0x24` from `r4`.
+In order to trigger the call, we must not take the conditional jump `jnz %+0xc` at `0x244e`. In order to not take it, the bytes `0xf0a3` must be placed at offset `-0x24` from `r4`.
 
-We want to know what memor address is that offset from that register. In order to do that, we will set a breakpoint at that instruction and see what `r4`'s value is. Since we do not see that code section within <blue>Disassembly</blue> window, that is, we cannot click to set the breakpoint, we will set it using the commands learn in the very first [tutorial](/microcorruption/tutorial) level. 
+We want to know what memory address `-0x24(r4)` translates into . In order to know that, we will set a breakpoint at that instruction and see what `r4`'s value is. Since we do not see the code section within <blue>Disassembly</blue> window, that is, we cannot click to set the breakpoint, we will set it using the commands learnt in the very first [tutorial](/microcorruption/tutorial) level. 
 
-When we reach our breakpoint at address `0x444a`, we will insert `b 2448` in order to place another breakpoint at address `0x2448` and `breakpoints` in order to see it is correct.
+When we reach our breakpoint at address `0x444a`, we will insert `b 2448` in order to place another breakpoint at address `0x2448` and `breakpoints` in order to see it was indeed succesfully placed.
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik12.png">
@@ -237,13 +237,13 @@ When the <yellow>Program Counter</yellow> reaches our new breakpoint, the follow
 <img src="/images/microcorruption-reykjavik13.png">
 </p>
 
-We can now get that the memory being checked is `0x43fe - 0x24 = 0x43da`. If we inspect the stack at this very moment, we can see that `0x43da` is the memory address from where our input is saved. 
+We noa know the memory being checked is `0x43fe - 0x24 = 0x43da`. If we inspect the stack at this very moment, we'll notice that `0x43da` is the memory address from where our input is saved. 
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik14.png">
 </p>
 
-This means that in order to solve the level is just as simple as having the value `0xf0a3` as the first two bytes of our input. **<red>Do not forget about endianness</red>**.
+This means that in order to solve the level we must simply input the value `0xf0a3`. **<red>Do not forget about endianness</red>**.
 
 So, the solving input *(hex ecnoded)* will be: **<yellow>a3f0<yellow>** *(Notice this flag will change based upon some parameter of your account)*
 
@@ -258,7 +258,7 @@ So, the solving input *(hex ecnoded)* will be: **<yellow>a3f0<yellow>** *(Notice
 
 ### Recap
 
-In this level we've seen how to debug a code that is not in our available memory at the starting point of execution. We've also seen how to use a disassembler in order to understand that code and know where to breakpoint it. 
+In this level we've seen how to debug code that is not in our available memory at the starting point of execution. We've also seen how to use a disassembler in order to understand that code and know where to breakpoint it. 
 
 ## More levels
 * Click [here](/microcorruption/whitehorse) to see next level (Whitehorse).
