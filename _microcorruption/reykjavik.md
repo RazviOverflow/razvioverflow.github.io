@@ -3,7 +3,7 @@ title: "Microcorruption - Reykjavik"
 date: 2018-10-01
 categories: [microcorruption, reverse engineering]
 tags: [microcorruption, tutorial, assembly, ctf, reykjavik, walkthrough, debug]
-description: Microcorruption Cusco level explained in detail. We will see how to solve the level and understand the underlying concepts. 
+description: Microcorruption Reykjavik level explained in detail. We will see how to solve the level and understand the underlying concepts. 
 hasComments: true
 image: /images/microcorruption-levels-image.png
 ---
