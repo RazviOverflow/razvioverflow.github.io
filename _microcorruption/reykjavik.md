@@ -237,7 +237,7 @@ When the <yellow>Program Counter</yellow> reaches our new breakpoint, the follow
 <img src="/images/microcorruption-reykjavik13.png">
 </p>
 
-We noa know the memory being checked is `0x43fe - 0x24 = 0x43da`. If we inspect the stack at this very moment, we'll notice that `0x43da` is the memory address from where our input is saved. 
+We now know the memory being checked is `0x43fe - 0x24 = 0x43da`. If we inspect the stack at this very moment, we'll notice that `0x43da` is the memory address from where our input is saved. 
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik14.png">
