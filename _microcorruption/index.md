@@ -18,4 +18,5 @@ All the levels below listed are explained in great detail for all of us to under
 * [Hanoi](/microcorruption/hanoi)
 * [Cusco](/microcorruption/cusco)
 * [Reykjavik](/microcorruption/reykjavik)
+* [Whitehorse](/microcorruption/whitehorse)
 
