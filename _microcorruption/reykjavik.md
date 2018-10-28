@@ -7,7 +7,7 @@ description: Microcorruption Reykjavik level explained in detail. We will see ho
 hasComments: true
 image: /images/microcorruption-levels-image.png
 ---
-As any previous level, when you open it, there is a pop up manual. If you were to read it, you'd notice the following info:
+As any previous level, when you enter it, there is a pop up manual. If you were to read it, you'd notice the following info:
 
 >  Lockitall developers  have implemented  military-grade on-device
    encryption to keep the password secure.
@@ -245,7 +245,7 @@ We now know the memory being checked is `0x43fe - 0x24 = 0x43da`. If we inspect 
 
 This means that in order to solve the level we must simply input the value `0xf0a3`. **<red>Do not forget about endianness</red>**.
 
-So, the solving input *(hex ecnoded)* will be: **<yellow>a3f0<yellow>** *(Notice this flag will change based upon some parameter of your account)*
+So, the solving input *(hex encoded)* will be: **<yellow>a3f0</yellow>** *(Notice this flag will change based upon some parameter of your account)*
 
 <p align="center">
 <img src="/images/microcorruption-reykjavik15.png">
