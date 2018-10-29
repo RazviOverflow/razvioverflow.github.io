@@ -122,7 +122,7 @@ We will now build our first **<yellow>Shellcode</yellow>**. Shellcode is a term 
 
 Now, how can we create our shellcode? We've already used [Microcorruption Assembler](https://microcorruption.com/assembler) in previous levels, such as [Reykjavik](/microcorruption/reykjavik). We do also know from previous levels that calling `INT` with `0x7f` as parameter unlocks the door. 
 
-In case you don't remember how the syntax of these two instructions is, you have them at address `0x445c` in `conditional_unlock_door` function. So, we want to assemble *(get the respective bytes representing the machine code)* the following instructions:
+In case you don't remember what the syntax of these two instructions is, you have them at address `0x445c` in `conditional_unlock_door` function. So, we want to assemble *(get the respective bytes representing the machine code)* the following instructions:
 ```
 push	#0x7f
 call	#0x4532
