@@ -1,7 +1,7 @@
 theme: jekyll-theme-hacker
 title: RazviOverflow 
 author: Razvi
-description: The more you're able to hear, the more you'll learn. 
+description: Exploit code, not people. 
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
