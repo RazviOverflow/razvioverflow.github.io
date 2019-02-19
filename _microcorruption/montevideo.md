@@ -2,11 +2,13 @@
 title: "Microcorruption - Montevideo"
 date: 2019-02-18
 categories: [microcorruption, reverse engineering]
-tags: [microcorruption, tutorial, assembly, ctf, montevideo, walkthrough, debug]
+tags: [microcorruption, tutorial, assembly, ctf, montevideo, walkthrough, debug, buffer overflow, shellcode]
 description: Microcorruption Montevideo level explained in detail. We will see how to solve the level and understand the underlying concepts. 
 hasComments: true
 image: /images/microcorruption-levels-image.png
 ---
+
+In this new level, just like the previous one, we will exploit a buffer overflow vulnerability and create a working shellcode in order to solve the level, only this time our shellcode will be limited. Keep reading to learn more :)
 
 When you enter the level, as always, there is a pop up manual. The last paragraph states the following:
 > This is Software Revision 03. We have received unconfirmed reports
@@ -142,7 +144,7 @@ Now, keeping in mind badchars, let's design our shellcode. **<yellow>There are m
 
 One solution that I implemented is very simple. We design such a payload whose length is lesser than 16 bytes (0x10) and then we jump to it. That is, we overwrite `login` return address with `0x43ee` address. Now, **<blue>what shall our shellcode do?</blue>** We can take advantage of code that already exists in the program's memory. 
 
-As we've seen in previous levels, [LockitAll User Manual](https://microcorruption.com/manual.pdf) tells us how to insta-unlock the door. That is, pushing **0x7F** into the stack and calling **INT**. `INT` function is at address `0x454c`.
+As we've seen in previous levels, [LockitAll User Manual](https://microcorruption.com/manual.pdf) tells us how to achieve insta-unlock. That is, pushing **0x7F** into the stack and calling **INT**. `INT` function is at address `0x454c`.
 
 ```
 454c <INT>
@@ -157,10 +159,65 @@ As we've seen in previous levels, [LockitAll User Manual](https://microcorruptio
 4562:  3041           ret
 ```
 
+Well, what if we simply try the last level's solution. That is, pushing `0x7f` and calling `INT`.
+```
+push #0x7f
+call #454c
+```
+
+Once again, we can assemble our code using [Microcorruption Assembler](https://microcorruption.com/assembler). As you can see in the image below, I underlined the NULL byte that'll make our shellcode useless. 
+
+<p align="center">
+<img src="/images/microcorruption-montevideo12.png">
+</p>
+
+The NULL byte is automatically inserted because MSP-430 works with 2 bytes addressing. In 2 bytes length, 0x7f is the same as 0x007f. It's exactly the same number. <purple>In fact, it doesn't matter how many padding zeros you use, it still remains the same number.</purple> MSP-430 compiler, or rather assembler, automatically fills with 0, padding up to 2 byte size every single integer and, by the other hand, it discards every byte but the last 2, the 2 LSB (Least Significant Byte). The following image can help us understand this behavior.
+
+<p align="center">
+<img src="/images/microcorruption-montevideo13.png">
+</p>
+
+Note `3012` are the constant opcodes for `push` instruction. Now notice how: ***(Remember MSP-430 uses Little Endian byte ordering scheme)***
+1. Both integers <blue>#0x41</blue> and <blue>#0x0041</blue> became <orange>4100</orange>.
+2. Integer <blue>#0x4100</blue> became <orange>0041</orange>.
+3. Integer <blue>#0x414243</blue> became <orange>4342</orange>. (Only the 2 LSB are kept)
+
+
+Now, in order to get rid of NULL bytes there are thousands of solutions and alternatives. What I suggest is very simple. That is, using basic arithmetic operations. Remember we are assembling instructions, we can do *whatever* we want as long as syntax is correct. Now, what if we take advantage of <yellow>registers</yellow>?. 
+
+Let's say we place some value that has no NULL bytes in some register and then perform some arithmetic operation that has no NULL bytes on it so that the result is what we want. Since that result will be stored in a register, <red>it doesn't bother us whether it has NULL bytes</red>. We can then push that register's value. The following example is clarifying.
+
+```
+mov #0x0180, r15
+sub #0x0101, r15
+push r15
+call #0x454c
+```
+
+Notice how `0x0180` - `0x0101` = `0x007f` and that's exactly what we want. *(Remember 0x007f is the same as 0x7f)* Of course there are many different ways of achieving the wanted value. You could as well use *integer overflow*.
+
+The assembled code is: 
+`3f4080013f8001010f12b0124c45`
+
+<p align="center">
+<img src="/images/microcorruption-montevideo14.png">
+</p>
+
+Now, remember there are 16 (0x10) bytes from the beginning of the buffer until return address and our assembled shellcode is only 14 bytes long. We will have to add <blue>2 padding bytes</blue> and then the <red>return address</red>, which will be the begging of the buffer so after `login` finishes, `ip` *<purple>(Instruction Pointer)</purple>* jumps right to our shellcode and executes it. 
+
+So, the solving input (hex encoded) will be: **<orange>3f4080013f8001010f12b0124c45</orange><blue>4141</blue><red>ee43</red>** **<yellow>(One possible solution)</yellow>**
+
+<p align="center">
+<img src="/images/microcorruption-montevideo15.png">
+</p>
+
+<p align="center">
+<img src="/images/microcorruption-montevideo16.png">
+</p>
 
 ## Recap
 
-
+We've seen how `strcpy` is vulnerable to Buffer Overflow attacks. Exploiting such vulnerability we can change the program's execution flow in order to execute our shellcode. At the same time, `strcpy` limits our shellcode since there are some characters that make it useless, the so called badchars. There are many ways of avoiding badchars, we've seen one of the most simple. That is, basic arithmetic operations. Once badchars are avoided, we simply overwrite return address of `login` function so the `ip` jumps right to our shellcode. 
 
 ## More levels
 * Click [here](/microcorruption/johannesburg) to see next level (Johannesburg).
