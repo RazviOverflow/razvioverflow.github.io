@@ -194,7 +194,7 @@ push r15
 call #0x454c
 ```
 
-Notice how `0x0180` - `0x0101` = `0x007f` and that's exactly what we want. *(Remember 0x007f is the same as 0x7f)* Of course there are many different ways of achieving the wanted value. You could as well use *integer overflow*.
+Notice how `0x0180` - `0x0101` = `0x007f` and that's exactly what we want. *(Remember 0x007f is the same as 0x7f)* Of course there are many different ways of achieving the wanted value. 
 
 The assembled code is: 
 `3f4080013f8001010f12b0124c45`
@@ -215,9 +215,46 @@ So, the solving input (hex encoded) will be: **<orange>3f4080013f8001010f12b0124
 <img src="/images/microcorruption-montevideo16.png">
 </p>
 
+You could as well use 2 bytes *integer overflow* properties. That is, adding two big numbers (2 bytes long) so that the result exceeds 2 bytes size but the last 16 bits (2 bytes) represent 0x7f. Let's see the following example which will definitely help us understand this concept. 
+
+```
+mov #0x56AA, r12
+add #0xA9D5, r12
+push r12
+call #0x454c
+```
+
+This code actually works. Let's assemble it, try it and explain why it does work.
+
+<p align="center">
+<img src="/images/microcorruption-montevideo17.png">
+</p>
+
+The working input (hex encoded) is: **<orange>3c40aa563c50d5a90c12b0124c45</orange><blue>4141</blue><red>ee43</red>** **<yellow>(Another possible solution, this time based on integer overflow)</yellow>**
+
+<p align="center">
+<img src="/images/microcorruption-montevideo18.png">
+</p>
+
+<p align="center">
+<img src="/images/microcorruption-montevideo19.png">
+</p>
+
+It works because the result is bigger than the <blue>max value of a 2 bytes integer</blue> and only the last 16 bits are kept. That is, the rest are <purple>discarded</purple>. It is easier to understand what is happening if we think about binary representation and what is actually happening with the involved bits. The binary sum is as follows: *(I'm splitting bits 4 by 4 just for visualization sake)*
+
+```
+		    0 1 0 1   0 1 1 0   1 0 1 0   1 0 1 0 (0x56AA)
+	+
+		    1 0 1 0   1 0 0 1   1 1 0 1   0 1 0 1 (0xA9D4)
+	_______________________________________________________
+		1 | 0 0 0 0   0 0 0 0   0 1 1 1   1 1 1 1 (0x1007f) 
+
+```
+The result is `0x1007f` but since the length of integers is 2 bytes, only the last 16 bits count. <green>The last 16 bits are the binary representation of</green> `0x7f`. Notice how despite the result, no operand contains null bytes. Thats how we avoid badchars using integer overflow ***<red>(unsigned)</red>***. :)
+
 ## Recap
 
-We've seen how `strcpy` is vulnerable to Buffer Overflow attacks. Exploiting such vulnerability we can change the program's execution flow in order to execute our shellcode. At the same time, `strcpy` limits our shellcode since there are some characters that make it useless, the so called badchars. There are many ways of avoiding badchars, we've seen one of the most simple. That is, basic arithmetic operations. Once badchars are avoided, we simply overwrite return address of `login` function so the `ip` jumps right to our shellcode. 
+We've seen how `strcpy` is vulnerable to Buffer Overflow attacks. Exploiting such vulnerability we can change the program's execution flow in order to execute our shellcode. At the same time, `strcpy` limits our shellcode since there are some characters that make it useless, the so called badchars. There are many ways of avoiding badchars, we've seen one of the most simple. That is, basic arithmetic operations. Once badchars are avoided ***<yellow>(NULL-free shellcode)</yellow>***, we simply overwrite return address of `login` function so the `ip` jumps right to our shellcode. 
 
 ## More levels
 * Click [here](/microcorruption/johannesburg) to see next level (Johannesburg).
