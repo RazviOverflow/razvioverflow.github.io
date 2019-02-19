@@ -240,7 +240,7 @@ The working input (hex encoded) is: **<orange>3c40aa563c50d5a90c12b0124c45</oran
 <img src="/images/microcorruption-montevideo19.png">
 </p>
 
-It works because the result is bigger than the <blue>max value of a 2 bytes integer</blue> and only the last 16 bits are kept. That is, the rest are <purple>discarded</purple>. It is easier to understand what is happening if we think about binary representation and what is actually happening with the involved bits. The binary sum is as follows: *(I'm splitting bits 4 by 4 just for visualization sake)*
+It works because the result is bigger than the <blue>max value of a 2 bytes long integer</blue> and only the last 16 bits are kept. That is, the rest are <purple>discarded</purple>. It is easier to understand what is going on if we think about binary representation and what is actually happening with the involved bits. The binary sum is as follows: *(I'm splitting bits 4 by 4 just for visualization sake)*
 
 ```
 		    0 1 0 1   0 1 1 0   1 0 1 0   1 0 1 0 (0x56AA)
