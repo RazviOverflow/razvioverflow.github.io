@@ -45,7 +45,7 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 
 ## Courses, guided learning
 
-- <span style="color:yellow">Exploiting and reversing with free tools</span> [Link (too long)](http://ricardonarvaja.info/WEB/EXPLOITING%20Y%20REVERSING%20USANDO%20HERRAMIENTAS%20FREE/) (You will probably get a browser warning about the page not being secure *not https*) Guided course by the one and only Ricardo Narvaja. Exploting and reversing using only free tools. Both english and spanish.
+- <span style="color:yellow">Exploiting and reversing with free tools</span> [Link (too long)](http://ricardonarvaja.info/WEB/EXPLOITING%20Y%20REVERSING%20USANDO%20HERRAMIENTAS%20FREE/) (You will probably get a browser warning about the page not being secure *not https*) Guided course by the one and only Ricardo Narvaja. Exploting and reversing using only free tools. Both English and Spanish.
 - <span style="color:yellow">Begin.re</span> [https://www.begin.re/](https://www.begin.re/) If you have been searching for a place to get started with Reverse Engineering and get your hands dirty, Begin.re is the right place. The correct place for x86 newcomers. 
 - <span style="color:yellow">Modern Binary Exploitation course</span> [http://security.cs.rpi.edu/courses/binexp-spring2015/](http://security.cs.rpi.edu/courses/binexp-spring2015/)
 - <span style="color:yellow">Azeria's basics on ARM</span> [https://azeria-labs.com/writing-arm-assembly-part-1/](https://azeria-labs.com/writing-arm-assembly-part-1/) Tutorial series on ARM assembly basics. 
