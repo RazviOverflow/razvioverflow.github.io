@@ -12,7 +12,8 @@ collections:
   hackingwebsitelist:
     output: true
     permalink: /starthacking
-
+  ctfwriteups:
+    output: true
 defaults:
   - scope:
       path: ""

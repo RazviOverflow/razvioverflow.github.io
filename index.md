@@ -13,8 +13,13 @@ Here you can find a list, compilation, directory... of the best hacking sites. Y
 
 - [Best hacking sites](/starthacking)
 
+# CTF Writeups
+I will post in this sections all the writeups I write along the way while participating in live CTF. I think sharing this knowledge is always positive since actual competition is a source of knowledge and self-improve. Sharing this knowledge helps not only me but the whole community.  
+
+ - [CTF Writeups](/ctfwriteups)
+
 # Tutorials && Writeups
-Knowledge that I consider is worth sharing. Tutorials,  walkthroughs, challenges, ctf, writeups, papers, articles... thoroughly detailed. The purpose is to understand the underlying idea and the inner workings of it. 
+Knowledge that I consider is worth sharing. Tutorials,  walkthroughs, challenges, writeups, papers, articles... thoroughly detailed. The purpose is to understand the underlying idea and the inner workings of it. Unlike the previous section, these writeups deal with challenges that are always available, not in a given time lapse. 
 
 - [Microcorruption](/microcorruption)
 
