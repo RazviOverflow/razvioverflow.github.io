@@ -181,7 +181,7 @@ This is the Python script we used to analyze the .wav file and get the flag.
 
 ```python
 #!/usr/bin/python3
-#sRazviOverflow
+#RazviOverflow
 
 import wavefile
 import sys
