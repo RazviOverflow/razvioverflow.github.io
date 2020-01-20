@@ -3,6 +3,7 @@ title: "Hackplayers h-c0n CTF Qualifiers 2020"
 categories: [ctf]
 tags: [ctf, writeup, h-c0n, hackplayers]
 hasComments: true
+date: 2020-01-19
 image: /images/CTF/h-c0n/2020/hc0n2019logo.png
 description: H-c0n Hackplayers Conference is a nice security conference held in Spain. Here are our writeups for the solved challenges. 
 ---
