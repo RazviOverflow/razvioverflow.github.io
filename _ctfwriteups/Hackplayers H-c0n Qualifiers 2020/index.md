@@ -14,7 +14,7 @@ description: H-c0n Hackplayers Conference is a nice security conference held in 
 Main event page: [https://www.h-c0n.com/p/home.html](https://www.h-c0n.com/p/home.html)  
 Main CTF page: [https://www.h-c0n.com/p/ctf.html](https://www.h-c0n.com/p/ctf.html)
 
-H-c0n Hackplayers Conference is a nice security conference held in Spain and this time some friends and I participated in their online CTF Qualifier (January 2020). I participated in a three-members team alongside Alhuerthor and [@DavidHunter98](https://twitter.com/DavidHunter98). There were a total of 268 players, 149 registered teams and 73 teams that solved at least one challenge. We ended up in 11th position and learnt a lot. I'm eager for the next live CTF we can get into and we are slowly building the addiction to them :)  
+H-c0n Hackplayers Conference is a nice security conference held in Spain and this time some friends and I participated in their online CTF Qualifier (January 2020). I participated in a three-members team alongside Alhuerthor and [@DavidHunter98](https://twitter.com/DavidHunter98). There were a total of 268 players, 149 registered teams and 73 teams that solved at least one challenge. We ended up in 11th position and learned a lot. I'm eager for the next live CTF we can get into and we are slowly building the addiction to them :)  
 Congratulations to the top 6 teams that managed to qualify for the finals. Good luck!
 
 <p align="center">
@@ -40,7 +40,7 @@ This challenge was all about inspecting the source code of its description windo
 ```
 FMVSWKZLFMVSWKZLLM7CWPRLFMVT4KZLFMVSWKZLHYVSWKZLFMVSWKZLFM6DYPB4FVOT4PR6FMVS4PBLFMVSWKZLFMVSWKZLFMVSWKZOHY7C2LR4HQVSWKZOHY7CWKZLFMVSWKZLFMVSWLRLFMVSWKZLFMVSWKZLFMVS4PB4FMVSWKZLFMVSWLRNFUWS2LJOFUXC2LRLFMVSWKZLFMXD4KZLFMVSWKZLFMVSWKZLFMVSWKZLFMVSWKZLFMVSWLRLFMXDYLJNFUWS2LRLFY7C4PBNFUWS4KZLFMVSWKZLFYWS2LJNFUXCWLR6FY6C2LJOFMVSWKZOFMXCWLRNFUWS2LJNFUXD4KZLFMXC2LR4FMVSWLR6FUWS2LRLFMXCWLR4FMVSWKZLFYWS2LJNFUWS2LJOFMVSWKZLFMVS4PROFY6C2LJNFUXD4PRLFMXA====
 ```
-It defnitiley looks like base64 but it is not. It's actually base32. To decode it we can use whatever online tool like [this one](https://www.dcode.fr/base-32-encoding).  
+It definitely looks like base64 but it is not. It's actually base32. To decode it we can use whatever online tool like [this one](https://www.dcode.fr/base-32-encoding).  
 The decoded result is a combination of `+`, `.`, `[`, `]`, `-`. `>` and `<`.
 ```
 ++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++.<+++++++++++++++.>>-.<<+++.>>+++++++++++.+++++++++++++.<<++++++++.-----.-.-.+++++++.>+++++++++++++++++++++++++.++.<-----.+.>.<---.+++++++.-----.+.>.<--.++++.+.+.-------.>+++.-.<+++.>---.++.+.<+++++.--------.+++++++.>..<----.>>++.���s
@@ -80,7 +80,7 @@ openssl -rsa -pubin -in kojonomai.txt -text -noout
 ```
 ![](/images/CTF/h-c0n/2020/openssl_rsa_1.png)
 
-We next placed the public key in its own file and tried to break it with the allmighty [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool). Launching the tool does indeed break/factor the public key and we can obtain a corresponding private key. Turns out the modulus was already factored and it's posted at [factordb](http://factordb.com/).
+We next placed the public key in its own file and tried to break it with the almighty [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool). Launching the tool does indeed break/factor the public key and we can obtain a corresponding private key. Turns out the modulus was already factored and it's posted at [factordb](http://factordb.com/).
 ```
 RsaCtfTool.py --publickey publick_key.key --verbose --private
 ```
@@ -94,7 +94,7 @@ Please note that *cipher* in the previous command is a file containing a single 
 
 ![](/images/CTF/h-c0n/2020/rsactf_2.png)
 
-This happens because the message is too long and in order to supress this error we must provide the input as bytes and not as base64. You can read more about this error and find the solution [here](https://stackoverflow.com/questions/23205592/openssl-data-greater-than-mod-len).  
+This happens because the message is too long and in order to suppress this error we must provide the input as bytes and not as base64. You can read more about this error and find the solution [here](https://stackoverflow.com/questions/23205592/openssl-data-greater-than-mod-len).  
 In order to do so we have to simply base64 decode the ciphertext. We can use the Kali preinstalled `base64` tool.
 ```cat cipher | base64 -d > rawcipher```
 Now, when trying again to decrypt it using the private RSA key:
@@ -124,7 +124,7 @@ So the script is opening a Shell and downloading something from https://bit.ly/2
 The link downloads an image called *whereisyourgod.png*:  
 ![](/images/CTF/h-c0n/2020/whereisyourgod.png)
 
-Using `binwalk` to find possible hidden files within it had no possitive results. The next thing we did was use the author's hint about [BPStegano](https://github.com/TapanSoni/BPStegano).  
+Using `binwalk` to find possible hidden files within it had no positive results. The next thing we did was use the author's hint about [BPStegano](https://github.com/TapanSoni/BPStegano).  
 
 Once BPStegano is installed we execute it and try to extract the secret from the image using `SALCHICHON` as password.
 
@@ -141,7 +141,7 @@ H-c0n{5619b327cc5ecce85a7fc99a14a6c5c5}
 
 Props to [Kashmir54](https://twitter.com/ManuSanchez54) for giving us a helping hand with this one!
 
-In this callenge we were given a .wav file. The first thing we did (s*after analyzing the .wav file with tools like `file`, `binwalk`, etc...*) was opening it with [Audacity](https://www.audacityteam.org/) and try to play it. 
+In this challenge we were given a .wav file. The first thing we did (s*after analyzing the .wav file with tools like `file`, `binwalk`, etc...*) was opening it with [Audacity](https://www.audacityteam.org/) and try to play it. 
 *<red>Playing the sound resulted in an insta RIP for our ears, even though we were prepared for it and lowered system's volume.</red>*
 
 Timeline of Audacity:  
@@ -154,9 +154,9 @@ Zoomed-in timeline of Audacity:
 
 We can clearly see the high and low notes. So we thought this could be a representation of zeros `0` and ones `1` i.e. crafting the resultant file on a bit basis. 
 
-In order to analyze the .wav and extract all the bits we used Python and two modules: [wavefile](https://pypi.org/project/wavefile/) and [BitVector](https://pypi.org/project/BitVector/). [Here](https://stackoverflow.com/questions/2060628/reading-wav-files-in-python) you can find some examples of wavefile usage and how to obtain sound parameters like frecuencies, number of frames, etc...
+In order to analyze the .wav and extract all the bits we used Python and two modules: [wavefile](https://pypi.org/project/wavefile/) and [BitVector](https://pypi.org/project/BitVector/). [Here](https://stackoverflow.com/questions/2060628/reading-wav-files-in-python) you can find some examples of wavefile usage and how to obtain sound parameters like frequencies, number of frames, etc...
 
-We measured the minimum length of the higher notes and it turns out to be <yellow>739</yellow> frames. So we assumed each bit is 739 frames long. We tried then writing to a file a 1 bit whenever there is a high freq note and a 0 bit whenever there is a low freq one. *(The frequencies are high: 0.984375 and low: -0.0078125)*. The resultant file was useless. We then tried to invert the bits, a 0 for the high freq and a 1 for the low freq. The resultant file was rubbish. Next we took into account the length of the high freq souns *(note how the lower ones are always the same legnth)*. We then tried the same thing but now counting the actual frames and applying modulus 739 `% 739` so whenever the high freq note is longer than 739 it sould write 2 or more bits. We tried with 1 as high and 0 as low and viceversa, both resultant files were useless. 
+We measured the minimum length of the higher notes and it turns out to be <yellow>739</yellow> frames. So we assumed each bit is 739 frames long. We tried then writing to a file a 1 bit whenever there is a high freq note and a 0 bit whenever there is a low freq one. *(The frequencies are high: 0.984375 and low: -0.0078125)*. The resultant file was useless. We then tried to invert the bits, a 0 for the high freq and a 1 for the low freq. The resultant file was rubbish. Next we took into account the length of the high freq sounds *(note how the lower ones are always the same length)*. We then tried the same thing but now counting the actual frames and applying modulus 739 `% 739` so whenever the high freq note is longer than 739 it should write 2 or more bits. We tried with 1 as high and 0 as low and vice versa, both resultant files were useless. 
 
 Then we want back to researching and found a [post](https://leonjza.github.io/blog/2016/10/02/reverse-engineering-static-key-remotes-with-gnuradio-and-rfcat/) that explains how to reverse engineer some SDR (Software Defined Radio) captures and, luckily enough, the author [Leonjza](https://twitter.com/leonjza) used a Yardstick One transceiver to capture the data just like the description of this challenge. 
 
@@ -164,7 +164,7 @@ Reading the writeup we understood that only high freq notes must be taken into a
 
 ![](/images/CTF/h-c0n/2020/radio1_3.png)
 
-We then measured again high values and understood that the **short high freq notes are 739 frames long** and the **long high freq are three times as long, 2217 frames**. With this information in mind, we implemented an algorithm that counts the number of consecutive high freq (0.984375) frames/bits and writes to a file a 0 bit whenever there are 2217 consective frames (long) and a 1 bit whenever there are 739 consecutive frames (short), according to the image and the post. The resultant file was, once again, useless. We then **<gold>inverted the bits</gold>**, a 0 bit for the short high freqs and a 1 bit for the long high freqs. The resultant file was, surprisingly, useful!
+We then measured again high values and understood that the **short high freq notes are 739 frames long** and the **long high freq are three times as long, 2217 frames**. With this information in mind, we implemented an algorithm that counts the number of consecutive high freq (0.984375) frames/bits and writes to a file a 0 bit whenever there are 2217 consecutive frames (long) and a 1 bit whenever there are 739 consecutive frames (short), according to the image and the post. The resultant file was, once again, useless. We then **<gold>inverted the bits</gold>**, a 0 bit for the short high freqs and a 1 bit for the long high freqs. The resultant file was, surprisingly, useful!
 
 In the following image you can see the bits output after analyzing the recording. 
 
@@ -225,7 +225,7 @@ print("in the range "+str(min(signal))+" to "+str(min(signal)))
 
 At the time we found Leonjza's post that helped us solve the challenge there was a important typo. The bit values he posted are inverted, that is, **SHORT is 0** and **LONG is 1**.
 
-After solving the challenge with our own script, we found that Leonjza developed a tool for this task and he mentioned it at the end of his post. The tool is called [oktools](https://github.com/leonjza/ooktools) and can automatically analyze the .wav file and give the same output that we managed to get, but it does automatically and fully transparent to the user. We did it the hard way but we leanrt quite a few things! 
+After solving the challenge with our own script, we found that Leonjza developed a tool for this task and he mentioned it at the end of his post. The tool is called [oktools](https://github.com/leonjza/ooktools) and can automatically analyze the .wav file and give the same output that we managed to get, but it does automatically and fully transparent to the user. We did it the hard way but we learned quite a few things! 
 
 ![](/images/CTF/h-c0n/2020/radio1_7.png)
 
@@ -240,11 +240,11 @@ After analyzing the .png file with `binwalk` or `foremost` we found that it has 
 
 ![](/images/CTF/h-c0n/2020/samurai_2.png)
 
-Inspecting the frequenc spectogram (Pane -> Add peak frequency spectrogram) gives us the h-c0n logo and the word `SHINOBI`.
+Inspecting the frequency spectrogram (Pane -> Add peak frequency spectrogram) gives us the h-c0n logo and the word `SHINOBI`.
 
 ![](/images/CTF/h-c0n/2020/samurai_3.png)
 
-You can also inspect the spectogram with Audacity but the results are not as clear as with Sonic Visualizer.
+You can also inspect the spectrogram with Audacity but the results are not as clear as with Sonic Visualizer.
 
 After obtaining the word SHINOBI we tried several things in order to continue toward the flag. Using `exiftool` we are able to read the metadata of a given file. There's the output of samurai.png:  
 
@@ -264,7 +264,7 @@ H-c0n{3899dcbab79f92af727c2190bbd8abc5}
 
 Unfortunately I cannot give full details about this challene (getting the user flag and root flag) because the computers to compromise were shut down once the qualifier ended. Anyways, I'll write down details about what we did.
 
-We were a link to a page with [CMSMS](https://www.cmsmadesimple.org/) ver 2.2.5 installed. After researching a bit we found out that CMSMS prior to version 2.2.10 has a SQL Injection vulnerability that allows to obtain admin credentials. We used [this script](https://packetstormsecurity.com/files/152356/CMS-Made-Simple-SQL-Injection.html) from Packet Storm Security in order to obtain the credentials. The script can get the hash of the password but if you want to actually crack it you must provide a wordlist. We used the famous and all powrful [Rockyou](https://www.kaggle.com/wjburns/common-password-list-rockyoutxt). After executing the script and providing rockyou as wordlist we are given the admin credentials.
+We were a link to a page with [CMSMS](https://www.cmsmadesimple.org/) ver 2.2.5 installed. After researching a bit we found out that CMSMS prior to version 2.2.10 has a SQL Injection vulnerability that allows to obtain admin credentials. We used [this script](https://packetstormsecurity.com/files/152356/CMS-Made-Simple-SQL-Injection.html) from Packet Storm Security in order to obtain the credentials. The script can get the hash of the password but if you want to actually crack it you must provide a wordlist. We used the famous and all powerful [Rockyou](https://www.kaggle.com/wjburns/common-password-list-rockyoutxt). After executing the script and providing rockyou as wordlist we are given the admin credentials.
 
 ![](/images/CTF/h-c0n/2020/boot2root_1.png)
 
@@ -276,7 +276,7 @@ In the content file manager the admin can inspect, edit, upload, copy, rename, e
 
 ![](/images/CTF/h-c0n/2020/boot2root_3.png)
 
-After several tests we found that renaming existing files is not possible but it is possible to copy alrady existing files and give the copy a specific name. Furthermore, inspecting the alrady existing files we noticed that `cmsmsrce.txt` *(that could stand for CMSMS Remote Code Execution)* contains a php script that simply reads the `cmd` parameter of the url.
+After several tests we found that renaming existing files is not possible but it is possible to copy alrady existing files and give the copy a specific name. Furthermore, inspecting the alrady existing files we noticed that `cmsmsrce.txt` *(that could stand for CMSMS Remote Code Execution)* contains a PHP script that simply reads the `cmd` parameter of the URL.
 
 ![](/images/CTF/h-c0n/2020/boot2root_4.png)
 
@@ -316,7 +316,7 @@ Now, in order to obtain root flag we looked the entire system (wherever the user
 ![](/images/CTF/h-c0n/2020/boot2root_9.png)
 ![](/images/CTF/h-c0n/2020/boot2root_10.png)
 
-That's very useful information and a hash of the root user password that we can try to crack, once again bruteforcing. In order to crack the root hash from the shadow backup we used [Hashcat](https://hashcat.net/hashcat/). After trying rockyou dictionary (quite a few minutes) we had no candidate for the password. We tried another very well known dictonary, `credentials` from [Sec Lists](https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials) *(the top 1 million credentials)*
+That's very useful information and a hash of the root user password that we can try to crack, once again bruteforcing. In order to crack the root hash from the shadow backup we used [Hashcat](https://hashcat.net/hashcat/). After trying rockyou dictionary (quite a few minutes) we had no candidate for the password. We tried another very well known dictionary, `credentials` from [Sec Lists](https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials) *(the top 1 million credentials)*
 
 Using Hashcat we were able to crack the password in 26 minutes (using a kali VM). You can find a tutorial on how to crack hashes with Hashcat [here](https://samsclass.info/123/proj10/p12-hashcat.htm) and [here](https://null-byte.wonderhowto.com/how-to/crack-shadow-hashes-after-getting-root-linux-system-0186386/).
 ```
@@ -349,7 +349,7 @@ After opening the file, we played around with the parameters and modulated the f
 
 ![](/images/CTF/h-c0n/2020/radio2_2.png)
 
-The flag was voice-dictated and it was split among 3 different frecuencies. Hearing each chunk of the flag with the proper frequency allowed us to compose the flag.
+The flag was voice-dictated and it was split among 3 different frequencies. Hearing each chunk of the flag with the proper frequency allowed us to compose the flag.
 
 The flag is:
 ```
