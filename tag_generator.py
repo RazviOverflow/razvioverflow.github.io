@@ -1,18 +1,23 @@
 #!/usr/bin/env python
 
 '''
-Razvi Son eptember 2018
+REQUIRES PYTHON 3.5+
+Razvi on September 2018
 Contact: Twitter @Razvieu
 
 This script creates tags for your Jekyll blog hosted by Github page.
 No plugins required. If you want to use it, make sure you edit post_dirs
 to fit your needs.
+
+Modified on 20th January 2020. Now the script recursively traverses all
+the directories and subdirectories starting from "./" and check every ".md"
+file looking for tags. It now requires Python 3.5+
 '''
 
 import glob
 import os
 
-post_dirs = ['./','./_microcorruption/']
+#post_dirs = ['./','./_microcorruption/','./_ctfwriteups/']
 tag_dir = './tags/'
 total_tags = []
 
@@ -25,9 +30,10 @@ old_tags = glob.glob(tag_dir + '*.md')
 for tag in old_tags:
     os.remove(tag)
 
-for post_dir in post_dirs:
-    filenames = glob.glob(post_dir + '*md')
-    for filename in filenames:
+#for post_dir in post_dirs:
+#print("The directory being read: " + post_dir)
+for filename in glob.iglob("./" + '**/*', recursive=True):
+    if filename.endswith(".md"):
         f = open(filename, 'r')
         crawl = False
         for line in f:
