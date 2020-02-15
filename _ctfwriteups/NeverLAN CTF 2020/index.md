@@ -4,7 +4,7 @@ categories: [ctf]
 tags: [ctf, writeup, neverlan, never, lan]
 hasComments: true
 date: 2020-01-19
-image: /images/CTF/h-c0n/2020/hc0n2019logo.png
+image: /images/CTF/neverlan_ctf_2020/0.png
 description: NeverLAN CTF 2020 challenges writeups. 
 ---
 
