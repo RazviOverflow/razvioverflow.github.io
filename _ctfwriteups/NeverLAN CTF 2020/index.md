@@ -21,7 +21,7 @@ Some friends and I participated in NeverLAN CTF 2020, an online CTF with entry-l
   <img src="/images/CTF/neverlan_ctf_2020/scoreboard.png"/>
 </p>
 
-We solved all challenges but two of them and finished the CTF in 59th place. It's not that bad if we consider that the first 32 teams are all #1, with the maximum possible score. Shout-outs to my teammates n0rus (Alhuerthor), [@DavidHunter98](https://twitter.com/DavidHunter98) and urzu, and also to [Kashmir54](https://twitter.com/ManuSanchez54), who helped me with some challenges. Also thanks to [Xh4h](https://twitter.com/riftwhitehat) who couldn't participate this time due to personal reasons.
+We solved all challenges but two of them and finished the CTF in 59th place. It's not that bad if we consider that the first 32 teams are all #1, with the maximum possible score. Shout-outs to my teammates n0rus (Alhuerthor), [@DavidHunter98](https://twitter.com/DavidHunter98) and [urzu](@daniel_uroz), and also to [Kashmir54](https://twitter.com/ManuSanchez54), who helped me with some challenges. Also thanks to [Xh4h](https://twitter.com/riftwhitehat) who couldn't participate this time due to personal reasons.
 
 The CTF had several categories including reverse engineering, crypto, pcacp, forensics, programming, recon, web, *chicken little* and trivia. We solved a lot of challenges but, unfortunately, couldn't document them all. The writeups you can find in this page are:
 
