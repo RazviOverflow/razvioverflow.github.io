@@ -127,6 +127,7 @@ Vigènere is the one you’re looking for.
 The flag is: flag{can_you_crypto}
 
 # CTF Challenges
+# Reverse Engineering
 ## Adobe Payroll
 >We've forgotten the password to our payroll machine. Can you extract it?
 Your flag will be in the flag{flagGoesHere} syntax.
@@ -159,3 +160,100 @@ Using these credentials you can obtain the flag.
 The flag is: flag{.net_is_pretty_easy_to_decompile}
 
 ## Script Kiddie
+>It looks like a script kiddie was trying to build a crypto locker. See if you can get the database back?
+
+The challenge is attached with a file called "encrypted_db". Inspecting its contents with `cat` you will see the file is pretty huge and its contets are of the likes of:  
+*(I’ll be using `| head` for the sake of screenshots)*
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_4.png"/>
+</p>
+
+If you look closely you can realize it looks like hexadecimal text. In order to translate the text file contents from hexadecimal to ASCII text you can use `xxd` with `-r` (reverse) and `-p` (print) options.
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_5.png"/>
+</p>
+
+That pretty much looks like Base64.
+Decode it using `base64 -d` and you’ll get quite a huge one-line JSON content
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_6.png"/>
+</p>
+
+You can copy the whole JSON file and parse it with a JSON beautifier tool and search for “flag”
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_7.png"/>
+</p>
+
+The flag is: flag{ENC0D1NG_D4TA_1S_N0T_ENCRY7I0N} *(Yes, looks like they misspelled encryp**t**ion)*
+
+# Forensics
+## Listen to this
+>You hear that?
+*Your flag will be in the normal flag{flagGoesHere] syntax*
+-ps This guy might be important
+
+The challenge includes an mp3 file called HiddenAudio.mp3. If you reproduce the audio, you’ll hear a guy talking and some beeps in the background. Inspecting the spectrogram with audactiy you can actually see (in the right track) that the beeps correspond to Morse code. Now the challenge is to isolate it.
+
+That’s how the spectrogram looks like the first time you open the audio:
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_8.png"/>
+</p>
+
+The first filter I applied was Vocal Reduction and Isolation
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_9.png"/>
+</p>
+
+If you select the period mode of view (right click in the frequencies indicator) you will be able to detect the frequencies where the Morse is (between 500 and 700 approx)
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_10.png"/>
+</p>
+
+The second filter I applied was “Equalization” using the following graph:  
+*(I’m applying decibels only to the frequencies related to morse code).*
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_11.png"/>
+</p>
+
+After applying the filters, you should be able to easily identify the longs, shorts and spaces. Zooming properly will reveal you the data.
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_12.png"/>
+</p>
+
+
+The morse is: `.._./._../._/__./_../../_/.../._/_./_../_../._/..../.../.._./___/._./._../../.._././`
+
+I translated it with cyberchef
+
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/ctf_13.png"/>
+</p>
+
+Flag is: DITSANDDAHSFORLIFE
+
+# Chicken Little
+## Chicken Little 1
+
+>Start here
+ssh neverlan@44.233.149.141 -p 3333 password: neverlan
+Flags might not be in the normal flag{} format
+Save the flag, as you will need it to start the next challenge
+
+This one is pretty straightforward:
+<p align="center">
+  <img src="/images/CTF/neverlan_ctf_2020/chicken_little_1_0.png"/>
+</p>
+
+
+The flag is: eat-chicken-not-cows
+
+## Chicken Little 2
