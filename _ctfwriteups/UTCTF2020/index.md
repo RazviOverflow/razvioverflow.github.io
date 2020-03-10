@@ -5,7 +5,7 @@ tags: [ctf, writeup, utctf, isss, information and systems security society]
 hasComments: true
 date: 2020-03-09
 image: /images/CTF/UTCTF2020/logo.png
-description: UTCTF CTF 2020 challenges writeups. 
+description: UTCTF CTF 2020 challenge writeups. 
 ---
 
 <p align="center">
@@ -21,7 +21,7 @@ UTCTF was a very good online CTF both in terms of challenges quality and communi
   <img src="/images/CTF/UTCTF2020/team_score.png"/>
 </p>
 
-I'd like to thank [Kashmir54](https://twitter.com/ManuSanchez54) for participating along with me. Also Astr0 for dedicating the little time he had.
+I'd like to thank [Kashmir54](https://twitter.com/ManuSanchez54) for participating along with me. Also [Astr0]() for dedicating the little time he had.
 
 The CTF had several categories but, this time, I decided to focus on forensics *(I'm talking in first person here because these are writeups of challenges that I solved and documented throughout the process)*. The writeups included in this page are:
 
@@ -116,7 +116,7 @@ print(payload + gadget_addr + rdi_canary + get_flag_addr)
 Simply execute the script, redirect the output to a file and use it as input for the binary. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020/bof4.png"/>
+  <img src="/images/CTF/UTCTF2020/bof5.png"/>
 </p>
 
 **DO NOT FORGET** about the `(cat input; cat)` trick since you will otherwise not be able to input commands in the spawned shell. You want to cat the contents of input and afterward cat without a parameter so whatever you write gets passed to the remote shell.
@@ -170,13 +170,13 @@ It looks quite simple but, nevertheless, there are some things that must be unde
 * The text sent to the server is appended **before/in front of** the flag. 
 * The plaintext will be randomly concatenated to the char 'A'. That is, sometimes the program will encrypt be 'A'+plaintext+flag and other simply plaintext+flag. This happens randomly. 
 
-*Please bear in mind that all these writeups and conclussions are the result of several tryouts and tests with the challenges and understanding what happens inside the computer, the underlying concept.*
+*Please bear in mind that all these writeups and conclusions are the result of several tryouts and tests with the challenges and understanding what happens inside the computer, the underlying concept.*
 
 The attack this encryption algorithm is vulnerable to is called *chosen  plaintext attack.* There are plenty of resources across the Internet [explaining](https://crypto.stackexchange.com/questions/42891/chosen-plaintext-attack-on-aes-in-ecb-mode) the [attack](https://security.stackexchange.com/questions/62078/how-are-chosen-plaintext-attacks-against-ecb-implemented-in-the-real-world). 
 
-Now, in order to carry out the known ciphertext attack, we must simply leak byte per byte until we get the full flag. Since ECB encrypts each block independently, we don't have to worry about anythin else. 
+Now, in order to carry out the known ciphertext attack, we must simply leak byte per byte until we get the full flag. Since ECB encrypts each block independently, we don't have to worry about anything else. 
 
-The solution I implemented works as follows. Since I Know the plaintext will be concatenated with the flag and, sometimes, there will be a random A at the beggining, given the block size 16 I can simply request, let's say, "A"\*15 several times until I have both possible values. These values are the encryption of "A"\*15 and "A"*(randomly appended)*+"A"\*15. One of them, I don't know which one, will contain the encrypted message corresponding to "A"\*15 and the first letter of the flag. The logic behind this is that I can abuse the concatenation of the plaintext (which I control) and the flag in order to encrypt in one block 15 chars that I control and one letter from the flag. Then I can request the server to encrypt those 15 chars and very printable character from the ASCII table. When the two encrypted messages are the same, it means that I know the first letter of the flag. When i got the first letter of the flag, I repeat the process only this time I'll be encrypting 14 padding letters + the first char of the flag + the new letter to leak.
+The solution I implemented works as follows. Since I Know the plaintext will be concatenated with the flag and, sometimes, there will be a random A at the beginning, given the block size 16 I can simply request, let's say, "A"\*15 several times until I have both possible values. These values are the encryption of "A"\*15 and "A"*(randomly appended)*+"A"\*15. One of them, I don't know which one, will contain the encrypted message corresponding to "A"\*15 and the first letter of the flag. The logic behind this is that I can abuse the concatenation of the plaintext (which I control) and the flag in order to encrypt in one block 15 chars that I control and one letter from the flag. Then I can request the server to encrypt those 15 chars and very printable character from the ASCII table. When the two encrypted messages are the same, it means that I know the first letter of the flag. When i got the first letter of the flag, I repeat the process only this time I'll be encrypting 14 padding letters + the first char of the flag + the new letter to leak.
 
 The script used to leak the flag is explained below. The script is rudimentary and it could be improved in several ways:
 ```python
@@ -243,7 +243,7 @@ while not found:
 
 ```
 
-I know the flag will start with *utflag{* so I can include it alreay in the global flag variable. 
+I know the flag will start with *utflag{* so I can include it already in the global flag variable. 
 
 The plaintext I'll be using is the padding used in front of the flag and the letter to leak.
 
@@ -303,7 +303,7 @@ The flag is: utflag{str1ngs_1s_y0ur_fr13nd}
 The image had a binary embedded into it. It can be extracted using `binwalk`.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020/observe0.png"/>
+  <img src="/images/CTF/UTCTF2020/observe1.png"/>
 </p>
 
 The flag is utflag{2fbe9adc2ad89c71da48cabe90a121c0}
