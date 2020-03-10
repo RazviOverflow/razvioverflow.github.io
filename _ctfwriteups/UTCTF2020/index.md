@@ -89,8 +89,8 @@ Now that we have the gadget we need, we can create the exploit. We know beforeha
 So, our script will meet the following skeleton:
 
 ```
-| 112 padding bytes to fill buffer | 8  padding bytes to fill saved rbp | address of gadget | value to put into `rdi` |
-address of `get_flag` |
+| 112 padding bytes to fill buffer | 8  padding bytes to fill saved rbp | address of gadget 
+| value to put into `rdi` | address of `get_flag` |
 ```
 
 This is the script I used:
@@ -258,13 +258,13 @@ With `get_auxiliar_encryption` function, I'm doing the same exact thing except t
 
 After I have both possible encrypted messages (I don't know which one is the message with the appended 'A' and which one is the original, but I don't need that information), I retrieve only the block that contains the byte/letter I will leak with the attack. That is:
 
-``
-Each block is 32 bytes long since they are hex encoded.
-discover_byte_a = discover_byte_a[32:64]
-|  block1   |   block2    | rest of the encrypted message.
+```
+Each block is 32 bytes long since they are hex encoded.  
+discover_byte_a = discover_byte_a[32:64]  
+|  block1   |   block2    | rest of the encrypted message.  
 [0] ... [31]|[32] ... [63]|[64] ...
 Last position of block 2 is the byte to leak. 
-`` 
+``` 
 
 Once the encrypted messages have been obtained, I will now request the server to encrypt again some plaintext but this time I won't leave an empty space to be fulfilled. I will try every printable character in that position and compare the resultant encrypted message. When the encryption is equal to my previously encrypted messages (the plaintext where I used blocksize-1 padding byte so the server appends a byte from the flag, the one to be leaked) I know for sure that's the byte of the original plaintext (the flag) since ECB mode is straightforward 
 
