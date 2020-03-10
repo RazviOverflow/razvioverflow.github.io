@@ -38,7 +38,7 @@ The CTF had several categories but, this time, I decided to focus on forensics *
 ## bof
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/bof0.png"/>
+  <img src="/images/CTF/UTCTF2020/bof0.png"/>
 </p>
 
 After downloading the binary and analyzing it with `file`, `binwalk` and `strings`, nothing catches my eye except "get_flag", which is the name of a function we'll later see.
@@ -48,13 +48,13 @@ I decided to debug the binary with Radare2 without GUI (Cutter).
 Disassembling the `main` function reveals that there is nothing special to it aside from a `gets` call, which is natively vulnerable to buffer overflows. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/bof1.png"/>
+  <img src="/images/CTF/UTCTF2020/bof1.png"/>
 </p>
 
 Inspecting the declared functions (*symbols*) of the binary allows us to see there is a `get_flag` function that calls a shell via `execve("/bin/sh")`.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/bof2.png"/>
+  <img src="/images/CTF/UTCTF2020/bof2.png"/>
 </p>
 
 That's great. We could simply overwrite `gets` return address with the address of `execve`. Alas, we can't since there is a condition that must be met in order to execute `execve`. At address `0x4005f5` the cpu will check whether the content of `edi` register is equal to `0xdeadbeef`.
@@ -64,7 +64,7 @@ We have no control over the `edi` register whatsoever. We could, however, think 
 After checking the binary's protections, the shellcode is immediately discarded since the `nx` bit is enabled. However, the code is not position independent (`pic`) and we can try ROP.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/bof3.png"/>
+  <img src="/images/CTF/UTCTF2020/bof3.png"/>
 </p>
 
 In order to pass the check at the `get_flag` function, we need a gadget that writes some value we control into the `edi` register. Either of the following gadgets will be enough:
@@ -81,16 +81,17 @@ ret;
 I will use r2 to find the gadgets but you can use whatever tool is of your preference: ROPgadget, ropper, etc...
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/bof4.png"/>
+  <img src="/images/CTF/UTCTF2020/bof4.png"/>
 </p>
 
 Now that we have the gadget we need, we can create the exploit. We know beforehand that the buffer passed to `gets` is 0x70 or 112 bytes long (instruction at address 0x4005c8).
 
 So, our script will meet the following skeleton:
-``
+
+```
 | 112 padding bytes to fill buffer | 8  padding bytes to fill saved rbp | address of gadget | value to put into `rdi` |
 address of `get_flag` |
-``
+```
 
 This is the script I used:
 
@@ -115,7 +116,7 @@ print(payload + gadget_addr + rdi_canary + get_flag_addr)
 Simply execute the script, redirect the output to a file and use it as input for the binary. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/bof4.png"/>
+  <img src="/images/CTF/UTCTF2020/bof4.png"/>
 </p>
 
 **DO NOT FORGET** about the `(cat input; cat)` trick since you will otherwise not be able to input commands in the spawned shell. You want to cat the contents of input and afterward cat without a parameter so whatever you write gets passed to the remote shell.
@@ -126,7 +127,7 @@ The flag is: utflag{thanks_for_the_string_!!!!!!}
 ## Random ECB
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/ecb0.png"/>
+  <img src="/images/CTF/UTCTF2020/ecb0.png"/>
 </p>
 
 The code of the provided file `server.py` is the following one:
@@ -262,7 +263,6 @@ Each block is 32 bytes long since they are hex encoded.
 discover_byte_a = discover_byte_a[32:64]
 |  block1   |   block2    | rest of the encrypted message.
 [0] ... [31]|[32] ... [63]|[64] ...
-
 Last position of block 2 is the byte to leak. 
 `` 
 
@@ -273,7 +273,7 @@ Given the 50% chance of the server appending and 'A' to the message, I'm repeati
 Executing the script several times and each time appending the new leaked letter to the flag results in leaking all the flag. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/ecb1.png"/>
+  <img src="/images/CTF/UTCTF2020/ecb1.png"/>
 </p>
 
 The flag is: utflag{3cb_w17h_r4nd0m_pr3f1x}
@@ -282,13 +282,13 @@ The flag is: utflag{3cb_w17h_r4nd0m_pr3f1x}
 ## Basics
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/rev0.png"/>
+  <img src="/images/CTF/UTCTF2020/rev0.png"/>
 </p>
 
 This challenge was indeed very basic. It was enough to read zero-terminated strings contained in the binary. You can use `strings` to do so. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/rev1.png"/>
+  <img src="/images/CTF/UTCTF2020/rev1.png"/>
 </p>
 
 The flag is: utflag{str1ngs_1s_y0ur_fr13nd}
@@ -297,20 +297,20 @@ The flag is: utflag{str1ngs_1s_y0ur_fr13nd}
 ## Observe closely
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/observe0.png"/>
+  <img src="/images/CTF/UTCTF2020/observe0.png"/>
 </p>
 
 The image had a binary embedded into it. It can be extracted using `binwalk`.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/observe0.png"/>
+  <img src="/images/CTF/UTCTF2020/observe0.png"/>
 </p>
 
 The flag is utflag{2fbe9adc2ad89c71da48cabe90a121c0}
 
 ## 1 Frame per Minute
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/1frame0.png"/>
+  <img src="/images/CTF/UTCTF2020/1frame0.png"/>
 </p>
 
 As the challenge description states, the file contains a SSTV transmission. In order to decode it I used `QSSTV`.
@@ -318,32 +318,32 @@ As the challenge description states, the file contains a SSTV transmission. In o
 You must configure QSSTV to read the file as input. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/1frame1.png"/>
+  <img src="/images/CTF/UTCTF2020/1frame1.png"/>
 </p>
 
 When you click "play the receiver", the program will ask you about the input file. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/1frame2.png"/>
+  <img src="/images/CTF/UTCTF2020/1frame2.png"/>
 </p>
 
 After playing it, the flag will be revealed.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/1frame3.png"/>
+  <img src="/images/CTF/UTCTF2020/1frame3.png"/>
 </p>
 The flag is: utflag{6bdfeac1e2baa12d6ac5384cdfd166b0}
 
 ## Basics forensics
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/basics0.png"/>
+  <img src="/images/CTF/UTCTF2020/basics0.png"/>
 </p>
 
 The downloaded file is called *secret.jpeg* but it isn't an image file. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/basics1.png"/>
+  <img src="/images/CTF/UTCTF2020/basics1.png"/>
 </p>
 
 The flag is: utflag{fil3_ext3nsi0ns_4r3nt_r34l}
@@ -351,13 +351,13 @@ The flag is: utflag{fil3_ext3nsi0ns_4r3nt_r34l}
 ## Spectre
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/spectre0.png"/>
+  <img src="/images/CTF/UTCTF2020/spectre0.png"/>
 </p>
 
 This challenge was as easy as inspecting the spectrogram.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/spectre1.png"/>
+  <img src="/images/CTF/UTCTF2020/spectre1.png"/>
 </p>
 
 The flag is: utflag{sp3tr0gr4m0ph0n3}
@@ -365,7 +365,7 @@ The flag is: utflag{sp3tr0gr4m0ph0n3}
 ## Zero
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/zero0.png"/>
+  <img src="/images/CTF/UTCTF2020/zero0.png"/>
 </p>
 
 In this challenge the downloaded file appears to be a txt file. It does indeed contain *Lorem ipsum...* but it's size is too big for such little text. 
@@ -373,13 +373,13 @@ In this challenge the downloaded file appears to be a txt file. It does indeed c
 Using `xxd` or any other hex binary printer, you can see there are invisible chars/bytes in the file. These are called [wide characters](https://en.wikipedia.org/wiki/Wide_character).
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/zero1.png"/>
+  <img src="/images/CTF/UTCTF2020/zero1.png"/>
 </p>
 
 Opening the file with vim allows you to see all of them.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/zero2.png"/>
+  <img src="/images/CTF/UTCTF2020/zero2.png"/>
 </p>
 
 You can therefore identify chars as the [Zero-width space](https://en.wikipedia.org/wiki/Zero-width_space) what, after some research, should lead you to (Unicode Steganography with Zero-Width Characters)[https://330k.github.io/misc_tools/unicode_steganography.html].
@@ -389,13 +389,13 @@ In order to decrypt it you must paste the contents of the file in the “Binary 
 There was a sketchy situation: you must select the text with the mouse (the whole zero.txt) and not with CTRL+A. CTRL+A selects also the side chars after the last printable character and it won’t decrypt. Using the mouse you select 957 chars, with CTRL+A you select 966.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/zero3.png"/>
+  <img src="/images/CTF/UTCTF2020/zero3.png"/>
 </p>
 
 After decoding the file using the options specified you can see in the image, simply download the hidden data as file and open it with your editor of choice. You’ll see the flag
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/zero4.png"/>
+  <img src="/images/CTF/UTCTF2020/zero4.png"/>
 </p>
 
 The flag is: utflag{whyNOT@sc11_4927aajbqk14}
@@ -404,19 +404,19 @@ The flag is: utflag{whyNOT@sc11_4927aajbqk14}
 ## The Legend of Hackerman 1
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/hackerman1_0.png"/>
+  <img src="/images/CTF/UTCTF2020/hackerman1_0.png"/>
 </p>
 
 The downloaded file pretends to be a png file but it's actually corrupted. Using `hexdump` or `xxd` you can inspect the bytes of the file. Doing so I realized that the file is indeed a png only that it's missing the file signature.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/hackerman1_1.png"/>
+  <img src="/images/CTF/UTCTF2020/hackerman1_1.png"/>
 </p>
 
 After manually changing the bytes with a hex editor (I used `bless`), the image can be visualized.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/hackerman1_2.png"/>
+  <img src="/images/CTF/UTCTF2020/hackerman1_2.png"/>
 </p>
 
 The flag is: utflag{3lit3_h4ck3r}
@@ -424,19 +424,19 @@ The flag is: utflag{3lit3_h4ck3r}
 ## The Legend of Hackerman 2
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/hackerman2_0.png"/>
+  <img src="/images/CTF/UTCTF2020/hackerman2_0.png"/>
 </p>
 
 In this challenge the downloaded file is a legit .docx file. .docx extension is just a container (like zip) of many other files. Using `binwalk` you can extract all of them. 
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/hackerman2_1.png"/>
+  <img src="/images/CTF/UTCTF2020/hackerman2_1.png"/>
 </p>
 
 Using your operating system explorer to explore the extracted files, you'll notice in the *media* folder there are a lot of images. One of them stand out given its dimension.
 
 <p align="center">
-  <img src="/images/CTF/UTCTF2020s/hackerman2_2.png"/>
+  <img src="/images/CTF/UTCTF2020/hackerman2_2.png"/>
 </p>
 
 The flag is utflag{unz1p_3v3ryth1ng}
