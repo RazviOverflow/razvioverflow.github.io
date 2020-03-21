@@ -12,7 +12,7 @@ description: RIFT CTF 2020 challenge writeups.
   <img src="/images/CTF/RIFTCTF2020/CTF.jpg" width="500"/>
 </p>
 
-Main event page: [https://technovate.iiitnr.ac.in/](https://technovate.iiitnr.ac.in/)
+Main event page: [https://technovate.iiitnr.ac.in/](https://technovate.iiitnr.ac.in/)  
 Main CTF page: [http://riftctf.iiitnr.ac.in:8000/](http://riftctf.iiitnr.ac.in:8000/)
 
 RIFTCTF 2020 was the first CTF organized by the IIIT Naya Raipur as part of their [Technovate 2020](https://technovate.iiitnr.ac.in/) event. There were some problems with the infrastucture and some challenges were not working as intended. In addition, the flag format was unclear in most of the challenges what led us to a lot of guessing. *Guessing is not nice :P*. However, it's not all bad news, the challenges we managed to solve were pretty enjoyable (we also enjoyed those we didn't solve) and we learned throughout the process which, as always, is main objective. 

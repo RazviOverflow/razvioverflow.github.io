@@ -34,9 +34,11 @@ for tag in old_tags:
 #print("The directory being read: " + post_dir)
 for filename in glob.iglob("./" + '**/*', recursive=True):
     if filename.endswith(".md"):
-        f = open(filename, 'r')
+        print(filename)
+        f = open(filename, 'r', encoding="utf8")
         crawl = False
         for line in f:
+            print(line)
             if crawl:
                 #current_tags = line.strip().split()
                 if line.startswith("tags:"):
