@@ -293,7 +293,7 @@ This challenge was indeed very basic. It was enough to read zero-terminated stri
 
 The flag is: utflag{str1ngs_1s_y0ur_fr13nd}
 
-#Forensics
+# Forensics
 ## Observe closely
 
 <p align="center">
