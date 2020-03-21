@@ -1,5 +1,5 @@
 ---
-title: "UTCTF 2020"
+title: "RIFTCTF 2020"
 categories: [ctf]
 tags: [ctf, writeup, riftctf]
 hasComments: true
