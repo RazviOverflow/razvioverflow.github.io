@@ -7,8 +7,9 @@ description: CTF (Capture The Flag) solutions and writeups explaining how the fl
 ---
 <img src="/images/CTF/icon.png" width="200" height="200"/>
 
-CTF (Capture The Flag) solutions and writeups explaining how the flag was actually capturesd. Self-improving and learning through live competition. 
+CTF (Capture The Flag) solutions and writeups explaining how the flag was actually captured. Self-improving and learning through live competition. 
 
+* [TAMUCTF 2020](/ctfwriteups/TAMUCTF2020)
 * [RIFTCTF 2020](/ctfwriteups/RIFTCTF2020)
 * [UTCTF 2020](/ctfwriteups/UTCTF2020)
 * [NeverLAN CTF 2020](/ctfwriteups/NeverLAN CTF 2020)
