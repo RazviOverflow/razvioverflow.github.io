@@ -1,7 +1,7 @@
 ---
 title: "List of hacking websites"
 categories: [hacking, learn]
-date: 2018-07-10
+date: 2020-04-06
 tags: [hacking, learn, practice, exploit]
 description: Here you can find a list, compilation, directory... of the best hacking sites. You can start from scratch, learn, improve, test your skills.
 ---
@@ -24,10 +24,13 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 - <span style="color:yellow">Reversing Hero</span> [https://www.reversinghero.com/](https://www.reversinghero.com/) ReversingHero is a 15-challenges computer program, designed to teach you Reverse Engineering. It begins from the real basics, and continues into more advanced topics.
 - <span style="color:yellow"> ROP Emporium </span> [https://ropemporium.com/](https://ropemporium.com/) Learn return-oriented programming through a series of challenges designed to teach ROP techniques in isolation, with minimal reverse-engineering and bug-hunting.
 - <span style="color:yellow">picoCTF</span> [https://picoctf.com/](https://picoctf.com/) picoCTF is a computer security game targeted at middle and high school students. The game consists of a series of challenges centered around a unique storyline where participants must reverse engineer, break, hack, decrypt, or do whatever it takes to solve the challenge. The challenges are all set up with the intent of being hacked, making it an excellent, legal way to get hands-on experience. Their code is accessible via [picoCTF Git repo](https://github.com/picoCTF)
-- <span style="color:yellow">CTF365</span> [https://ctf365.com/](https://ctf365.com/) CTF365 is a real life cyber range where users build their own servers and defend them while attacking other servers. It's what would happen in real life when your server or computer networks are under attack by hackers.
+- <span style="color:yellow">CryptoHack</span> [https://cryptohack.org/](https://cryptohack.org/) Get your hands dirty and learn about modern cryptographic protocols by solving a series of interactive puzzles and challenges.
 - <span style="color:yellow">Hack The Box</span> [https://www.hackthebox.eu/](https://www.hackthebox.eu/) Hack The Box is an online platform allowing you to test your penetration testing skills and exchange ideas and methodologies with other members of similar interests. It contains several challenges that are constantly updated. Some of them simulating real world scenarios and some of them leaning more towards a CTF style of challenge.
 - <span style="color:yellow">Root Me</span> [https://www.root-me.org/en/Challenges/](https://www.root-me.org/en/Challenges) The fast, easy, and affordable way to train your hacking skills. Root-me has a wide variety of challenges. CTFs, scripts, system, cracking, cryptanalysis, forensic, network, programming, realist, steganography, web-client, web-server. 
+- <span style="color:yellow">CrackMes</span> [https://crackmes.one/](https://crackmes.one/) This is a simple place where you can download crackmes to improve your reverse engineering skills. Crackmes.de does not exists anymore. Reversers need to find a place to upload their creation and help new people to learn from that great discipline. This place has been made in order to help you to improve your reversing skills. You can download some crackmes and submit solutions to them.
+- <span style="color:yellow">TryHackMe</span> [https://tryhackme.com/](https://tryhackme.com/) TryHackMe takes the pain out of learning and teaching Cybersecurity. Our platform makes it a comfortable experience to learn by designing prebuilt courses which include virtual machines (VM) hosted in the cloud ready to be deployed. This avoids the hassle of downloading and configuring VM's. Our platform is perfect for CTFs, Workshops, Assessments or Training. 
 - <span style="color:yellow">Exploit Education</span> [https://exploit.education/](https://exploit.education/) (Formerly Exploit-exercises) Exploit education provides a variety of virtual machines, documentation and challenges that can be used to learn about a variety of computer security issues such as privilege escalation, vulnerability analysis, exploit development, debugging, reverse engineering, and general cyber security issues.
+- <span style="color:yellow">CTF365</span> [https://ctf365.com/](https://ctf365.com/) CTF365 is a real life cyber range where users build their own servers and defend them while attacking other servers. It's what would happen in real life when your server or computer networks are under attack by hackers.
 - <span style="color:yellow">Hack This</span> [https://www.hackthis.co.uk/](https://www.hackthis.co.uk/) Want to learn about hacking and network security? Discover how hacks, dumps and defacements are performed and secure your website against hackers with HackThis. 
 - <span style="color:yellow">Hack This Site</span> [https://www.hackthissite.org/](https://www.hackthissite.org/) Hack This Site is a free, safe and legal training ground for hackers to test and expand their hacking skills. More than just another hacker wargames site, we are a living, breathing community with many active projects in development, with a vast selection of hacking articles and a huge forum where users can discuss hacking, network security, and just about everything. Tune in to the hacker underground and get involved with the project.
 - <span style="color:yellow">Try2Hack</span> [http://www.try2hack.nl/](http://www.try2hack.nl/) (You will probably get a browser warning about the page not being secure *not https*) This site provides several security-oriented challenges for your entertainment. It is actually one of the oldest challenge sites still around. The challenges are diverse and get progressively harder.
@@ -45,10 +48,17 @@ The wargames offered by the OverTheWire community can help you to learn and prac
 
 ## Courses, guided learning
 
+- <span style="color:yellow">Nightmare</span> [https://github.com/guyinatuxedo/nightmare](https://github.com/guyinatuxedo/nightmare) Nightmare is an intro to binary exploitation / reverse engineering course based around ctf challenges. I call it that because it's a lot of people's nightmare to get hit by weaponized 0 days, which these skills directly translate into doing that type of work.
+- <span style="color:yellow">Privilege Escalation Cheatsheet</span>[https://github.com/Ignitetechnologies/Privilege-Escalation/blob/master/README.md](https://github.com/Ignitetechnologies/Privilege-Escalation/blob/master/README.md) This cheatsheet is aimed at the CTF Players and Beginners to help them understand the fundamentals of Privilege Escalation with examples. It is not a cheatsheet for Enumeration using Linux Commands. Privilege escalation is all about proper enumeration. There are multiple ways to perform the same tasks. We have performed and compiled this list on our experience
 - <span style="color:yellow">Exploiting and reversing with free tools</span> [Link (too long)](http://ricardonarvaja.info/WEB/EXPLOITING%20Y%20REVERSING%20USANDO%20HERRAMIENTAS%20FREE/) (You will probably get a browser warning about the page not being secure *not https*) Guided course by the one and only Ricardo Narvaja. Exploting and reversing using only free tools. Both English and Spanish.
 - <span style="color:yellow">Begin.re</span> [https://www.begin.re/](https://www.begin.re/) If you have been searching for a place to get started with Reverse Engineering and get your hands dirty, Begin.re is the right place. The correct place for x86 newcomers. 
 - <span style="color:yellow">Modern Binary Exploitation course</span> [http://security.cs.rpi.edu/courses/binexp-spring2015/](http://security.cs.rpi.edu/courses/binexp-spring2015/)
 - <span style="color:yellow">Azeria's basics on ARM</span> [https://azeria-labs.com/writing-arm-assembly-part-1/](https://azeria-labs.com/writing-arm-assembly-part-1/) Tutorial series on ARM assembly basics. 
+
+## CTF Tools
+- <span style="color:yellow">CTF Tools Collection</span>[https://github.com/zardus/ctf-tools](https://github.com/zardus/ctf-tools) This is a collection of setup scripts to create an install of various security research tools. Of course, this isn't a hard problem, but it's really nice to have them in one place that's easily deployable to new machines and so forth.
+- <span style="color:yellow">Awesome CTF</span>[https://github.com/apsdehal/awesome-ctf](https://github.com/apsdehal/awesome-ctf) A curated list of Capture The Flag (CTF) frameworks, libraries, resources, softwares and tutorials. This list aims to help starters as well as seasoned CTF players to find everything related to CTFs at one place.
+- <span style="color:yellow">CTF Online Tools</span>[https://github.com/devploit/CTF_OnlineTools](https://github.com/devploit/CTF_OnlineTools) Repository to index interesting Capture The Flag online tools.
 
 
 ## Other compilations
@@ -63,6 +73,7 @@ There are also other websites that, just like this one, in turn gather the best 
 
 ## Readings
 - Reverse engineering reading list:  [https://github.com/onethawt/reverseengineering-reading-list](https://github.com/onethawt/reverseengineering-reading-list )
+- Reversing CTFs basic intro: [https://medium.com/bugbountywriteup/linux-reverse-engineering-ctfs-for-beginners-4cf03ff2cfb4](https://medium.com/bugbountywriteup/linux-reverse-engineering-ctfs-for-beginners-4cf03ff2cfb4)
 - G0Blin writeups [https://g0blin.co.uk/](https://g0blin.co.uk/) 
 
 ## Author note
