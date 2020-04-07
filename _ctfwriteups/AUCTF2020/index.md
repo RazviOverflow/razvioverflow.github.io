@@ -333,6 +333,21 @@ print binary.recvall()
 
 The flag is: auctf{that_w@s_2_ezy_29302}
 
+## Plain Jane 
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing30.png" />
+</p>
+
+This time we're given a `.s` file. That is, an assembly file. [More info here](https://stackoverflow.com/questions/10285410/what-are-s-files)
+
+In order to run it I used [Online GDB](https://www.onlinegdb.com/). We must place a breakpoint right before main function finishes and inspect what the value of `eax` is. Remember in 32 bit return value is stored, by default, in `eax`. 
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing31.png" />
+</p>
+
+The flag is: 0x6fcf
+
 # Trivia
 ## Password 1
 50
