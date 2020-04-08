@@ -348,6 +348,62 @@ In order to run it I used [Online GDB](https://www.onlinegdb.com/). We must plac
 
 The flag is: 0x6fcf
 
+## Don't Break Me!
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing40.png" />
+</p>
+
+This time we're once again given an ELF binary. Inspecting its disassembled code we can easily identify a call to a function named `debugger_check`. 
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing45.png" />
+</p>
+
+This function checks whether the binary is being debugged. We must NOP it in order to be able to debug the binary but first we must check where is this function called. To do so, we must inspect its cross-references.
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing46.png" />
+</p>
+
+Now we can NOP all the calls made to `debugger_check`. NOPping a funcion with Cutter is fairly simple: right click on the instruction -> Edit -> NOP Instruction.
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing47.png" />
+</p>
+
+After NOPping all the calls, the cross-references window should look like this:
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing41.png" />
+</p>
+
+Now, looking at the main algorithm we can notice that `print_flag` is called based on the result of the strcmp call. The string compare function is comparing `s2` and `s1`. `s2` is the result of calling `encrypt` over `s` (the user input) and `s1` is the result of calling `get_string`, i.e, `s1` is the expected result. 
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing48.png" />
+</p>
+
+So the approach we can follow here is placing a breakpoint before and after the `strcmp` call and see what strings are being compared. 
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing411.png" />
+</p>
+
+We can see the expected result of the encrypt call over the input is SASRRWSXBIEBCMPX. Now, in order to reverse it and get what input we must provide, we can simply patch the binary to call `decrypt` rather tan `encrypt` over our provided input and provide SASRRWSXBIEBCMPX as input. Then, while debugging, we can get the output of decrypt.
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing411.png" />
+</p>
+
+After doing so, we can see the input that encrypts to SASRRWSXBIEBCMPX is `IKILLWITHMYHEART`.
+
+<p align="center">
+  <img src="/images/CTF/AUCTF2020/reversing49.png" />
+</p>
+
+The flag is: auctf{static_or_dyn@mIc?_12923}
+
 # Trivia
 ## Password 1
 50
