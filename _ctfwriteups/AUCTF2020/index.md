@@ -393,7 +393,7 @@ So the approach we can follow here is placing a breakpoint before and after the 
 We can see the expected result of the encrypt call over the input is SASRRWSXBIEBCMPX. Now, in order to reverse it and get what input we must provide, we can simply patch the binary to call `decrypt` rather tan `encrypt` over our provided input and provide SASRRWSXBIEBCMPX as input. Then, while debugging, we can get the output of decrypt.
 
 <p align="center">
-  <img src="/images/CTF/AUCTF2020/reversing411.png" />
+  <img src="/images/CTF/AUCTF2020/reversing410.png" />
 </p>
 
 After doing so, we can see the input that encrypts to SASRRWSXBIEBCMPX is `IKILLWITHMYHEART`.
