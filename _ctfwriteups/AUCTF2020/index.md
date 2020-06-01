@@ -24,7 +24,7 @@ The challenged were pretty nice and carefully crafted, we really enjoyed them. A
   <img src="/images/CTF/AUCTF2020/scoreboard.png" width="500"/>
 </p>
 
-This time I participated along with [Kashmir54](https://twitter.com/ManuSanchez54) and [urzu](@daniel_uroz) and we ended up in 160th position. I'd like to thank both of them :)
+This time I participated along with [Kashmir54](https://twitter.com/ManuSanchez54) and [urzu](https://twitter.com/daniel_uroz) and we ended up in 160th position. I'd like to thank both of them :)
 
 The CTF had several categories. In this page you will find the following writeups:
   - Pwn / Binary Exploitation:

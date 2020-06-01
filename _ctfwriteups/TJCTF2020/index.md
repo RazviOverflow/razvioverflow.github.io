@@ -18,7 +18,7 @@ Thomas Jefferson Computer Securit Club (TJCSC): [https://activities.tjhsst.edu/c
 
 TJCTF2020 was a CTF organized by the Computer Security Club from the Thomas Jefferson High School for Science and Technology. It was a very nice CTF well suited for beginners and mid-experienced players. There was a wide variety of challenges and they were pretty fun *(although some involved guessing :P)*. Their difficulty was well balanced ranging from easy to medium and they were aimed at people that, just like me, are learning the very foundations. As always, the main objective is learning and we achieved it :). 
 
-Just like the last time, I participated along with [Kashmir54](https://twitter.com/ManuSanchez54) and [urzu](@daniel_uroz) and we ended up in 149-147th position. It's a pretty good result given the lack of time the 3 of us had. I'd like to thank both of them :)
+Just like the last time, I participated along with [Kashmir54](https://twitter.com/ManuSanchez54) and [urzu](https://twitter.com/daniel_uroz) and we ended up in 149-147th position. It's a pretty good result given the lack of time the 3 of us had. I'd like to thank both of them :)
 
 <p align="center">
   <img src="/images/CTF/TJCTF2020/scoreboard0.png"/>
