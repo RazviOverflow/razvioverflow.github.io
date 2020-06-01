@@ -488,7 +488,7 @@ If you simply change all the *false* values in the decoded message to *true*, en
   <img src="/images/CTF/TJCTF2020/login_sequel0.png"/>
 </p>
 
-This challenge was a login panel vulnerable to SQL injection. However' there was some filtering to bypass. 
+This challenge was a login panel vulnerable to SQL injection. However' there was some filtering to bypass. (Thanks to [Jorge](https://twitter.com/jorge_ctf))
 
 After many tries, we realized the WAF is filtering the "-" so we cannot comment with -- and it was also filtering `AND`, `OR`, `and`, `or` but... it was not filtering mixed case operators: `AnD`, `aNd`, `Or`, `oR`.
 For 
