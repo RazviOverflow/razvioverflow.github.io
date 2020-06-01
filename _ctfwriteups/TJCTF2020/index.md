@@ -1,5 +1,5 @@
 ---
-title: "AUCTF 2020"
+title: "TJCTF 2020"
 categories: [ctf]
 tags: [ctf, writeup, tjctf]
 hasComments: true
@@ -30,13 +30,11 @@ The CTF had several categories. In this page you will find the writeups for some
   - Pwn / Binary Exploitation:
     - Seashells, Tinder and OSRS. 
   - Reverse Engineering:
-    - Gym and ASMR.
-  - Forensics:
-    - Hexillology. 
+    - Gym and ASMR. 
   - Web:
     - Login, Sarah Palin Fanpage and Login Sequel.
-  - Crpyo:
-    - Circles, RSABC, TypeWriting, Tap Dancing and Titanic.
+  - Crypto:
+    - Tap Dancing and Titanic.
 
 # Binary Exploitation
 ## Seashells
@@ -410,3 +408,146 @@ Notice how I added a leading 0 in order to make the byte pairing correct. Keep i
 <p align="center">
   <img src="/images/CTF/TJCTF2020/asmr2.png"/>
 </p>
+
+# Web
+## Login
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/login0.png"/>
+</p>
+
+This challenge consisted of a login panel that had an obfuscated JavaScript running.
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/login1.png"/>
+</p>
+
+Using one of many JS deobfuscators online we got the following code:
+
+```javascript
+var array_strings=['value','4312a7be33f09cc7ccd1d8a237265798','Sorry.\x20Wrong\x20username\x20or\x20password.','admin','tjctf{','getElementsByName','toString'];
+
+(function(data, _0x31ce84) {
+    var _0x55c419 = function(_0x56392e) {
+        while (--_0x56392e) {
+            data['push'](data['shift']());
+        }
+    };
+    _0x55c419(++_0x31ce84);
+}(array_strings, 0x1e7));
+
+var do_things = function(i, _0x31ce84) {
+    i = i - 0x0;
+    return array_strings[i];
+};
+
+checkUsername = function() {
+    username = document[do_things('0x1')]('username')[0x0]['value'];
+    password = document[do_things('0x1')]('password')[0x0][do_things('0x3')];
+    temp = md5(password)[do_things('0x2')]();
+    if (username == do_things('0x6') && temp == do_things('0x4')) 
+        alert(do_things('0x0') + password + '890898}');
+    else 
+        alert(do_things('0x5'));
+};
+```
+
+We can see it it checking with the hash value in the `array_strings` array. Now solving the challenge was as easy as looking for the password hash in [crackstation](https://crackstation.net/). 
+
+## Sarah Palin Fanpage
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/sarah0.png"/>
+</p>
+
+In this challenge we must, somehow, be able to log in in the VIP area. The access is denied every time you try to access it. 
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/sarah1.png"/>
+</p>
+
+In order to solve the challenge, I inspected the site's cookies on my browser. There was a base64-encoded cookie called data.
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/sarah2.png"/>
+</p>
+
+The decoded text is easily identifiable since we've been told that in order to access the VIP area we must first like all of Sarah's top 10 moments.
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/sarah3.png"/>
+</p>
+
+If you simply change all the *false* values in the decoded message to *true*, encode it back to base64 and replace the cookie's value, you can access the VIP area.
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/sarah4.png"/>
+</p>
+
+## Login Sequel
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/login_sequel0.png"/>
+</p>
+
+This challenge was a login panel vulnerable to SQL injection. However' there was some filtering to bypass. 
+
+After many tries, we realized the WAF is filtering the "-" so we cannot comment with -- and it was also filtering `AND`, `OR`, `and`, `or` but... it was not filtering mixed case operators: `AnD`, `aNd`, `Or`, `oR`.
+For 
+
+In order to log in as admin and bypass the password check one expression like the following must be used: `admin' Or 1=1/*`, `admin' oR 1=1/*`, `admin' oR '1'='1'/*`, etc.
+
+
+The flag is: tjctf{W0w_wHa1_a_SqL1_exPeRt!}
+
+# Crypto
+## Titanic
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/titanic0.png"/>
+</p>
+
+This challenge didn't require any special skill, just finding a script of Titanic and computing the hash of every single word until they match. 
+
+The script we used was:
+
+```python
+import re
+import sys
+import hashlib
+
+def main(path):
+    data = read_file(path)
+
+    for word in re.finditer(b'[a-zA-Z0-9\']+', data):
+        flag = b'tjctf{' + word.group(0).lower() + b'}'
+        print(flag)
+        if hashlib.md5(flag).hexdigest() == '9326ea0931baf5786cde7f280f965ebb':
+            print(flag.decode('utf-8'))
+            break
+
+def read_file(path):
+    with open(path, 'rb') as f:
+        return f.read()
+
+if __name__ == "__main__":
+    main(sys.argv[1])
+
+```
+
+The flag is: tjctf{marlborough's}
+
+## Tap Dancing
+
+<p align="center">
+  <img src="/images/CTF/TJCTF2020/tapdancing0.png"/>
+</p>
+
+This challenge was more of a guess work rather than technical skill. The file we're given contains only a ternary number: 1101111102120222020120111110101222022221022202022211.
+
+The solution consists in translating the text to morse code. 0 is space, 1 is dash and 2 is dot.
+
+1101111102120222020120111110101222022221022202022211
+-- ----- .-. ... . -. ----- - -... ....- ... . ...--
+
+Translates to: m0rsen0tb4se3 
+
+The flag is: tjctf{m0rsen0tb4se3}
