@@ -3,7 +3,7 @@ title: "RazviOverflow"
 mainPage: "true"
 categories: [hacking, learn]
 tags: [hacking, learn, practice, exploit]
-description: Have you ever wondered where to start hacking, acquire more hacking knowledge and even train, test and improve your hacking skills? Here is a compilation, collection, list, directory of the best sites that will help you. The sites listed below will help you understand and practice every aspect of the secure (or rather insecure) side of software, networks (networking), servers and every single element that may be exposed in the(our) binary world.
+description: Hacking explained so we can all understand the underlying concepts. In this site you'll find different tutorials and CTF's write-ups explained in gory detail (most of the time) so together we can understand and practice every aspect of the secure (or rather insecure) side of the (our) binary world.
 ---
 
 I'm Razvi. You can find me on twitter [@Razvieu](https://twitter.com/razvieu?lang=en)

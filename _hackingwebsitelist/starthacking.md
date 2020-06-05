@@ -3,7 +3,7 @@ title: "List of hacking websites"
 categories: [hacking, learn]
 date: 2020-04-06
 tags: [hacking, learn, practice, exploit]
-description: Here you can find a list, compilation, directory... of the best hacking sites. You can start from scratch, learn, improve, test your skills.
+description: Here you can find a list, compilation, directory... of the best hacking sites. You'll find sites where can start from scratch and progressively learn new techniques and sites where you can improve and test your skills.
 ---
 Have you ever wondered where to start hacking, acquire more hacking knowledge and even train, test and improve your hacking skills? Here is a compilation, collection, list, directory of the best sites that will help you. The sites listed below will help you understand and practice every aspect of the secure (or rather insecure) side of software, networks (networking), servers and every single element that may be exposed in the(our) binary world. 
 
