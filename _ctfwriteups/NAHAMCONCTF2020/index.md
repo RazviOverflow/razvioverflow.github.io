@@ -90,6 +90,29 @@ The image looks pretty normal at a first glance. As always, the next step it to 
 
 The flag is: flag{N0t_7h3_4cTuaL_Cr3At0r}
 
+## Mr. Robot
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/mrrobot0.png"/>
+</p>
+
+In this challenge we must inspect a webpage and see where the flag is hidden. 
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/mrrobot1.png"/>
+</p>
+
+The frontpage has a mr.robot image that is some sort of rabbit hole. Nothing interesting can be found in it nor in the image. 
+
+Since the title is "Mr. **Robot**", it's worth checking robots.txt.
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/mrrobot2.png"/>
+</p>
+
+And indeed the flag was there :)
+The flag is: flag{welcome_to_robots.txt}
+
 ## UGCC
 
 <p align="center">
