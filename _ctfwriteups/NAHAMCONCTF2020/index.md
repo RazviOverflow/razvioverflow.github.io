@@ -34,7 +34,7 @@ The CTF had several categories. In this page you will find the writeups for some
   - OSINT:
     - Time Keeper, Finsta, New Years Resolution and Tron.
   - Forensics:
-    - Microsoftand Volatile.
+    - Microsooft and Volatile.
 
 # Warmup
 ## Read The Rules
@@ -367,3 +367,167 @@ Once you copy all the values, you must provided them as input in the server. You
 </p>
 
 The flag is: flag{rax_rdi_rsi_radical_dude}
+
+# OSINT
+## Time Keeper
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/timekeeper0.png"/>
+</p>
+
+https://apporima.com/
+
+The site we have to inspect is a blog-like page with several entries from the author. After spending some time looking at the website, I found nothing of interest. Then I uses [waybackmachine](https://web.archive.org) to inspect the website. 
+
+
+The blog has [2 snapshots](https://web.archive.org/web/*/https://apporima.com/), the first dating of April 2020. At that time, the first entry of the blog was talking about *forward slash flag dot txt* .
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/timekeeper1.png"/>
+</p>
+
+However, it doesn't exist in the actual blog. 
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/timekeeper2.png"/>
+</p>
+
+Then I checked the url with wayback machine and the flag was there :)
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/timekeeper3.png"/>
+</p>
+
+The flag is: JCTF{the_wayback_machine}
+
+## Finsta
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/finsta0.png"/>
+</p>
+
+This time we have to find all social media used by `NahamConTron`. There are several OSINT tools that allow you to discover whether an username is taken in the most popular social sites. These tools are called username search engines. [Namechk](https://namechk.com/), [knowem](https://knowem.com/) or [namecheckr](https://www.namecheckr.com/) are examples of it. 
+
+This time I used knowem, even though the title gives us a hint about Instagram. [https://knowem.com/checkusernames.php?u=NahamConTron](https://knowem.com/checkusernames.php?u=NahamConTron). 
+ 
+I found that there is a github user with such name. However, there was a bait file:
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/finsta1.png"/>
+</p>
+
+Finally, checking their instagram reveals the flag.
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/finsta2.png"/>
+</p>
+
+
+The flag is: flag{i_feel_like_that_was_too_easy}
+
+## New Years Resolution
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/nyr0.png"/>
+</p>
+
+In this challenge we have a domain to inspect. Since there's nothing running on port 80, the next step would be to check its `whois` records. 
+
+This time I used [DomainDossier](https://centralops.net/co/DomainDossier.aspx) to find its IPs, DNS records and whois record.
+
+The admins hid the flag in the DNS records :) as a sender policy framework entry.
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/nyr1.png"/>
+</p>
+
+The flag is: flag{next_year_i_wont_use_spf}
+
+## Tron
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/tron0.png"/>
+</p>
+
+This time it was a bit harder, since we're given the same username but we must find *his server*. Upon checking several reverse whois tools, there was no info at all. Thanks to [kheaBro](https://twitter.com/IamKheaBro) for giving me a helping hand. 
+
+Looking again at the github [profile](https://github.com/nahamcontron) we previously found, we noticed the user forked another [repo](https://github.com/NahamConTron/dotfiles).
+
+In the cloned repo, they left a file called `.bash_history`. Inspecting it reveals a ssh connection attempt to a given server. 
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/tron1.png"/>
+</p>
+
+Luckily enough, the private key name `id_rsa` was also available in the repo.
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/tron2.png"/>
+</p>
+
+With this private ssh key, we can replicate the connection attempt. And it works :)
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/tron3.png"/>
+</p>
+
+The flag is: flag{nahamcontron_is_on_the_grid}
+
+# Forensics
+## Microsooft
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/microsooft0.png"/>
+</p>
+
+In this challenge a docx file is downloaded. Knowing docx format definitely helps with this one. Docx is just like zip, it's just a container/wrapper of other files.  These files can be easily identifies and extracted with binwalk. 
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/microsooft1.png"/>
+</p>
+
+Upon extraction, there are several files to read. Since we know the format of the flag, the easiest step is to simply grep and cat each of of them. Fortunately, we find the flag this way while reading `oof.txt`. 
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/microsooft3.png"/>
+</p>
+
+The flag is: flag{oof_is_right_why_gfxdata_though}
+
+## Volatile
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/volatile0.png"/>
+</p>
+
+
+The downloaded file in this challenge is pretty big, almost 460MB. It is a memory dump and, as the title suggests, we have to use volatility in order to inspect it. 
+
+There are several resources to learn and understand volatility but the one I found most useful is [this one](https://medium.com/hackstreetboys/hsb-presents-otterctf-2018-memory-forensics-write-up-c3b9e372c36c).
+
+First, I’m interested in what image it is and what profile do I have to use.
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/volatile1.png"/>
+</p>
+
+It’s a win7 service pack 1 memory dump, so the profile I’ll be using is one of the 4 recommended by volatilty.
+
+After retrieving several pieces of information about the system like:
+```
+volatility -f memdump.raw --profile=Win7SP1x86_23418 hashdump
+volatility -f memdump.raw --profile=Win7SP1x86_23418 hivelist
+volatility -f memdump.raw --profile=Win7SP1x86_23418 lsadump
+volatility -f memdump.raw --profile=Win7SP1x86_23418 netscan
+volatility -f memdump.raw --profile=Win7SP1x86_23418 compname
+volatility -f memdump.raw --profile=Win7SP1x86_23418 clipboard
+...
+```
+Nothing interesting was found. The flag was finally found in the cmd history. It was echoed :)
+
+<p align="center">
+  <img src="/images/CTF/NAHAMCONCTF2020/volatile2.png"/>
+</p>
+
+The flag is: JCTF{nice_volatility_tricks_bro}
+
