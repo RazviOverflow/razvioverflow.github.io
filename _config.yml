@@ -9,6 +9,8 @@ repository: RazviOverflow/razvioverflow.github.io
 collections:
   microcorruption:
     output: true
+  247ctf:
+    output: true
   hackingwebsitelist:
     output: true
     permalink: /starthacking
