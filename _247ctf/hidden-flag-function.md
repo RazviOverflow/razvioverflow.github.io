@@ -4,7 +4,7 @@ date: 2021-02-11
 categories: [247ctf, ctf]
 image: /images/247ctf/logo_0.png
 tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, hidden flag function]
-description: 247CTF Hidden Flag Function challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
+description: 247CTF Hidden Flag Function (PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 hasComments: true
 ---
 
@@ -92,7 +92,7 @@ Let's inspect `flag` function before assuming it's the right place to jump to.
 
 It definitely is. It opens a file (we can assume it's named flag.txt at this point, but the correct move would be to actually check it), gets its contents and prints them.
 
-Our objective is to make it return to `flag` (hijacked flow) instead of `main` (legitimate execution). Now, how do we do that? **REMEMBER** that <yellow>writing</yellow> in memory happens from <red>lower addresses towards higher ones</red>. That is, our vulnerable `scanf` function will start writing at address `ebp-0x48` and we will have to input <blue>0x48</blue> (72 in decimal) bytes to reach `ebp`, <blue>4 more</blue> to overwrite it and reach the return address and, finally, the address (4 bytes) to hijack the execution flow and thus jumping wherever we want. In case you are not familiar with how stack behaves, I recommend you reading some beginner 32-bit exploiting tutorials like the legendary Aleph One's *[Smashing The Stack For Fun and Profit](http://phrack.org/issues/49/14.html)* published in Phrack, and many others like [1](https://www.exploit-db.com/docs/english/28475-linux-stack-based-buffer-overflows.pdf), [2](https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/), [3](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/). I also recommend [LiveOverflow](https://www.youtube.com/watch?v=iyAyN3GFM7A&list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN&ab_channel=LiveOverflow)'s exploiting videos. 
+Our objective is to make it return to `flag` (hijacked flow) instead of `main` (legitimate execution). Now, how do we do that? **REMEMBER** that <yellow>writing</yellow> in memory happens from <red>lower addresses towards higher ones</red>. That is, our vulnerable `scanf` function will start writing at address `ebp-0x48` and we will have to input <orange>0x48</orange> (72 in decimal) bytes to reach `ebp`, <orange>4 more</orange> to overwrite it and reach the return address and, finally, the address (4 bytes) to hijack the execution flow and thus jumping wherever we want. In case you are not familiar with how stack behaves, I recommend you reading some beginner 32-bit exploiting tutorials like the legendary Aleph One's *[Smashing The Stack For Fun and Profit](http://phrack.org/issues/49/14.html)* published in Phrack, and many others like [1](https://www.exploit-db.com/docs/english/28475-linux-stack-based-buffer-overflows.pdf), [2](https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/), [3](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/). I also recommend [LiveOverflow](https://www.youtube.com/watch?v=iyAyN3GFM7A&list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN&ab_channel=LiveOverflow)'s exploiting videos. 
 
 To sum it up, this is the scenario we're dealing with:
 
@@ -102,7 +102,7 @@ To sum it up, this is the scenario we're dealing with:
 
 One important thing is getting the address of `flag` function. Since the binary is not PIC/PIE (position independent), the .text section addresses won't change between executions. That is, we can hardcode the address `0x08048576`. 
 
-In order to exploit the binary I will be using [pwntools](https://github.com/Gallopsled/pwntools). **PLEASE BEAR IN MIND** that the data you want to overwrite and place on the stack must be [LITTLE ENDIAN](https://stackoverflow.com/questions/25938669/is-little-endian-a-byte-or-bit-order-in-x86-architecture#:~:text=IA%2D32%20processors%20are%20%E2%80%9Clittle,from%20the%20least%20significant%20byte.&text=In%20computing%2C%20memory%20commonly%20stores,8%2Dbit%20units%20called%20bytes.). Pwntools' [packing](https://docs.pwntools.com/en/stable/util/packing.html) (p32() or p64()) functions already convert the numbers for us.
+In order to exploit the binary I will be using [pwntools](https://github.com/Gallopsled/pwntools). **<red>PLEASE BEAR IN MIND</red>** that the data you want to overwrite and place on the stack must be [LITTLE ENDIAN](https://stackoverflow.com/questions/25938669/is-little-endian-a-byte-or-bit-order-in-x86-architecture#:~:text=IA%2D32%20processors%20are%20%E2%80%9Clittle,from%20the%20least%20significant%20byte.&text=In%20computing%2C%20memory%20commonly%20stores,8%2Dbit%20units%20called%20bytes.). Pwntools' [packing](https://docs.pwntools.com/en/stable/util/packing.html) (p32() or p64()) functions already convert the numbers for us.
 
 ```python
 # RazviOverflow
