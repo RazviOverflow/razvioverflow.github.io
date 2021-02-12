@@ -134,5 +134,9 @@ That's because you may find yourself (as I was) executing the exploit locally an
 
 Now it's just a matter of executing it remotely, replacing `process` with `remote(address, port)` in the python exploit.
 
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function/exploited.png">
+</p>
+
 ## More challenges
 * Click [here](/247ctf) to see 247CTF index.
