@@ -22,5 +22,6 @@ All the levels below listed are explained in great detail for all of us to under
 Following 247CTF's [rules](https://247ctf.com/about), everything will be explained in gory detail but <yellow>no flag will be revealed</yellow>.
 
 * **Pwnable**
-	* [Hidden flag function](/247ctf/hidden-flag-function)
+	* [Hidden Flag Function](/247ctf/hidden-flag-function)
+	* [Confused Environment Read](/247ctf/confused-environment-read)
 
