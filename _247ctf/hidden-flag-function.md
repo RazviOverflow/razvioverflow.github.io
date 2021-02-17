@@ -1,9 +1,9 @@
 ---
 title: "247CTF - Hidden Flag Function"
 date: 2021-02-11
-categories: [247ctf, ctf]
+cateies: [247ctf, ctf]
 image: /images/247ctf/logo_0.png
-tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, hidden flag function]
+tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, hidden flag function, buffer overflow]
 description: 247CTF Hidden Flag Function (PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 hasComments: true
 ---
