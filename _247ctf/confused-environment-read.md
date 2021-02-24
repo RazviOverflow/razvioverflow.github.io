@@ -10,13 +10,13 @@ hasComments: true
 
 ![247ctf0](/images/247ctf/pwnable/confused_environment_read/description.png)
 
-This binary exploitation challenge is, at the moment of writing this write-up, rated as *EASY* with a difficulty score of 2.22 out of 5.0. Its description states the following:
+This binary exploitation challenge is, at the moment of writing this walkthrough, rated as *EASY* with a difficulty score of 2.22 out of 5.0. Its description states the following:
 
 > Can you abuse our confused environment service to read flag data hidden in an environment variable?
 
-There is no binary to download an reverse this time. Instead we are given a URL and a port to connect to. In order to connect, I'll be using [netcat](https://en.wikipedia.org/wiki/Netcat) along with [rlwrap](https://github.com/hanslub42/rlwrap). In case you are wondering what rlwrap does, it basically wraps the readline commands and allows a user to use key arrows with commands line netcat, avoiding the annoying and infamous `^[[D^[[A` and such. 
+There is no binary to download and reverse this time. Instead, we are given a URL and a port to connect to. In order to connect, I'll be using [netcat](https://en.wikipedia.org/wiki/Netcat) along with [rlwrap](https://github.com/hanslub42/rlwrap). In case you are wondering what rlwrap does, it basically wraps the readline commands and allows a user to use arrow keys with commands line netcat, avoiding the annoying and infamous `^[[D^[[A` and such. 
 
-Connecting to the challenge is as easy as `rlwarp nc URL PORT`
+Connecting to the challenge is as easy as `rlwrap nc URL PORT`
 
 <p align="center">
 	<img src="/images/247ctf/pwnable/confused_environment_read/execution.png">
@@ -35,13 +35,13 @@ Given that we can only interact with the execution of the binary and we have no 
 
 You can also learn about format string in video format, [LiveOverflow](https://www.youtube.com/results?search_query=liveoverflow+format+string)'s videos on the topic are very recommended.
 
-I will briefly introduce format string vulnerability so everyone reading this can understand what is actually happening. If you want to go deeper into the topic, please read the articles linked above. 
+I will briefly introduce the format string vulnerability so everyone reading this can understand what is actually happening. If you want to go deeper into the topic, please read the articles linked above. 
 
 A format string vulnerability happens when a printing function, like `printf`, that works with format specifiers, like `%d`, is misused. That is, the parameters passed to the function do not follow its intended behavior.
 
 For example, a correct use of the `printf` function is: `printf("Your name is %s", name);`, while the following example is vulnerable to format string: `printf(name);`. Imagine if the variable `name` is controlled by the user. A given user could input things like `%s` or `%x` (or any valid format specifier). The result would be memory leaking, abusing the format string vulnerability. 
 
-Basically, the vulnerability happens because `printf` (and all the function within the family) have a variable number of arguments. The number of arguments is defined by the number of format specifiers (characters starting with `%`) within the format string itself. That is, a format string like `printf("Exploit %s, not %s.", "code", "people");` will expect two arguments and the function will retrieve them from the stack regardless the correctness of its invocation. In other words, the statement `printf("%x%x%x%x");` will print 4 arguments from the stack as hexadecimal, even though they were not specified when calling the function. 
+Basically, the vulnerability happens because `printf` (and all of the functions within the family) have a variable number of arguments. The number of arguments is defined by the number of format specifiers (characters starting with `%`) within the format string itself. That is, a format string like `printf("Exploit %s, not %s.", "code", "people");` will expect two arguments and the function will retrieve them from the stack regardless the correctness of its invocation. In other words, the statement `printf("%x%x%x%x");` will print 4 arguments from the stack as hexadecimal, even though they were not specified when calling the function. 
 
 There are several format specifiers we can use to leak information from the stack. In fact, `printf` family functions work with _format specifiers_, and several sub-specifiers like _flags_, _width_, _precision_ or _length_ following the `%[flags][width][.precision][length]specifier` pattern. I recommend you to read this [documentation](https://www.cplusplus.com/reference/cstdio/printf/) to find out all the valid specifiers. The next image shows the most common __format specifiers__ when exploiting a format string vulnerability ([Source](https://cs155.stanford.edu/papers/formatstring-1.2.pdf)).
 
@@ -59,11 +59,18 @@ Specifically, stack's behavior when exploiting the vulnerability is shown in the
 	<img src="/images/247ctf/pwnable/confused_environment_read/stack_format_string.png">
 </p>
 
-Now, sticking to our challenge, in order to abuse the vulnerability and leak memory contents, we can make use of the positional specifier and the string format specifier. As it was aforementioned, if the address dereferenced by the `%s` format specifier is an invalid address, the program will crash (*netcat connection will close*). 
+In order to depict the behavior of the stack and the internal `printf`'s pointer, I drawn the next figure. Please bear in mind that the behavior of the function is the same, regardless of the vulnerability. What differs is the intended data being printed or the actual leaking of information.
 
-Since we don't control what addresses are placed in the stack and neither can we debug it, my approach was to simply leak each and every address from the stack. That is, iterate and step through every position following the next pattern: `%{index}$s` where `index = 1`. In the next execution, `index = index + 1` and so forth. This pattern translated to a format specified is as simple as `$1$x`.
+<p align="center">
+	<img src="/images/247ctf/pwnable/confused_environment_read/stack_format_string_explained_by_razvi.png">
+</p>
 
-This works because `printf` functions allow the use of [positional parameters](https://stackoverflow.com/questions/6322540/how-do-positional-arguments-like-1-work-with-printf).
+
+Another important thing to note is that `printf` functions allow the use of [positional parameters](https://stackoverflow.com/questions/6322540/how-do-positional-arguments-like-1-work-with-printf).
+
+Now, sticking to our challenge, in order to abuse the vulnerability and leak memory contents, we can make use of the positional specifier and the string format specifier. As it was aforementioned, the `%s` format specifier expects a pointer to a string. That is, the address will be dereferenced and if it is invalid, the program will crash (*netcat connection will close*). 
+
+Since we don't control what addresses are placed on the stack and neither can we debug it, my approach was to simply leak each and every address from the stack. That is, iterate and step through every position following the next pattern: `%{index}$s` where `index starts at 1`. In the next execution, `index = index + 1` and so forth. This pattern translated to a format specifier with the corresponding positional argument is as simple as `$1$x`.
 
 ```python
 # RazviOverflow
