@@ -22,4 +22,5 @@ Following 247CTF's [rules](https://247ctf.com/about), everything will be explain
 * **Pwnable**
 	* [Hidden Flag Function](/247ctf/hidden-flag-function)
 	* [Confused Environment Read](/247ctf/confused-environment-read)
+	* [Hidden Flag Function Parameters](/247ctf/hidden-flag-function-parameters)
 
