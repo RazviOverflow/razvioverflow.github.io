@@ -44,14 +44,35 @@ Before inspecting them, let us take a look at `main`. It prints the strings and 
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/main.png">
 </p>
 
+Now, when taking a look at `chall` we can easily spot the vulnerability. The function performs a `scanf` read at address <yellow>ebp-0x88</yellow>. Scanf is a well-known [vulnerable](https://www.google.com/search?q=scanf+vulnerability&oq=scanf+vulnerability&aqs=chrome..69i57.2484j0j1&sourceid=chrome&ie=UTF-8) function since it performs no bounds checking. That is, we can input vast amounts of bytes.
+
+The attack is now clear, we can overwrite `chall`'s thus **<red>hijacking the execution flow</red>**.
 
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/chall_function.png">
 </p>
 
+Now the question is: where do we want to redirect the execution flow? The answer is: to `flag` function. Inspecting `flag` one can see there are several consecutive conditional jumps. If the correct conditions are met, there is a final block that actually opens a file called *<red>flag.txt</red>* and prints its content. If successfully exploited on the remote server, that would print the flag.
+
+In order to reach (execute) the code block that prints the flag, we must meet the following requirements from `flag`'s perspective:
+```
+ebp + 0x8 = 0x1337
+ebp + 0xc = 0x247
+ebp + 0x10 = 0x12345678
+```
+
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/flag_function.png">
 </p>
+
+In other words, when we manage to hijack the execution flow and reach `flag` function, its parameters/arguments must be the aforementioned ones. Please bear in mind we are exploiting a binary compiled for a <yellow>32-bit architecture</yellow>, hence the use of the stack to pass parameters to functions. Remember the [calling convention](https://en.wikipedia.org/wiki/X86_calling_conventions#List_of_x86_calling_conventions) is different for 32-bit and 64-bit. In 32-bit, arguments are always referenced as relative addresses to `ebp` register, since `ebp` is the [base pointer](https://stackoverflow.com/questions/21718397/what-are-the-esp-and-the-ebp-registers) (also known as frame pointer) of that particular stack frame. 
+
+In other words, from `flag`'s point of view, it expects the stack to be aligned like the following image where 1st argument corresponds to 0x1337, 2nd argument to 0x247 and 3rd argument to 0x12345678. Notice how the return address of the function is stored at ebp+0x4 and right above it, at ebp+0x8, lives the very first parameter.
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/arguments_position.png">
+</p>
+
 
 
 I hope you enjoyed my write-up. I'd be delighted to know whether it helped you progress and learn new things. Do not hesitate to reach me out via [Twitter](https://twitter.com/Razvieu). I'm always eager to learn new things and help others out :)
