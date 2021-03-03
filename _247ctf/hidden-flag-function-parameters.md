@@ -1,8 +1,8 @@
 ---
-title: "247CTF - Confused Environment Read"
+title: "247CTF - Hidden Flag Function Parameters"
 date: 2021-02-28
 categories: [247ctf, ctf]
-image: /images/247ctf/logo_0.png
+image: /images/247ctf/pwnable/hidden_flag_function_parameters/stack_behavior_while_hijacking_exploiting.png
 tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, hidden flag function parameters, buffer overflow]
 description: 247CTF Hidden Flag Function Parameters (PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 hasComments: true
@@ -20,7 +20,7 @@ There is a binary to download and exploit. Upon downloading it, I used [file](ht
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/file_command_and_first_execution.png">
 </p>
 
-As you can see in the image above, the binary is a <red>32-bit</red> [ELF](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) executable and it's not stripped. That's nice since debugging and reversing it will be easier. Additionally, I executed the binary and checked whether the binary is vulnerable to buffer overflows. And <yellow>it is</yellow>. Notice how there is a **segmentation fault** when the input is long enough. That is, with the adequate input we can overwrite the **<gold>EIP</gold>** register thus hijacking the binary's execution flow. *(We will later see what the input is)*
+As you can see in the image above, the binary is a <red>32-bit</red> [ELF](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) executable and it's not stripped. That's nice since debugging and reversing it will be easier. Automatically we must set our minds to think in 32-bit architecture. Additionally, I executed the binary and checked whether the binary is vulnerable to buffer overflows. And <yellow>it is</yellow>. Notice how there is a **segmentation fault** when the input is long enough. That is, with the adequate input we can overwrite the **<gold>EIP</gold>** register thus hijacking the binary's execution flow. *(We will later see what the input is)*
 
 The next step is to find out what protections has been the binary compiled with. In the following image I'm using [Cutter](https://cutter.re/).
 
@@ -67,13 +67,48 @@ ebp + 0x10 = 0x12345678
 
 In other words, when we manage to hijack the execution flow and reach `flag` function, its parameters/arguments must be the aforementioned ones. Please bear in mind we are exploiting a binary compiled for a <yellow>32-bit architecture</yellow>, hence the use of the stack to pass parameters to functions. Remember the [calling convention](https://en.wikipedia.org/wiki/X86_calling_conventions#List_of_x86_calling_conventions) is different for 32-bit and 64-bit. In 32-bit, arguments are always referenced as relative addresses to `ebp` register, since `ebp` is the [base pointer](https://stackoverflow.com/questions/21718397/what-are-the-esp-and-the-ebp-registers) (also known as frame pointer) of that particular stack frame. 
 
-In other words, from `flag`'s point of view, it expects the stack to be aligned like the following image where 1st argument corresponds to 0x1337, 2nd argument to 0x247 and 3rd argument to 0x12345678. Notice how the return address of the function is stored at ebp+0x4 and right above it, at ebp+0x8, lives the very first parameter.
+In other words, from `flag`'s point of view, it expects the stack to be aligned like the following image where:
+- 1st argument corresponds to 0x1337
+- 2nd argument to 0x247
+- 3rd argument to 0x12345678
+
+Notice how the return address of the function is stored at ebp+0x4 and right above it, at ebp+0x8, lives the very first parameter.
 
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/arguments_position.png">
 </p>
 
+So, the exploit consists in overwriting the return address of `chall` function with the address of `flag` and continue writing data in the stack in such a way that the parameters of `flag` are set according to the previous image. 
 
+**<yellow>However</yellow>**, this one is a bit tricky and we must manually configure the stack. Bear in mind that in a <green>legit</green> execution, before *calling* a function, there is a `call` instruction. [CALL](https://stackoverflow.com/questions/7060970/substitutes-for-x86-assembly-call-instruction) instructions modifies the stack pointer (`ESP` register) given it pushes the address to return to. Since we're hacking our way to call `flag`, there will be no `call` instruction. Additionally, functions are preceded by the [prologue](https://stackoverflow.com/a/14765429) and succeeded by the [epilogue](https://stackoverflow.com/a/14765429). The prologues and epilogues will still happen, but the absence of `call` slightly modifies the stack template/setting we must achieve. 
+
+Before reasoning about the exploit and the payload, **there is one more thing to note**. The register `ebx` is crucial. It is used throughout the whole program to reference parameters that are constant (hardcoded) and passed to other functions like `fopen`. 
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/use_of_ebx.png">
+</p>
+
+Notice how, in the image above, `ebp` is assigned from the stack right before `chall` function finises (instruction at address `084862D`). Since `chall` is the function whose stack frame we will overflow, it is important to keep the correct value at `ebp-0x04` because it is later used in `flag` (right column of the image below) to reference all the parameters needed to open <red>flag.txt</red> (amongst many others).
+
+Now, what is that value? It is fairly simple to find it out with IDA by simply resolving the offsets used in `lea` instructions (e.g., address `080485A9`). However, you can also debug it using your debugger of preference. You can do so by debugging a legit execution. Place a breakpoint when calling `chall`  and take a look at the contents of the stack. Right below `ebp` you will see the expected value of `ebx`. The value in question is `08048708`, which corresponds to the beginning of the [.rodata](https://en.wikipedia.org/wiki/Data_segment) (read-only data) section.
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/rodata_section.png">
+</p>
+
+Now, with this in mind we know so far that our exploit should meet, at least, the following requirements:
+1. Writing of bytes starts at `ebp-0x88` 
+2. At `ebp-0x4` we must preserve the expected `ebx` value: `0x08048708`
+3. The return address of `chall` must be overwritten with the return address of `flag`: `0x08048576`
+4. When executing `flag`, the following must be true: `ebp+0x08 = 0x1337`, `ebp+0xc = 0x247` and `ebp+0x10 = 0x12345678`.
+
+With all this information in mind, the scheme of our exploit is the one I drew in the next image.
+
+Notice I depicted the state of the stack and the registers when `chall` is about to finish (execute `ret`) and right after `flag` epilogue. If there is something you don't understand (like how the registers work or why do they move) do not hesitate to reach me out!
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/stack_behavior_while_hijacking_exploiting.png">
+</p>
 
 I hope you enjoyed my write-up. I'd be delighted to know whether it helped you progress and learn new things. Do not hesitate to reach me out via [Twitter](https://twitter.com/Razvieu). I'm always eager to learn new things and help others out :)
 
