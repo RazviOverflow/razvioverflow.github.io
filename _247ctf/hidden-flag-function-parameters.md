@@ -46,13 +46,17 @@ Before inspecting them, let us take a look at `main`. It prints the strings and 
 
 Now, when taking a look at `chall` we can easily spot the vulnerability. The function performs a `scanf` read at address <yellow>ebp-0x88</yellow>. Scanf is a well-known [vulnerable](https://www.google.com/search?q=scanf+vulnerability&oq=scanf+vulnerability&aqs=chrome..69i57.2484j0j1&sourceid=chrome&ie=UTF-8) function since it performs no bounds checking. That is, we can input vast amounts of bytes.
 
-The attack is now clear, we can overwrite `chall`'s thus **<red>hijacking the execution flow</red>**.
+The attack is now clear, we can overwrite `chall`'s return address thus **<red>hijacking the execution flow</red>**.
 
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/chall_function.png">
 </p>
 
-Now the question is: where do we want to redirect the execution flow? The answer is: to `flag` function. Inspecting `flag` one can see there are several consecutive conditional jumps. If the correct conditions are met, there is a final block that actually opens a file called *<red>flag.txt</red>* and prints its content. If successfully exploited on the remote server, that would print the flag.
+Now the question is: where do we want to redirect the execution flow? The answer is: to `flag` function. Inspecting `flag` one can see there are several consecutive conditional jumps. If the correct conditions are met, there is a final block that actually opens a file called *<red>flag.txt</red>* and prints its content. If successfully exploited on the remote server, that should print the flag.
+
+<p align="center">
+	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/flag_function.png">
+</p>
 
 In order to reach (execute) the code block that prints the flag, we must meet the following requirements from `flag`'s perspective:
 ```
@@ -61,11 +65,7 @@ ebp + 0xc = 0x247
 ebp + 0x10 = 0x12345678
 ```
 
-<p align="center">
-	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/flag_function.png">
-</p>
-
-In other words, when we manage to hijack the execution flow and reach `flag` function, its parameters/arguments must be the aforementioned ones. Please bear in mind we are exploiting a binary compiled for a <yellow>32-bit architecture</yellow>, hence the use of the stack to pass parameters to functions. Remember the [calling convention](https://en.wikipedia.org/wiki/X86_calling_conventions#List_of_x86_calling_conventions) is different for 32-bit and 64-bit. In 32-bit, arguments are always referenced as relative addresses to `ebp` register, since `ebp` is the [base pointer](https://stackoverflow.com/questions/21718397/what-are-the-esp-and-the-ebp-registers) (also known as frame pointer) of that particular stack frame. 
+In other words, when we manage to hijack the execution flow and reach `flag` function, its parameters/arguments must be the aforementioned ones. Please bear in mind we are exploiting a binary compiled for a <yellow>32-bit architecture</yellow>, hence the use of the stack to pass parameters to functions. Remember the [calling convention](https://en.wikipedia.org/wiki/X86_calling_conventions#List_of_x86_calling_conventions) is different for 32-bit and 64-bit. In 32-bit, arguments are always referenced (addressed) as relative addresses to `ebp` register, since `ebp` is the [base pointer](https://stackoverflow.com/questions/21718397/what-are-the-esp-and-the-ebp-registers) (also known as frame pointer) of that particular stack frame. 
 
 In other words, from `flag`'s point of view, it expects the stack to be aligned like the following image where:
 - 1st argument corresponds to 0x1337
@@ -80,9 +80,9 @@ Notice how the return address of the function is stored at ebp+0x4 and right abo
 
 So, the exploit consists in overwriting the return address of `chall` function with the address of `flag` and continue writing data in the stack in such a way that the parameters of `flag` are set according to the previous image. 
 
-**<yellow>However</yellow>**, this one is a bit tricky and we must manually configure the stack. Bear in mind that in a <green>legit</green> execution, before *calling* a function, there is a `call` instruction. [CALL](https://stackoverflow.com/questions/7060970/substitutes-for-x86-assembly-call-instruction) instructions modifies the stack pointer (`ESP` register) given it pushes the address to return to. Since we're hacking our way to call `flag`, there will be no `call` instruction. Additionally, functions are preceded by the [prologue](https://stackoverflow.com/a/14765429) and succeeded by the [epilogue](https://stackoverflow.com/a/14765429). The prologues and epilogues will still happen, but the absence of `call` slightly modifies the stack template/setting we must achieve. 
+**<yellow>However</yellow>**, this one is a bit tricky and we must manually configure the stack. Bear in mind that in a <green>legit</green> execution, before *calling* a function, there is a `call` instruction. [CALL](https://stackoverflow.com/questions/7060970/substitutes-for-x86-assembly-call-instruction) instruction modifies the stack pointer (`ESP` register) given it pushes the address to return to. Since we're hacking our way to call `flag`, there will be no `call` instruction. Additionally, functions are preceded by the [prologue](https://stackoverflow.com/a/14765429) and succeeded by the [epilogue](https://stackoverflow.com/a/14765429). The prologues and epilogues will still happen, but the absence of `call` slightly modifies the stack template/setting we must achieve. 
 
-Before reasoning about the exploit and the payload, **there is one more thing to note**. The register `ebx` is crucial. It is used throughout the whole program to reference parameters that are constant (hardcoded) and passed to other functions like `fopen`. 
+Before reasoning about the exploit and the payload, **<yellow>there is one more thing to note</yellow>**. The register `ebx` is crucial. It is used throughout the whole program to reference parameters that are constant (hardcoded) and passed to other functions like `fopen`. 
 
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/use_of_ebx.png">
@@ -90,16 +90,16 @@ Before reasoning about the exploit and the payload, **there is one more thing to
 
 Notice how, in the image above, `ebp` is assigned from the stack right before `chall` function finises (instruction at address `084862D`). Since `chall` is the function whose stack frame we will overflow, it is important to keep the correct value at `ebp-0x04` because it is later used in `flag` (right column of the image below) to reference all the parameters needed to open <red>flag.txt</red> (amongst many others).
 
-Now, what is that value? It is fairly simple to find it out with IDA by simply resolving the offsets used in `lea` instructions (e.g., address `080485A9`). However, you can also debug it using your debugger of preference. You can do so by debugging a legit execution. Place a breakpoint when calling `chall`  and take a look at the contents of the stack. Right below `ebp` you will see the expected value of `ebx`. The value in question is `08048708`, which corresponds to the beginning of the [.rodata](https://en.wikipedia.org/wiki/Data_segment) (read-only data) section.
+Now, what is that value? It is fairly simple to find it out with IDA by resolving the offsets used in `lea` instructions (e.g., address `080485A9`). However, you can also debug it using your debugger of preference. You can do so by debugging a legit execution. Place a breakpoint after `chall`'s prologue and take a look at the contents of the stack. Right below `ebp` you will see the expected value of `ebx`. The value in question is `08048708`, which corresponds to the beginning of the [.rodata](https://en.wikipedia.org/wiki/Data_segment) (read-only data) section.
 
 <p align="center">
 	<img src="/images/247ctf/pwnable/hidden_flag_function_parameters/rodata_section.png">
 </p>
 
 Now, with this in mind we know so far that our exploit should meet, at least, the following requirements:
-1. Writing of bytes starts at `ebp-0x88` 
-2. At `ebp-0x4` we must preserve the expected `ebx` value: `0x08048708`
-3. The return address of `chall` must be overwritten with the return address of `flag`: `0x08048576`
+1. Writing bytes (scanf's buffer) starts at address `ebp-0x88`.
+2. At `ebp-0x4` we must preserve the expected `ebx` value: `0x08048708`.
+3. The return address of `chall` must be overwritten with the return address of `flag`: `0x08048576`.
 4. When executing `flag`, the following must be true: `ebp+0x08 = 0x1337`, `ebp+0xc = 0x247` and `ebp+0x10 = 0x12345678`.
 
 With all this information in mind, the scheme of our exploit is the one I drew in the next image.
@@ -112,7 +112,7 @@ Notice I depicted the state of the stack and the registers when `chall` is about
 
 The logic behind the previous scheme is: in the left side of the image you can see the stack's composition when `chall` is about to finish (calling `ret`). In order to reach `flag` we must overwrite `chall`'s return address. We must write 0x84 padding bytes to reach `ebp-0x4`, write `ebx`'s expected value (remember we are working with 32-bit little endian), another 0x4 bytes of padding to reach the return address and, finally, the address of `flag`. We must continue writing data into memory so we accordingly set the parameters of `flag`. And here is where is most useful the drawing of the stack from `flag`'s perspective (right side of the image).
 
-Please be aware of the cell separation that exists between `ebp` and `flag`'s first argument (even though this memory cell corresponds to what would have been `flag`'s return address, we couldn't care less about it at this point). This is how `flag` expects the stack to be set-up and we must respect it. This cell separation must be considered when overflowing `chall`'s buffer.
+Please be aware of the cell separation that exists between `ebp` and `flag`'s first argument (even though this memory cell corresponds to what would have been `flag`'s return address, we couldn't care less about it at this point). This is how `flag` expects the stack to be set-up and we must comply with it. This cell separation must be considered when overflowing `chall`'s buffer.
 
 After all this reasoning, the script that I used and successfully exploits the binary is the following one. __BEAR IN MIND__ you can test your exploit locally by creating a spurious _flag.txt_.
 
