@@ -2,7 +2,7 @@
 title: "247CTF - Confused Environment Read"
 date: 2021-02-23
 categories: [247ctf, ctf]
-image: /images/247ctf/logo_0.png
+image: /images/247ctf/pwnable/confused_environment_read/stack_format_string_explained_by_razvi.png
 tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, confused environment read, format string]
 description: 247CTF Confused Environment Read (PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 hasComments: true
