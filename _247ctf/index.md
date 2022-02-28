@@ -4,7 +4,7 @@ date: 2021-02-09
 categories: [247ctf, ctf]
 image: /images/247ctf/logo_0.png
 tags: [247ctf, assembly, ctf, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation, web, cryptography, crypto, miscellaneous, networking]
-description: 247CTF tutorial, solutions and walkthrough. All levels are explained in great detail for all of us to understand the underlying idea. These are not mere tutorials showing how to get the flag but rather writeups explaining where the vulnerability, why does it happen and how to exploit it.
+description: 247CTF tutorials, solutions and walkthroughs. All levels are explained in great detail for all of us to understand the underlying idea. These are not mere tutorials showing how to get the flag but rather writeups explaining where the vulnerability resides, why does it happen and how to exploit it.
 ---
 <p align="center">
 	<img src="/images/247ctf/logo_0.png" width="200">

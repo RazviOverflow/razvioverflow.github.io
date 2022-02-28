@@ -16,6 +16,8 @@ collections:
     permalink: /starthacking
   ctfwriteups:
     output: true
+  tryhackme:
+    output: true
 defaults:
   - scope:
       path: ""
