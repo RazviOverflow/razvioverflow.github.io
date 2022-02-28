@@ -10,7 +10,7 @@ hasComments: true
 
 <style>
 	/* Responsive iframe */ 
-	.container {
+	.video-container {
 	    position: relative;
 	    width: 100%;
 	    height: 0;
@@ -27,8 +27,8 @@ hasComments: true
 
 TryHackMe Dear QA (Binary Exploitation, PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 
-<div class="container">
-	<iframe width="840" height="478" src="https://www.youtube.com/embed/XIBwx2ZEuwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/XIBwx2ZEuwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
 
 
