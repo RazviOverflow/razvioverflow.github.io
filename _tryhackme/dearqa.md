@@ -7,11 +7,30 @@ tags: [tryhackme, dear qa, dearqa, assembly, ctf, tutorial, walkthrough, debug, 
 description: TryHackMe Dear QA (Binary Exploitation, PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 hasComments: true
 ---
+
+<style>
+	/* Responsive iframe */ 
+	.container {
+	    position: relative;
+	    width: 100%;
+	    height: 0;
+	    padding-bottom: 56.25%;
+	}
+	.video {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	}
+</style>
+
 TryHackMe Dear QA (Binary Exploitation, PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
 
-<p align="center">
+<div class="container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/XIBwx2ZEuwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+</div>
+
 
 
 ## More challenges
