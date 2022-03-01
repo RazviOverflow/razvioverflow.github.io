@@ -25,7 +25,7 @@ hasComments: true
 	}
 </style>
 
-TryHackMe Dear QA (Binary Exploitation, PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts.
+TryHackMe Dear QA (Binary Exploitation, PWN) challenge explained in detail. We will see how to solve the challenge and understand the underlying concepts. We revisit the very foundations of a Buffer Overflow vulnerability in order to hijack the binary's execution flow.
 
 <div class="video-container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/XIBwx2ZEuwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
