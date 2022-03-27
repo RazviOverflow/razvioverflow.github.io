@@ -18,6 +18,8 @@ collections:
     output: true
   tryhackme:
     output: true
+  how2stack:
+    output: true
 defaults:
   - scope:
       path: ""
