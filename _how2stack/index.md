@@ -2,15 +2,10 @@
 title: "How2Stack"
 date: 2022-03-19
 categories: [pwn, binary exploitation, binexp, tutorial]
-image: /images/tryhackme/logo_0.png
+image: /images/247ctf/pwnable/hidden_flag_function/stack_behavior.png
 tags: [assembly, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation]
 description: Binary exploitation (PWN) tutorials to help you understand the foundations of stack-based exploitation techniques.
 ---
-<p align="center">
-	<img src="/images/tryhackme/logo_0.png" width="500">
-	<img src="/images/tryhackme/logo_1.png" height="265">
-</p>
-
 <style>
 	/* Responsive iframe */ 
 	.video-container {
@@ -32,7 +27,17 @@ description: Binary exploitation (PWN) tutorials to help you understand the foun
 I will be posting the videos I record as well as online resources for you to further understand the underlying concepts and techniques. 
 
 Contents:
-* **Endianness**
+* Basic Concepts:
+	* **Endianness**
+	* **Global Offset Table (GOT) and Procedure Linkage Table (PLT)**
+* Exploitation Techniques:
+	* **Buffer Overflow**
+	* **Execution Flow Hijacking (ret2win)**
+	* **Shellcode Execution (ret2shellcode)**
+	* **Integer Overflow / Underflow**
+	* **Format String**
+	* **PIE and Canary Bypass**
+	* **GOT overwrite**
 
 
 
@@ -40,6 +45,56 @@ Contents:
 ## Endianness
 
 <div class="video-container">
-	<iframe width="840" height="478" src="https://www.youtube.com/watch?v=T8E_JRqN0fY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/T8E_JRqN0fY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
 
+## Buffer Overflow
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/0_merdYty4Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/DiyFDCuyPqg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Execution Flow Hijackintg (ret2win)
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/-VUtXwDm5yQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Shellcode Execution (ret2shellcode)
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/6Yiupj3XHrM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Integer Overflow / Underflow
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/Mfaq4PW8H1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Format String
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/0-ulL3Y0MS8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## PIE and Canary Bypass
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/FpKL2cAlJbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Global Offset Table (GOT) and Procedure Linkage Table (PLT)
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/B4-wVdQo040" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## GOT overwrite
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/9SWYvhY5dYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
