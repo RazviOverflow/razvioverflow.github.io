@@ -38,6 +38,7 @@ Contents:
 	* **Format String**
 	* **PIE and Canary Bypass**
 	* **GOT overwrite**
+	* **Return Oriented Programming (ROP)**
 
 
 
@@ -97,4 +98,10 @@ Contents:
 
 <div class="video-container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/9SWYvhY5dYw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Return Oriented Programming (ROP)
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/8zRoMAkGYQE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
