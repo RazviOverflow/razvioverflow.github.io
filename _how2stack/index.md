@@ -23,6 +23,7 @@ description: Binary exploitation (PWN) tutorials to help you understand the foun
 	}
 </style>
 
+Binary exploitation (PWN) tutorials to help you understand the foundations of stack-based exploitation techniques.
 
 I will be posting the videos I record as well as online resources for you to further understand the underlying concepts and techniques. 
 
