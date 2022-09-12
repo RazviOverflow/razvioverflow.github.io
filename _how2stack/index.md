@@ -40,6 +40,7 @@ Contents:
 	* **PIE and Canary Bypass**
 	* **GOT overwrite**
 	* **Return Oriented Programming (ROP)**
+	* **Return to Libc (ret2libc)**
 
 
 
@@ -105,4 +106,10 @@ Contents:
 
 <div class="video-container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/8zRoMAkGYQE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Return to Libc (ret2libc)
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/TTCz3kMutSs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
