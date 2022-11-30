@@ -115,7 +115,10 @@ There are tons of articles, papers, videos, etc.. addressing endianness. To summ
 - In **<yellow><u>big-endian</u></yellow>** the most significant byte, the byte containing the most significant bit *(the leftmost byte)*, is stored first, at the lowest address. The least significant byte, then, has the higher address.
 - In **<yellow><u>little-endian</u></yellow>** the least significant byte, *(the rightmost byte)* is stored first, at the lowest address. The most significant byte, then, has the higher address. 
 
-As an example, let's use the char sequence "RAZVI OVERFLOW". Suppose each char is 1 byte and we are starting at address 0x00. Here is how a little-endian and big-endian architecture would store the data in memory.
+As an example, let's use the char sequence "RAZVI OVERFLOW". Suppose each char is 1 byte and we are starting at address 0x00. Here is how a little-endian and big-endian architecture would store the data in memory. **<red>WARNING!</red>** This is just an example to understand the concept. Endianness is applied only to multi-byte numbers like words, doublewords and quadwords. In most cases, strings are UTF-8, which uses a single byte to represent each char and thus it is not affected by endianness (because you can not reorder bytes in a single byte value). You can read more about Strings and endianness here:
+
+* https://cs.stackexchange.com/questions/103168/why-does-little-endian-apply-to-numbers-and-not-to-text-strings
+* https://stackoverflow.com/questions/1568057/ascii-strings-and-endianness
 
 <p align="center">
 <img src="/images/endianness.png">
