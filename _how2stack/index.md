@@ -31,6 +31,7 @@ Contents:
 * Basic Concepts:
 	* **Endianness**
 	* **Global Offset Table (GOT) and Procedure Linkage Table (PLT)**
+	* **How to debug the exploit**
 * Exploitation Techniques:
 	* **Buffer Overflow**
 	* **Execution Flow Hijacking (ret2win)**
@@ -112,4 +113,10 @@ Contents:
 
 <div class="video-container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/TTCz3kMutSs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## How to debug the exploit
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/CWxDhp0OFzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
