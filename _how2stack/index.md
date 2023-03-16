@@ -42,6 +42,7 @@ Contents:
 	* **GOT overwrite**
 	* **Return Oriented Programming (ROP)**
 	* **Return to Libc (ret2libc)**
+	* **Making stack executable with malicious mprotect call**
 
 
 
@@ -119,4 +120,10 @@ Contents:
 
 <div class="video-container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/CWxDhp0OFzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Making stack executable with malicious mprotect call
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/r_tysAKIELs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
