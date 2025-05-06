@@ -43,9 +43,9 @@ Contents:
 	* **Return Oriented Programming (ROP)**
 	* **Return to Libc (ret2libc)**
 	* **Making stack executable with malicious mprotect call**
-
-
-
+	* **Advanced Format String**
+		* **vfprintf internal buffer**
+		* **Abusing %s and %n**
 
 ## Endianness
 
@@ -126,4 +126,18 @@ Contents:
 
 <div class="video-container">
 	<iframe width="840" height="478" src="https://www.youtube.com/embed/r_tysAKIELs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+## Advanced Format String
+
+### vfprintf internal buffer
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/watch?v=K690__BET10" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+</div>
+
+### Abusing %s and %n
+
+<div class="video-container">
+	<iframe width="840" height="478" src="https://www.youtube.com/watch?v=FF8SRxMP8Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
