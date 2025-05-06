@@ -1,6 +1,6 @@
 ---
 title: "How2Stack"
-date: 2022-03-19
+date: 2025-05-06
 categories: [pwn, binary exploitation, binexp, tutorial]
 image: /images/247ctf/pwnable/hidden_flag_function/stack_behavior.png
 tags: [assembly, tutorial, walkthrough, debug, reverse engineering, exploiting, pwn, binary exploitation]
