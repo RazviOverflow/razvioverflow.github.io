@@ -133,11 +133,11 @@ Contents:
 ### vfprintf internal buffer
 
 <div class="video-container">
-	<iframe width="840" height="478" src="https://www.youtube.com/watch?v=K690__BET10" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/K690__BET10" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
 
 ### Abusing %s and %n
 
 <div class="video-container">
-	<iframe width="840" height="478" src="https://www.youtube.com/watch?v=FF8SRxMP8Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
+	<iframe width="840" height="478" src="https://www.youtube.com/embed/FF8SRxMP8Bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" class="video" allowfullscreen></iframe>
 </div>
